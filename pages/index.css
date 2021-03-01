@@ -1,3 +1,23 @@
 @import url(../vendor/normalize.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/content/content.css);
+
+@import url(../blocks/arrow-back/arrow-back.css);
+@import url(../blocks/game-area/__header/game-area__header.css);
+@import url(../blocks/game-area/__timer/game-area__timer.css);
+@import url(../blocks/game-area/__hint/game-area__hint.css);
+@import url(../blocks/game-area/__visual/game-area__visual.css);
+@import url(../blocks/game-area/__hangman/game-area__hangman.css);
+@import url(../blocks/game-area/__stats/game-area__stats.css);
+@import url(../blocks/game-area/__score/game-area__score.css);
+@import url(../blocks/game-area/__subheading/game-area__subheading.css);
+@import url(../blocks/game-area/__counter/game-area__counter.css);
+@import url(../blocks/game-area/__counter/_score/game-area__counter_score.css);
+@import url(../blocks/game-area/__lives/game-area__lives.css);
+@import url(../blocks/game-area/__counter/_lives/game-area__counter_lives.css);
+@import url(../blocks/game-area/__word/game-area__word.css);
+@import url(../blocks/game-area/__letter-container/game-area__letter-container.css);
+@import url(../blocks/game-area/__letter/game-area__letter.css);
+@import url(../blocks/keyboard/keyboard.css);
+@import url(../blocks/keyboard/__button/keyboard__button.css);
+@import url(../blocks/keyboard/__button/_hidden/keyboard__button_hidden.css);

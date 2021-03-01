@@ -1,0 +1,12 @@
+.arrow-back {
+  width: 19px;
+  height: 27px;
+  background-image: url(../../images/arrow-icon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: background-image .3s linear;
+}
+
+.arrow-back:hover {
+  background-image: url(../../images/arrow-icon-hover.svg);
+}

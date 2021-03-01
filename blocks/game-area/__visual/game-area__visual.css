@@ -1,0 +1,6 @@
+.game-area__visual {
+  display: grid;
+  grid-template-columns: 1fr 256px 1fr;
+  justify-items: end;
+  margin: 0 0 13px;
+}

@@ -1,0 +1,9 @@
+.game-area__letter {
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 1;
+  text-align: center;
+  color: #fff;
+}

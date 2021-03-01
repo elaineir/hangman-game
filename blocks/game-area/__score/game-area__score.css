@@ -1,0 +1,5 @@
+.game-area__score {
+  text-align: center;
+  margin: 0 0 55px;
+  grid-column: 3 / 4;
+}

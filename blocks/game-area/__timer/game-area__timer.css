@@ -1,0 +1,13 @@
+.game-area__timer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-53px);
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 1;
+  text-align: center;
+  color: #fff;
+}

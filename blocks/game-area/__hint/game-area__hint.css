@@ -1,0 +1,19 @@
+.game-area__hint {
+  margin: 0;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 1.2;
+  text-align: center;
+  color: #ffb904;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: color .3s linear;
+}
+
+.game-area__hint:hover {
+  cursor: pointer;
+  color: #931bf1;
+}

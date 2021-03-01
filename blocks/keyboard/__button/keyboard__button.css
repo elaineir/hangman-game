@@ -1,0 +1,21 @@
+.keyboard__button {
+  display: block;
+  box-sizing: border-box;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 1;
+  text-align: center;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff;
+  padding: 0;
+  transition: color .3s linear, border .3s linear;
+}
+
+.keyboard__button:hover {
+  cursor: pointer;
+  color: #ffb904;
+  border: 1px solid #ffb904;
+}

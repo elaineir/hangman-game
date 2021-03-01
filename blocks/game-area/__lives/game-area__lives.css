@@ -1,0 +1,9 @@
+.game-area__lives {
+  width: 61px;
+  height: 52px;
+  background-image: url(../../../images/lives.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  text-align: center;
+}

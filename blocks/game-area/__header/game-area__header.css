@@ -1,0 +1,8 @@
+.game-area__header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 36px;
+  margin: 0 0 10px;
+}

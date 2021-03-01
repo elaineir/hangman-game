@@ -1,0 +1,8 @@
+.game-area__letter-container {
+  margin-right: 3px;
+  border-bottom: 3px solid #fff;
+}
+
+.game-area__letter-container:last-of-type {
+  margin-right: 0;
+}

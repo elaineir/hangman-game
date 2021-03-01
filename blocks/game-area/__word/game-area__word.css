@@ -1,0 +1,7 @@
+.game-area__word {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 32px;
+}
