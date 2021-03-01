@@ -1,6 +1,7 @@
 .content {
   box-sizing: border-box;
   max-width: 600px;
+  width: inherit;
   max-height: 800px;
   background-color: #212932;
   padding: 20px 22px 15px;
