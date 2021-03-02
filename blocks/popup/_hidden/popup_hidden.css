@@ -1,0 +1,5 @@
+.popup_hidden {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}

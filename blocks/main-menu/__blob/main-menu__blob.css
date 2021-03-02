@@ -1,0 +1,11 @@
+.main-menu__blob {
+  position: absolute;
+  top: 24px;
+  right: 9px;
+  width: 100%;
+  height: 413px;
+  max-width: 472px;
+  background-image: url(../../../images/main-menu-blob.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}

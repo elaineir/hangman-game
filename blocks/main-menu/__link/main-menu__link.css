@@ -1,0 +1,17 @@
+.main-menu__link {
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color .3s linear;
+}
+
+.main-menu__link:hover {
+  color: #931bf1;
+  cursor: pointer;
+}

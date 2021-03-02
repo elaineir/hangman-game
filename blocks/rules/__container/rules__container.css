@@ -1,0 +1,9 @@
+.rules__container {
+  margin: 0 auto 20px;
+  border-bottom: 2px solid #ffb904;
+}
+
+.rules__container:last-of-type {
+  margin: 0 auto;
+  border-bottom: none;
+}

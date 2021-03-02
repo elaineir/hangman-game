@@ -1,0 +1,7 @@
+.levels__list-item {
+  margin: 0 auto 35px;
+}
+
+.levels__list-item:last-of-type {
+  margin: 0 auto;
+}

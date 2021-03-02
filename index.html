@@ -74,57 +74,117 @@
         </template>
       </div>
       <div class="keyboard">
-        <button class="keyboard__button">А</button>
-        <button class="keyboard__button">Б</button>
-        <button class="keyboard__button">В</button>
-        <button class="keyboard__button">Г</button>
-        <button class="keyboard__button">Д</button>
-        <button class="keyboard__button">Е</button>
-        <button class="keyboard__button">Ё</button>
-        <button class="keyboard__button">Ж</button>
-        <button class="keyboard__button">З</button>
-        <button class="keyboard__button">И</button>
-        <button class="keyboard__button">Й</button>
-        <button class="keyboard__button">К</button>
-        <button class="keyboard__button">Л</button>
-        <button class="keyboard__button">М</button>
-        <button class="keyboard__button">Н</button>
-        <button class="keyboard__button">О</button>
-        <button class="keyboard__button">П</button>
-        <button class="keyboard__button">Р</button>
-        <button class="keyboard__button">С</button>
-        <button class="keyboard__button">Т</button>
-        <button class="keyboard__button">У</button>
-        <button class="keyboard__button">Ф</button>
-        <button class="keyboard__button">Х</button>
-        <button class="keyboard__button">Ц</button>
-        <button class="keyboard__button">Ч</button>
-        <button class="keyboard__button">Ш</button>
-        <button class="keyboard__button">Щ</button>
-        <button class="keyboard__button">Ь</button>
-        <button class="keyboard__button keyboard__button_hidden"></button>
-        <button class="keyboard__button">Ы</button>
-        <button class="keyboard__button">Ъ</button>
-        <button class="keyboard__button">Э</button>
-        <button class="keyboard__button">Ю</button>
-        <button class="keyboard__button">Я</button>
+        <button class="keyboard__button" type="button">А</button>
+        <button class="keyboard__button" type="button">Б</button>
+        <button class="keyboard__button" type="button">В</button>
+        <button class="keyboard__button" type="button">Г</button>
+        <button class="keyboard__button" type="button">Е</button>
+        <button class="keyboard__button" type="button">Е</button>
+        <button class="keyboard__button" type="button">Ё</button>
+        <button class="keyboard__button" type="button">Ж</button>
+        <button class="keyboard__button" type="button">Д</button>
+        <button class="keyboard__button" type="button">З</button>
+        <button class="keyboard__button" type="button">И</button>
+        <button class="keyboard__button" type="button">Й</button>
+        <button class="keyboard__button" type="button">К</button>
+        <button class="keyboard__button" type="button">Л</button>
+        <button class="keyboard__button" type="button">М</button>
+        <button class="keyboard__button" type="button">Н</button>
+        <button class="keyboard__button" type="button">О</button>
+        <button class="keyboard__button" type="button">П</button>
+        <button class="keyboard__button" type="button">Р</button>
+        <button class="keyboard__button" type="button">С</button>
+        <button class="keyboard__button" type="button">Т</button>
+        <button class="keyboard__button" type="button">У</button>
+        <button class="keyboard__button" type="button">Ф</button>
+        <button class="keyboard__button" type="button">Х</button>
+        <button class="keyboard__button" type="button">Ц</button>
+        <button class="keyboard__button" type="button">Ч</button>
+        <button class="keyboard__button" type="button">Ш</button>
+        <button class="keyboard__button" type="button">Щ</button>
+        <div class="keyboard__button-wrapper">
+          <button class="keyboard__button" type="button">Ь</button>
+          <button class="keyboard__button" type="button">Ы</button>
+          <button class="keyboard__button" type="button">Ъ</button>
+          <button class="keyboard__button" type="button">Э</button>
+          <button class="keyboard__button" type="button">Ю</button>
+          <button class="keyboard__button" type="button">Я</button>
+        </div>
       </div>
     </section>
 
-    <article class="main-menu">
-
+    <article class="main-menu popup popup_hidden">
+      <h1 class="main-heading">Виселица</h1>
+      <form class="form" name="usernameForm">
+        <input class="form__input" type="text" placeholder="Представьтесь, пожалуйста!">
+        <button class="form__submit-btn" type="submit">Играть</button>
+      </form>
+      <ul class="main-menu__list">
+        <li class="main-menu__list-item">
+          <a class="main-menu__link" href="">Как играть</a>
+        </li>
+        <li class="main-menu__list-item">
+          <a class="main-menu__link" href="">Лучшие результаты</a>
+        </li>
+      </ul>
+      <div class="main-menu__blob"></div>
     </article>
 
-    <article class="levels">
-
+    <article class="levels popup popup_hidden">
+      <a class="arrow-back arrow-back_absolute" href="#"></a>
+      <h2 class="main-heading levels__main-heading">Сложность</h2>
+      <ul class="levels__list">
+        <li class="levels__list-item">
+          <button class="levels__button" type="button">я нубасик</button>
+        </li>
+        <li class="levels__list-item">
+          <button class="levels__button" type="button">вполне миддл</button>
+        </li>
+        <li class="levels__list-item">
+          <button class="levels__button" type="button">осилю всё!</button>
+        </li>
+      </ul>
+      <div class="levels__blob"></div>
     </article>
 
-    <article class="rules">
-
+    <article class="rules popup popup_hidden">
+      <a class="arrow-back arrow-back_absolute" href="#"></a>
+      <h2 class="secondary-heading">Правила</h2>
+      <div class="rules__container">
+        <h3 class="rules__subheading">Правило!!</h3>
+        <p class="rules__text">Описание правила правиила Описание правила правиила Описание 
+          правила правиила</p>
+      </div>
+      <div class="rules__container">
+        <h3 class="rules__subheading">Правило!!</h3>
+        <p class="rules__text">Описание правила правиила Описание правила правиила Описание 
+          правила правиила</p>
+      </div>
+      <div class="rules__container">
+        <h3 class="rules__subheading">Правило!!</h3>
+        <p class="rules__text">Описание правила правиила Описание правила правиила Описание 
+          правила правиила</p>
+      </div>
     </article>
 
-    <article class="leaderboard">
-
+    <article class="leaderboard popup popup_hidden">
+      <a class="arrow-back arrow-back_absolute" href="#"></a>
+      <h2 class="secondary-heading leaderboard__secondary-heading">Зал славы</h2>
+      <div class="leaderboard__container leaderboard__container_leader">
+        <div class="leaderboard__cup"></div>
+        <p class="leaderboard__username">username</p>
+        <span class="leaderboard__score">320</span>
+      </div>
+      <div class="leaderboard__container">
+        <p class="leaderboard__username">username</p>
+        <span class="leaderboard__score">320</span>
+      </div>
+      <template class="leaderboard__template">
+        <div class="leaderboard__container">
+          <p class="leaderboard__username">username</p>
+          <span class="leaderboard__score">320</span>
+        </div>
+      </template>
     </article>
   </main>
 

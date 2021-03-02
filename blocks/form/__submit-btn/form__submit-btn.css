@@ -1,0 +1,22 @@
+.form__submit-btn {
+  display: block;
+  margin: 0 auto 73px;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 1;
+  text-align: center;
+  color: #931bf1;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  transition: transform .3s linear;
+}
+
+.form__submit-btn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}

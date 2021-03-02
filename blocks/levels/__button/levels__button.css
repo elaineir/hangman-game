@@ -1,0 +1,25 @@
+.levels__button {
+  display: block;
+  width: 100%;
+  max-width: 523px;
+  height: 60px;
+  margin: 0 auto;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 60px;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 1px solid #fff;
+  padding: 0;
+  transition: color .3s linear, border-color .3s linear;
+}
+
+.levels__button:hover {
+  color: #ffb904;
+  border-color: #ffb904;
+  cursor: pointer;
+}

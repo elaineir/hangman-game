@@ -1,0 +1,14 @@
+.main-heading {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 200px;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 80px;
+  line-height: 1.2;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  padding-top: 138px;
+}

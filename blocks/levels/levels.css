@@ -1,0 +1,6 @@
+.levels {
+  background-image: url(../../images/levels-blob.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: -30px -80px;
+}

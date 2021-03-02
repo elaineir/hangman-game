@@ -1,0 +1,11 @@
+.secondary-heading {
+  margin: 0 auto 40px;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 1.2;
+  text-align: center;
+  color: #ffb904;
+  text-transform: uppercase;
+}
