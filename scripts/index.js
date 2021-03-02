@@ -130,12 +130,6 @@ const startGame = (evt) => {
 
 levelButtons.forEach(button => button.addEventListener('click', startGame));
 
-//game
-const gameHadler = (level) => {
-
-}
-
-
 //leaderboard section
 let leaderboardSubheading = leaderboardPage.querySelector('.leaderboard__subheading');
 
@@ -179,5 +173,8 @@ const clearLeaderboard = () => {
   leaderboardSubheading.classList.remove('leaderboard__subheading_hidden');
 };
 
+//game
+const gameHadler = (level) => {
 
+}
 
