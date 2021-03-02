@@ -48,8 +48,41 @@ const usernameForm = document.forms.usernameForm;
 const howToPlayButton = document.querySelector('.main-menu__link_how-to-play');
 const leaderboardButton = document.querySelector('.main-menu__link_leaderboard');
 
+//validation
+const usernameInput = document.querySelector('.form__input');
+const submitNameButton = document.querySelector('.form__submit-btn');
+
+const handleValidation = () => {
+    if (usernameInput.validity.valid) {
+      submitNameButton.classList.add('form__submit-btn_active');
+      submitNameButton.classList.remove('form__submit-btn_inactive');
+      submitNameButton.disabled = false;
+    } else {
+      submitNameButton.classList.add('form__submit-btn_inactive');
+      submitNameButton.classList.remove('form__submit-btn_active');
+      submitNameButton.disabled = true;
+    }
+};
+
+usernameInput.addEventListener('input', handleValidation);
+
+//main menu save to localStorage
+let currentPlayer = '';
+
+const setlocalStorageJSONData = (key, value) => {
+  return localStorage.setItem(key, JSON.stringify(value));
+}
+
+const getlocalStorageData = (key) => {
+  return JSON.parse(localStorage.getItem(key));
+}
+
 const openLevelsPage = (evt) => {
   evt.preventDefault();
+  currentPlayer = usernameInput.value;
+  if (getlocalStorageData(currentPlayer) === null) {
+    setlocalStorageJSONData(currentPlayer, '0');
+  }
   closePopup(mainPage);
   openPopup(levelsPage);
 };
@@ -71,24 +104,6 @@ const openLeaderboardPage = (evt) => {
 usernameForm.addEventListener('submit', openLevelsPage)
 howToPlayButton.addEventListener('click', openHowToPlayPage);
 leaderboardButton.addEventListener('click', openLeaderboardPage);
-
-//validation
-const usernameInput = document.querySelector('.form__input');
-const submitNameButton = document.querySelector('.form__submit-btn');
-
-const handleValidation = () => {
-    if (usernameInput.validity.valid) {
-      submitNameButton.classList.add('form__submit-btn_active');
-      submitNameButton.classList.remove('form__submit-btn_inactive');
-      submitNameButton.disabled = false;
-    } else {
-      submitNameButton.classList.add('form__submit-btn_inactive');
-      submitNameButton.classList.remove('form__submit-btn_active');
-      submitNameButton.disabled = true;
-    }
-};
-
-usernameInput.addEventListener('input', handleValidation);
 
 
 //levels menu
