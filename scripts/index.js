@@ -1,6 +1,6 @@
 'use strict';
 
-//general
+//общее
 const gameArea = document.querySelector('.game-area');
 const mainPage = document.querySelector('.main-menu');
 const levelsPage = document.querySelector('.levels');
@@ -23,11 +23,13 @@ const enableGameArea = () => {
 
 const disableGameArea = () => {
   gameArea.classList.add('game-area_inactive');
+  hideTimerAfterGame();
+  clearWord();
 };
 
 const backToMainPage = (evt) => {
-  evt.preventDefault();
-  evt.target.getAttribute('href').replace('');
+  evt.preventDefault(); //отмена стандартного события для ссылки
+  evt.target.getAttribute('href').replace(''); //ссылки оставляют # в адресе, поэтому это исправляем
   const popup = evt.target.closest('.popup');
   closePopup(popup);
   openPopup(mainPage);
@@ -48,7 +50,7 @@ const usernameForm = document.forms.usernameForm;
 const howToPlayButton = document.querySelector('.main-menu__link_how-to-play');
 const leaderboardButton = document.querySelector('.main-menu__link_leaderboard');
 
-//validation
+//валидация
 const usernameInput = document.querySelector('.form__input');
 const submitNameButton = document.querySelector('.form__submit-btn');
 
@@ -66,9 +68,11 @@ const handleValidation = () => {
 
 usernameInput.addEventListener('input', handleValidation);
 
-//main menu save to localStorage
-let currentPlayer = '';  //should save current player for session
+//main menu сохранение в localStorage
+let currentPlayer = '';  //должна хранить имя игрока в текущей сессии
 
+
+// две универсальные функции для работы с localStorage, key - это имя игрока, value - это очки
 const setlocalStorageJSONData = (key, value) => {
   return localStorage.setItem(key, JSON.stringify(value));
 }
@@ -77,6 +81,7 @@ const getlocalStorageData = (key) => {
   return JSON.parse(localStorage.getItem(key));
 }
 
+//переходы по страницам
 const openLevelsPage = (evt) => {
   evt.preventDefault();
   currentPlayer = usernameInput.value;
@@ -114,7 +119,7 @@ const lowLevelButton = document.querySelector('.levels__button_low');
 const middleLevelButton = document.querySelector('.levels__button_middle');
 const hardLevelButton = document.querySelector('.levels__button_hard');
 
-const getLevel = (button) => {
+const getDifficulty = (button) => {
   if (button === lowLevelButton) return 'low';
   else if (button === middleLevelButton) return 'middle';
   else return 'hard';
@@ -122,10 +127,10 @@ const getLevel = (button) => {
 
 const startGame = (evt) => {
   const button = evt.target;
-  let level = getLevel(button);
+  const difficulty = getDifficulty(button);
   closePopup(levelsPage);
   enableGameArea();
-  gameHadler(level);  //main game function
+  gameHadler(currentPlayer, difficulty);  //основная игровая функция
 };
 
 levelButtons.forEach(button => button.addEventListener('click', startGame));
@@ -134,14 +139,15 @@ levelButtons.forEach(button => button.addEventListener('click', startGame));
 let leaderboardSubheading = leaderboardPage.querySelector('.leaderboard__subheading');
 
 const leaderboardHandler = () => {
-  if (Object.entries(localStorage).length > 0) {
+  if (Object.entries(localStorage).length > 0) {  //проверка на наличие записей в localStorage
     leaderboardSubheading.classList.add('leaderboard__subheading_hidden');
 
     let leaderboardArr = [];
 
-    function arrangeLeaderboardData() { //it works? (≖_≖ )
+    function arrangeLeaderboardData() { //хммм...она работает? (≖_≖ )
       const leaderboardData = Array.from(Object.entries(localStorage));
       return leaderboardArr = leaderboardData.sort((a, b) => {
+        //это полный кошмар, но пока так
         if (Number(a[1].slice(1, -1)) < Number(b[1].slice(1, -1))) return 1;
         if (Number(a[1].slice(1, -1)) > Number(b[1].slice(1, -1))) return -1;
         return 0;
@@ -150,6 +156,7 @@ const leaderboardHandler = () => {
 
     arrangeLeaderboardData();
 
+    //TODO кусок кода ниже разбить на функции
     const leaderboardTemplate = document.querySelector('.leaderboard__template');
     leaderboardArr.forEach(entry => {
       const leaderboardEntry = leaderboardTemplate.content.cloneNode(true);
@@ -157,7 +164,7 @@ const leaderboardHandler = () => {
       if (Number(entry[1].slice(1)) > 0) {
         leaderboardEntry.querySelector('.leaderboard__score').textContent = Number(entry[1].slice(1));
       }
-      leaderboardEntry.querySelector('.leaderboard__score').textContent = Number(entry[1].slice(1, -1)); //otherwise it's NaN!
+      leaderboardEntry.querySelector('.leaderboard__score').textContent = Number(entry[1].slice(1, -1)); //иначе NaN!
       leaderboardPage.append(leaderboardEntry);
     });
 
@@ -174,7 +181,111 @@ const clearLeaderboard = () => {
 };
 
 //game
-const gameHadler = (level) => {
+const letterTemplate = document.querySelector('.game-area__template');
+const wordContainer = document.querySelector('.game-area__word');
+const gameTimer = document.querySelector('.game-area__timer');
+const score = document.querySelector('.game-area__counter_score');
+const lives = document.querySelector('.game-area__counter_lives');
+const keyboardButtons = document.querySelectorAll('.keyboard__button');
+//тестовый массив TODO удалить в релизе
+const testingWords = ['лёгкийй', 'лёгйй', 'лйй', 'среднийй', 'среднийййй', 'тяжёлыйййййййййй', 'тяжёлыййййййййййвввв']
 
+
+const gameHadler = (currentPlayer, difficulty) => {
+  let letters = [];
+  let scorePointsBase = 0;
+  let scorePoints = 0;
+  let livesCounter = 10;
+  let minWordLength = 0;
+  let maxWordLength = 0;
+
+  if (difficulty === 'low') {
+    maxWordLength = 7;
+    scorePoints = 2;
+  } else if (difficulty === 'middle') {
+    minWordLength = 8;
+    maxWordLength = 15;
+    scorePoints = 5;
+  } else {
+    gameTimer.classList.add('game-area__timer_active');
+    minWordLength = 16;
+    maxWordLength = 20;
+    scorePoints = 10;
+  }
+
+  function renderWord() {
+    //заменить на парсер
+    const words = testingWords.filter(word => word.length <= maxWordLength && word.length >= minWordLength);
+    const word = words[Math.floor(Math.random() * 2)];
+    //
+    //letters - это массив букв из выбранного слова, клонируем темплейт и рендерим
+    letters = word.toUpperCase().split('');
+    
+    letters.forEach(letter => {
+      const letterElement = letterTemplate.content.cloneNode(true);
+      letterElement.querySelector('.game-area__letter').textContent = letter;
+      wordContainer.append(letterElement);
+    });
+  }
+
+  renderWord();
+
+  //TODO функция таймера - рекурсия с setTimeout и new Data, в дате взять минуты и сек, 
+  //периодичность 1 сек
+  //разделить в разметке таймер на 2 спана в обертке таймера для минут и сек соответственно
+
+  function showLetterOnClick(evt) {
+    checkLetter(evt.target.textContent);
+  }
+
+  function showLetterOnKeyboard(evt) {
+    const pressedLetter = evt.key.toUpperCase();
+    //TODO добавить проверку на посторонние клавиши - регулярка?
+    checkLetter(pressedLetter);
+  }
+
+  function checkLetter(pressedLetter) {
+    //TODO вызвать функцию проверки на окончание жизней или таймера
+    //функцию проверки на отгаданное слово
+    let hasLetter = letters.some(letter => letter == pressedLetter);
+    if (hasLetter) {
+      const currentWord = document.querySelectorAll('.game-area__letter');
+      let counterMod = 0; //модификатор для очков, если букв больше 1
+      for (let i = 0; i < currentWord.length; i++) {
+        if (currentWord[i].textContent === pressedLetter) {
+          currentWord[i].classList.add('game-area__letter_opened');
+          counterMod++;
+        }
+      }
+      //обновляем очки
+      scorePointsBase += scorePoints * counterMod;
+      score.textContent = scorePointsBase;
+      //TODO сделать нективной нажатую правильную кнопку (добавить класс keyboard__button_hidden)
+    } else {
+      livesCounter--;
+      lives.textContent = livesCounter;
+      //TODO рисуем виселицу, нужна анимация
+    }
+  }
+
+  //TODO функция проверки на окончание жизней или таймера
+  //в ней показать попап (не готов)
+  
+  //TODO функция проверки на отгаданное слово
+  //показать попап (не готов)
+
+  //TODO функция показать подсказку
+
+  keyboardButtons.forEach(button => button.addEventListener('click', showLetterOnClick));
+  document.addEventListener('keydown', showLetterOnKeyboard);
 }
 
+const clearWord = () => {
+  const letters = wordContainer.querySelectorAll('.game-area__letter-container');
+  letters.forEach(letter => letter.remove());
+}
+
+const hideTimerAfterGame = () => {
+  gameTimer.classList.remove('game-area__timer_active');
+  //остановить таймер
+}
