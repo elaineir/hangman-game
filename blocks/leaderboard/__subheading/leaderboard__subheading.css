@@ -1,0 +1,11 @@
+.leaderboard__subheading {
+  display: block;
+  margin: 0 auto 20px;
+  color: #fff;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 1.2;
+  text-align: center;
+}
