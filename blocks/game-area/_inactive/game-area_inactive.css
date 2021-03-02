@@ -1,5 +1,5 @@
-.popup_hidden {
-  opacity: 0;
+.game-area_inactive {
   pointer-events: none;
   user-select: none;
+  opacity: 0;
 }

@@ -7,16 +7,9 @@
   font-size: 72px;
   line-height: 1;
   text-align: center;
-  color: #931bf1;
   text-transform: uppercase;
   background-color: transparent;
   border: none;
   outline: none;
   padding: 0;
-  transition: transform .3s linear;
-}
-
-.form__submit-btn:hover {
-  transform: scale(1.1);
-  cursor: pointer;
 }

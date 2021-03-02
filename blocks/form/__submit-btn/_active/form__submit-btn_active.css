@@ -1,0 +1,9 @@
+.form__submit-btn_active {
+  color: #931bf1;
+  transition: transform .3s linear;
+}
+
+.form__submit-btn_active:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}

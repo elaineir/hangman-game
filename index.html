@@ -14,9 +14,9 @@
   <header></header>
 
   <main class="content">
-    <section class="game-area">
+    <section class="game-area game-area_inactive">
       <div class="game-area__header">
-        <a class="arrow-back" href="#"></a>
+        <a class="arrow-back game-area__arrow-back" href="#"></a>
         <span class="game-area__timer">00:00</span>
         <button class="game-area__hint" type="button">Подсказка</button>
       </div>
@@ -113,41 +113,42 @@
       </div>
     </section>
 
-    <article class="main-menu popup popup_hidden">
+    <article class="main-menu popup popup_active">
       <h1 class="main-heading">Виселица</h1>
       <form class="form" name="usernameForm">
-        <input class="form__input" type="text" placeholder="Представьтесь, пожалуйста!">
-        <button class="form__submit-btn" type="submit">Играть</button>
+        <input class="form__input" type="text" placeholder="Представьтесь, пожалуйста!"
+               minlength="1" maxlength="20" required>
+        <button class="form__submit-btn form__submit-btn_inactive" type="submit" disabled>Играть</button>
       </form>
       <ul class="main-menu__list">
         <li class="main-menu__list-item">
-          <a class="main-menu__link" href="">Как играть</a>
+          <a class="main-menu__link main-menu__link_how-to-play" href="">Как играть</a>
         </li>
         <li class="main-menu__list-item">
-          <a class="main-menu__link" href="">Лучшие результаты</a>
+          <a class="main-menu__link main-menu__link_leaderboard" href="">Лучшие результаты</a>
         </li>
       </ul>
       <div class="main-menu__blob"></div>
     </article>
 
-    <article class="levels popup popup_hidden">
+    <article class="levels popup">
       <a class="arrow-back arrow-back_absolute" href="#"></a>
       <h2 class="main-heading levels__main-heading">Сложность</h2>
       <ul class="levels__list">
         <li class="levels__list-item">
-          <button class="levels__button" type="button">я нубасик</button>
+          <button class="levels__button levels__button_low" type="button">я нубасик</button>
         </li>
         <li class="levels__list-item">
-          <button class="levels__button" type="button">вполне миддл</button>
+          <button class="levels__button levels__button_middle" type="button">вполне миддл</button>
         </li>
         <li class="levels__list-item">
-          <button class="levels__button" type="button">осилю всё!</button>
+          <button class="levels__button levels__button_hard" type="button">осилю всё!</button>
         </li>
       </ul>
       <div class="levels__blob"></div>
     </article>
 
-    <article class="rules popup popup_hidden">
+    <article class="rules popup">
       <a class="arrow-back arrow-back_absolute" href="#"></a>
       <h2 class="secondary-heading">Правила</h2>
       <div class="rules__container">
@@ -167,7 +168,7 @@
       </div>
     </article>
 
-    <article class="leaderboard popup popup_hidden">
+    <article class="leaderboard popup">
       <a class="arrow-back arrow-back_absolute" href="#"></a>
       <h2 class="secondary-heading leaderboard__secondary-heading">Зал славы</h2>
       <div class="leaderboard__container leaderboard__container_leader">

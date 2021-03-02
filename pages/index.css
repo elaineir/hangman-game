@@ -6,6 +6,7 @@
 @import url(../blocks/arrow-back/_absolute/arrow-back_absolute.css);
 
 @import url(../blocks/game-area/game-area.css);
+@import url(../blocks/game-area/_inactive/game-area_inactive.css);
 @import url(../blocks/game-area/__header/game-area__header.css);
 @import url(../blocks/game-area/__timer/game-area__timer.css);
 @import url(../blocks/game-area/__hint/game-area__hint.css);
@@ -27,13 +28,15 @@
 @import url(../blocks/keyboard/__button/_hidden/keyboard__button_hidden.css);
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_hidden/popup_hidden.css);
+@import url(../blocks/popup/_active/popup_active.css);
 
 @import url(../blocks/main-menu/main-menu.css);
 @import url(../blocks/main-heading/main-heading.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__submit-btn/form__submit-btn.css);
+@import url(../blocks/form/__submit-btn/_active/form__submit-btn_active.css);
+@import url(../blocks/form/__submit-btn/_inactive/form__submit-btn_inactive.css);
 @import url(../blocks/main-menu/__list/main-menu__list.css);
 @import url(../blocks/main-menu/__list-item/main-menu__list-item.css);
 @import url(../blocks/main-menu/__link/main-menu__link.css);
