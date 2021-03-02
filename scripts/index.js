@@ -67,7 +67,7 @@ const handleValidation = () => {
 usernameInput.addEventListener('input', handleValidation);
 
 //main menu save to localStorage
-let currentPlayer = '';
+let currentPlayer = '';  //should save current player for session
 
 const setlocalStorageJSONData = (key, value) => {
   return localStorage.setItem(key, JSON.stringify(value));
@@ -81,7 +81,7 @@ const openLevelsPage = (evt) => {
   evt.preventDefault();
   currentPlayer = usernameInput.value;
   if (getlocalStorageData(currentPlayer) === null) {
-    setlocalStorageJSONData(currentPlayer, '0');
+    setlocalStorageJSONData(currentPlayer, 0);
   }
   closePopup(mainPage);
   openPopup(levelsPage);
@@ -97,6 +97,8 @@ const openHowToPlayPage = (evt) => {
 const openLeaderboardPage = (evt) => {
   evt.preventDefault();
   leaderboardButton.getAttribute('href').replace('');
+  clearLeaderboard();
+  leaderboardHandler();
   closePopup(mainPage);
   openPopup(leaderboardPage);
 };
@@ -123,9 +125,59 @@ const startGame = (evt) => {
   let level = getLevel(button);
   closePopup(levelsPage);
   enableGameArea();
-  gameHadler(level);  //общая функция для игры
+  gameHadler(level);  //main game function
 };
 
 levelButtons.forEach(button => button.addEventListener('click', startGame));
+
+//game
+const gameHadler = (level) => {
+
+}
+
+
+//leaderboard section
+let leaderboardSubheading = leaderboardPage.querySelector('.leaderboard__subheading');
+
+const leaderboardHandler = () => {
+  if (Object.entries(localStorage).length > 0) {
+    leaderboardSubheading.classList.add('leaderboard__subheading_hidden');
+
+    let leaderboardArr = [];
+
+    function arrangeLeaderboardData() { //it works? (≖_≖ )
+      const leaderboardData = Array.from(Object.entries(localStorage));
+      return leaderboardArr = leaderboardData.sort((a, b) => {
+        if (Number(a[1].slice(1, -1)) < Number(b[1].slice(1, -1))) return 1;
+        if (Number(a[1].slice(1, -1)) > Number(b[1].slice(1, -1))) return -1;
+        return 0;
+      });
+    }
+
+    arrangeLeaderboardData();
+
+    const leaderboardTemplate = document.querySelector('.leaderboard__template');
+    leaderboardArr.forEach(entry => {
+      const leaderboardEntry = leaderboardTemplate.content.cloneNode(true);
+      leaderboardEntry.querySelector('.leaderboard__username').textContent = entry[0];
+      if (Number(entry[1].slice(1)) > 0) {
+        leaderboardEntry.querySelector('.leaderboard__score').textContent = Number(entry[1].slice(1));
+      }
+      leaderboardEntry.querySelector('.leaderboard__score').textContent = Number(entry[1].slice(1, -1)); //otherwise it's NaN!
+      leaderboardPage.append(leaderboardEntry);
+    });
+
+    const leader = document.querySelector('.leaderboard__container');
+    leader.classList.add('leaderboard__container_leader');
+    leader.querySelector('.leaderboard__username').classList.add('leaderboard__username_leader');
+  }
+};
+
+const clearLeaderboard = () => {
+  const leaderbordEntries = document.querySelectorAll('.leaderboard__container');
+  leaderbordEntries.forEach(entry => entry.remove());
+  leaderboardSubheading.classList.remove('leaderboard__subheading_hidden');
+};
+
 
 

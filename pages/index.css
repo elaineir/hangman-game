@@ -56,8 +56,10 @@
 
 @import url(../blocks/leaderboard/leaderboard.css);
 @import url(../blocks/leaderboard/__secondary-heading/leaderboard__secondary-heading.css);
+@import url(../blocks/leaderboard/__subheading/leaderboard__subheading.css);
+@import url(../blocks/leaderboard/__subheading/_hidden/leaderboard__subheading_hidden.css);
 @import url(../blocks/leaderboard/__container/leaderboard__container.css);
 @import url(../blocks/leaderboard/__container/_leader/leaderboard__container_leader.css);
-@import url(../blocks/leaderboard/__cup/leaderboard__cup.css);
+@import url(../blocks/leaderboard/__username/_leader/leaderboard__username_leader.css);
 @import url(../blocks/leaderboard/__username/leaderboard__username.css);
 @import url(../blocks/leaderboard/__score/leaderboard__score.css);

@@ -1,12 +1,13 @@
-.leaderboard__cup {
+.leaderboard__username_leader::before {
+  content: '';
   position: absolute;
-  top: -2px;
+  top: -4px;
   left: -32px;
   z-index: 1;
   display: block;
   width: 35px;
   height: 38px;
-  background-image: url(../../../images/leaderboard-cup.svg);
+  background-image: url(../../../../images/leaderboard-cup.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
