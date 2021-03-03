@@ -1,4 +1,6 @@
 .arrow-back {
+  position: relative;
+  z-index: 202;
   display: block;
   width: 19px;
   height: 27px;

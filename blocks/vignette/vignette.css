@@ -1,0 +1,17 @@
+@keyframes vignette-anim {
+  0%   , 100%{ opacity: .8; }
+  50% { opacity: 0.5; }
+}
+
+.vignette {
+  position: absolute;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  box-shadow: inset 0px 0px 150px 20px black;
+  mix-blend-mode: multiply;
+  animation: vignette-anim 3s infinite;
+}

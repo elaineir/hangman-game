@@ -1,6 +1,7 @@
 .game-area__timer {
   display: none;
   position: absolute;
+  z-index: 201;
   top: 0;
   left: 50%;
   transform: translateX(-53px);

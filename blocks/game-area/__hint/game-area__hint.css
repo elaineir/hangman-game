@@ -1,4 +1,6 @@
 .game-area__hint {
+  position: relative;
+  z-index: 201;
   margin: 0;
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;

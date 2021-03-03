@@ -1,0 +1,13 @@
+.endgame__word {
+  margin: 0 0 15px;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
+  color: #fff;
+  border-bottom: 3px solid #931bf1;
+}

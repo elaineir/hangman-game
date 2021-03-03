@@ -260,7 +260,7 @@ const gameHadler = (currentPlayer, difficulty) => {
       //обновляем очки
       scorePointsBase += scorePoints * counterMod;
       score.textContent = scorePointsBase;
-      //TODO сделать нективной нажатую правильную кнопку (добавить класс keyboard__button_hidden)
+      //TODO сделать нективной нажатую правильную кнопку (класс keyboard__button_hidden)
     } else {
       livesCounter--;
       lives.textContent = livesCounter;
@@ -269,12 +269,12 @@ const gameHadler = (currentPlayer, difficulty) => {
   }
 
   //TODO функция проверки на окончание жизней или таймера
-  //в ней показать попап (не готов)
+  //в ней показать попап (готов)
   
   //TODO функция проверки на отгаданное слово
-  //показать попап (не готов)
+  //показать попап (готов)
 
-  //TODO функция показать подсказку
+  //TODO функция показать подсказку (готов)
 
   keyboardButtons.forEach(button => button.addEventListener('click', showLetterOnClick));
   document.addEventListener('keydown', showLetterOnKeyboard);

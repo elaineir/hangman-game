@@ -65,3 +65,22 @@
 @import url(../blocks/leaderboard/__username/_leader/leaderboard__username_leader.css);
 @import url(../blocks/leaderboard/__username/leaderboard__username.css);
 @import url(../blocks/leaderboard/__score/leaderboard__score.css);
+
+@import url(../blocks/endgame/endgame.css);
+@import url(../blocks/endgame/_victory/endgame_victory.css);
+@import url(../blocks/endgame/__heading/endgame__heading.css);
+@import url(../blocks/endgame/__heading/_defeat/endgame__heading_defeat.css);
+@import url(../blocks/endgame/__heading/_victory/endgame__heading_victory.css);
+@import url(../blocks/endgame/__text/endgame__text.css);
+@import url(../blocks/endgame/__word/endgame__word.css);
+@import url(../blocks/endgame/__score/endgame__score.css);
+@import url(../blocks/endgame/__button/endgame__button.css);
+@import url(../blocks/endgame/__button/_defeat/endgame__button_defeat.css);
+@import url(../blocks/endgame/__button/_victory/endgame__button_victory.css);
+
+@import url(../blocks/hint/hint.css);
+@import url(../blocks/hint/__text/hint__text.css);
+@import url(../blocks/hint/__button/hint__button.css);
+
+@import url(../blocks/noise/noise.css);
+@import url(../blocks/vignette/vignette.css);

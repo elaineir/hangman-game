@@ -17,7 +17,12 @@
     <section class="game-area game-area_inactive">
       <div class="game-area__header">
         <a class="arrow-back game-area__arrow-back" href="#"></a>
-        <span class="game-area__timer">00:00</span>
+        <span class="game-area__timer">
+          <span class="game-area__min">00</span>
+          :
+          <span class="game-area__sec">00</span>
+
+        </span>
         <button class="game-area__hint" type="button">Подсказка</button>
       </div>
       <div class="game-area__visual">
@@ -158,9 +163,32 @@
         </div>
       </template>
     </article>
+
+    <article class="endgame endgame_defeat popup">
+      <h2 class="endgame__heading endgame__heading_defeat">Вы проиграли</h2>
+      <p class="endgame__text">Загаданное слово</p>
+      <p class="endgame__word">Тут слово</p>
+      <button class="endgame__button endgame__button_defeat" type="button">Что ж...</button>
+    </article>
+
+    <article class="endgame endgame_victory popup">
+      <h2 class="endgame__heading endgame__heading_victory">Победа!</h2>
+      <p class="endgame__text">Поздравляем!</p>
+      <p class="endgame__text">Ваш счёт: <span class="endgame__score">320</span></p>
+      <button class="endgame__button endgame__button_victory" type="button">Проще простого!</button>
+    </article>
+
+    <article class="hint popup">
+      <p class="hint__text">Подсказка</p>
+      <button class="hint__button" type="button">Ок</button>
+    </article>
+
+    <canvas class="noise"></canvas>
+    <div class="vignette"></div>
   </main>
 
   <footer></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

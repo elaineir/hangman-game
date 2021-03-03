@@ -1,4 +1,5 @@
 .content {
+  overflow: hidden;
   position: relative;
   box-sizing: border-box;
   max-width: 600px;

@@ -1,4 +1,5 @@
 .game-area__stats {
   position: relative;
+  z-index: 201;
   top: 25px;
 }

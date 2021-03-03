@@ -1,13 +1,11 @@
-.secondary-heading {
-  position: relative;
-  z-index: 201;
-  margin: 0 auto 40px;
+.endgame__score {
+  margin: 0 0 15px 15px;
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 48px;
+  font-size: 25px;
   line-height: 1.2;
+  text-transform: uppercase;
   text-align: center;
   color: #ffb904;
-  text-transform: uppercase;
 }
