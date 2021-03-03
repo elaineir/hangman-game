@@ -10,6 +10,7 @@
   color: #fff;
   background-color: transparent;
   border: 1px solid #fff;
+  border-radius: 2px;
   padding: 12px;
   opacity: 1;
   transition: color .3s linear, border .3s linear, opacity .3s linear;

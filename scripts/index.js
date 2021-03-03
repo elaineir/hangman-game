@@ -10,6 +10,7 @@ const backToMainPageButton = document.querySelectorAll(".arrow-back_absolute");
 const backToMainPageFromGameBtn = document.querySelector(
     ".game-area__arrow-back"
 );
+const settingsPage = document.querySelector('.settings');
 
 //попапы и кнопки завершения игры
 const popupEndgameDefeat = document.querySelector(".endgame_defeat");
@@ -17,10 +18,16 @@ const popupEndgameVictory = document.querySelector(".endgame_victory");
 const buttonEndgameDefeat = document.querySelector(".endgame__button_defeat");
 const buttonEndgameVictory = document.querySelector(".endgame__button_victory");
 
+//кнопки выбора цветовой темы
+const buttonSettingDark = document.getElementsByName('theme-dark');
+const buttonSettingLight = document.getElementsByName('theme-light');
+const buttonSettingCrazy = document.getElementsByName('theme-crazy');
+
+
 //таймер
 const gameTimerMin = document.querySelector(".game-area__min");
 const gameTimerSec = document.querySelector(".game-area__sec");
-console.log(gameTimerMin, gameTimerSec);
+
 
 const openPopup = (popup) => {
     popup.classList.add("popup_active");
@@ -66,6 +73,7 @@ const howToPlayButton = document.querySelector(".main-menu__link_how-to-play");
 const leaderboardButton = document.querySelector(
     ".main-menu__link_leaderboard"
 );
+const settingsButton = document.querySelector('.main-menu__link_settings');
 
 //валидация
 const usernameInput = document.querySelector(".form__input");
@@ -124,9 +132,17 @@ const openLeaderboardPage = (evt) => {
     openPopup(leaderboardPage);
 };
 
+const openSettingsPage = (evt) => {
+  evt.preventDefault();
+  settingsButton.getAttribute("href").replace("");
+  closePopup(mainPage);
+  openPopup(settingsPage);
+}
+
 usernameForm.addEventListener("submit", openLevelsPage);
 howToPlayButton.addEventListener("click", openHowToPlayPage);
 leaderboardButton.addEventListener("click", openLeaderboardPage);
+settingsButton.addEventListener('click', openSettingsPage);
 
 //levels menu
 const levelButtons = document.querySelectorAll(".levels__button");
@@ -242,7 +258,8 @@ const gameHadler = (currentPlayer, difficulty) => {
     let livesCounter = 10;
     let minWordLength = 0;
     let maxWordLength = 0;
-    let currentTimervolume = 0;
+    let currentTimerVolume = 0;
+    let maxTimerVolume = 420;
 
     if (difficulty === "low") {
         maxWordLength = 7;
@@ -292,14 +309,16 @@ const gameHadler = (currentPlayer, difficulty) => {
             gameTimerSec.textContent = `0${(current - parseInt(current/60)*60)}`.slice(-2);
             parseInt
 
-            if (current < to) {
+            if (current > to) {
                 setTimeout(go, 1000);
             }
-            current++;
+            current--;
+            
+            
         }, 1000);
     }
-
-    hardGameTimer(0, 420);
+    
+    hardGameTimer(maxTimerVolume, currentTimerVolume);
 
     function showLetterOnClick(evt) {
         checkLetter(evt.target.textContent);
