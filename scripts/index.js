@@ -264,7 +264,9 @@ const gameHadler = (currentPlayer, difficulty) => {
     } else {
       livesCounter--;
       lives.textContent = livesCounter;
-      //TODO рисуем виселицу, нужна анимация
+      //анимация виселицы
+      const path = document.querySelector(`#hangman${livesCounter + 1}`);
+      path.classList.add('hangman-animation');
     }
   }
 

@@ -13,6 +13,7 @@
 @import url(../blocks/game-area/__hint/game-area__hint.css);
 @import url(../blocks/game-area/__visual/game-area__visual.css);
 @import url(../blocks/game-area/__hangman/game-area__hangman.css);
+@import url(../blocks/game-area/__path/game-area__path.css);
 @import url(../blocks/game-area/__stats/game-area__stats.css);
 @import url(../blocks/game-area/__score/game-area__score.css);
 @import url(../blocks/game-area/__subheading/game-area__subheading.css);
@@ -84,3 +85,4 @@
 
 @import url(../blocks/noise/noise.css);
 @import url(../blocks/vignette/vignette.css);
+@import url(../blocks/hangman-animation/hangman-animation.css);
