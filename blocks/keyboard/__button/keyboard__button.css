@@ -20,3 +20,17 @@
   color: #ffb904;
   border: 1px solid #ffb904;
 }
+
+@media screen and (max-width: 600px) {
+  .keyboard__button {
+    font-size: calc(20px + 16 * ((100vw - 320px) / 280));
+    padding: calc(8px + 4 * ((100vw - 320px) / 280));;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .keyboard__button {
+    font-size: 20px;
+    padding: 8px;
+  }
+}

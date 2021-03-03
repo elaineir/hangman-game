@@ -6,3 +6,15 @@
   line-height: 1.2;
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  .game-area__counter {
+    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .game-area__counter {
+    font-size: 16px;
+  }
+}

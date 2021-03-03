@@ -8,3 +8,15 @@
   text-align: center;
   color: #fff;
 }
+
+@media screen and (max-width: 600px) {
+  .game-area__subheading {
+    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .game-area__subheading {
+    font-size: 16px;
+  }
+}

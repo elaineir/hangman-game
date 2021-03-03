@@ -12,3 +12,19 @@
   text-transform: uppercase;
   padding-top: 138px;
 }
+
+@media screen and (max-width: 600px) {
+  .main-heading {
+    font-size: calc(42px + 38 * ((100vw - 320px) / 280));
+    margin-bottom: calc(95px + 105 * ((100vw - 320px) / 280));
+    padding-top: calc(100px + 38 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main-heading {
+    font-size: 42px;
+    margin-bottom: 95px;
+    padding-top: 100px;
+  }
+}

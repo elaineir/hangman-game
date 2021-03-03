@@ -14,3 +14,15 @@
   outline: none;
   padding: 0;
 }
+
+@media screen and (max-width: 600px) {
+  .form__submit-btn {
+    font-size: calc(40px + 32 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .form__submit-btn {
+    font-size: 40px;
+  }
+}

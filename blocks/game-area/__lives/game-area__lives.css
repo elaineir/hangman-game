@@ -9,3 +9,15 @@
   background-position: center;
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  .game-area__lives {
+    width: calc(41px + 20 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .game-area__lives {
+    width: 41px;
+  }
+}

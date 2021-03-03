@@ -9,7 +9,7 @@
   font-size: 36px;
   line-height: 60px;
   color: #fff;
-  background-color: transparent;
+  background-color: #212932;
   border: 1px solid #fff;
   padding: 10px;
 }
@@ -20,4 +20,16 @@
   font-weight: normal;
   text-align: center;
   color: #989898;
+}
+
+@media screen and (max-width: 600px) {
+  .form__input {
+    font-size: calc(20px + 16 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .form__input {
+    font-size: 20px;
+  }
 }

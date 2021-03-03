@@ -8,4 +8,11 @@
   background-image: url(../../../images/main-menu-blob.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  transition: all .3s linear;
+}
+
+@media screen and (max-width: 600px) {
+  .main-menu__blob {
+    right: 0;
+  }
 }

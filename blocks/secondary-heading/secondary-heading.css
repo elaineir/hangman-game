@@ -1,7 +1,8 @@
 .secondary-heading {
   position: relative;
   z-index: 201;
-  margin: 0 auto 40px;
+  margin: 0 auto;
+  margin-bottom: 40px;
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -10,4 +11,18 @@
   text-align: center;
   color: #ffb904;
   text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  .secondary-heading {
+    font-size: calc(30px + 18 * ((100vw - 320px) / 280));
+    margin-bottom: calc(30px + 10 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .secondary-heading {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
 }

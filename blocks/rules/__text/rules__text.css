@@ -7,3 +7,17 @@
   line-height: 1.2;
   color: #fff;
 }
+
+@media screen and (max-width: 600px) {
+  .rules__text {
+    font-size: calc(12px + 6 * ((100vw - 320px) / 280));
+    margin-bottom: calc(10px + 5 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .rules__text {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}

@@ -12,10 +12,23 @@
   background-color: transparent;
   border: none;
   padding: 0;
-  transition: color .3s linear;
+  transition: all .3s linear;
 }
 
 .game-area__hint:hover {
   cursor: pointer;
   color: #931bf1;
+}
+
+@media screen and (max-width: 600px) {
+  .game-area__hint {
+    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .game-area__hint {
+    font-size: 16px;
+    top: -9px;
+  }
 }

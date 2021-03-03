@@ -3,3 +3,15 @@
   top: 10px;
   color: #ffb904;
 }
+
+@media screen and (max-width: 500px) {
+  .game-area__counter_lives {
+    top: 12px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .game-area__counter_lives {
+    top: 15px;
+  }
+}
