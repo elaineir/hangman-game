@@ -230,18 +230,25 @@ const gameHadler = (currentPlayer, difficulty) => {
 
   renderWord();
 
-  //TODO функция таймера - рекурсия с setTimeout и new Data, в дате взять минуты и сек, 
+  //TODO функция таймера - рекурсия с setTimeout 
   //периодичность 1 сек
-  //разделить в разметке таймер на 2 спана в обертке таймера для минут и сек соответственно
 
   function showLetterOnClick(evt) {
     checkLetter(evt.target.textContent);
+    evt.target.classList.add('keyboard__button_hidden');
   }
+
+  let allowedLetters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ';
 
   function showLetterOnKeyboard(evt) {
     const pressedLetter = evt.key.toUpperCase();
-    //TODO добавить проверку на посторонние клавиши - регулярка?
-    checkLetter(pressedLetter);
+    //проверка на посторонние клавиши
+    if (allowedLetters.includes(pressedLetter)) {
+      checkLetter(pressedLetter);
+      const currentButton = Array.from(keyboardButtons).find(button => button.textContent === evt.key.toUpperCase());
+      currentButton.classList.add('keyboard__button_hidden');
+      allowedLetters = allowedLetters.replace(pressedLetter, '');
+    }
   }
 
   function checkLetter(pressedLetter) {
@@ -259,8 +266,7 @@ const gameHadler = (currentPlayer, difficulty) => {
       }
       //обновляем очки
       scorePointsBase += scorePoints * counterMod;
-      score.textContent = scorePointsBase;
-      //TODO сделать нективной нажатую правильную кнопку (класс keyboard__button_hidden)
+      score.textContent = scorePointsBase;  
     } else {
       livesCounter--;
       lives.textContent = livesCounter;
@@ -275,6 +281,7 @@ const gameHadler = (currentPlayer, difficulty) => {
   
   //TODO функция проверки на отгаданное слово
   //показать попап (готов)
+  //добавить очки в localStorage по ключу currentPlayer
 
   //TODO функция показать подсказку (готов)
 

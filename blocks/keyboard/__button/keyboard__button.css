@@ -11,7 +11,8 @@
   background-color: transparent;
   border: 1px solid #fff;
   padding: 12px;
-  transition: color .3s linear, border .3s linear;
+  opacity: 1;
+  transition: color .3s linear, border .3s linear, opacity .3s linear;
 }
 
 .keyboard__button:hover {

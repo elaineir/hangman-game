@@ -1,5 +1,5 @@
 .keyboard__button_hidden {
-  visibility: none;
+  opacity: 0;
   user-select: none;
   pointer-events: none;
   border: none;
