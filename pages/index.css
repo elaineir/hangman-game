@@ -85,3 +85,13 @@
 @import url(../blocks/noise/noise.css);
 @import url(../blocks/vignette/vignette.css);
 @import url(../blocks/hangman-animation/hangman-animation.css);
+
+@import url(../blocks/settings/settings.css);
+@import url(../blocks/settings/_theme/settings_theme_crazy.css);
+@import url(../blocks/settings/_theme/settings_theme_dark.css);
+@import url(../blocks/settings/_theme/settings_theme_light.css);
+@import url(../blocks/settings/__form/settings__form.css);
+@import url(../blocks/settings/__secondary-heading/settings__secondary-heading.css);
+@import url(../blocks/settings/__container/settings__container.css);
+@import url(../blocks/settings/__item/settings__item.css);
+@import url(../blocks/settings/__save-button/settings__save-button.css);
