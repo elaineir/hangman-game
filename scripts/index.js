@@ -459,7 +459,7 @@ const gameHandler = (currentPlayer, difficulty) => {
     //функция проверки на окончание жизней или таймера
     function isGameOver() {
         if (livesCounter === 0 || timeOut) {
-            audioDefeat.volume = 0.08;
+            audioDefeat.volume = 0.3;
             audioDefeat.play();
             playDefeatAnimation();
             openPopup(popupEndgameDefeat);
@@ -472,7 +472,7 @@ const gameHandler = (currentPlayer, difficulty) => {
     function isWordDone() {
         let openedLetters = Array.from(document.querySelectorAll(".game-area__letter_opened"));
         if (openedLetters.length === selectedWordLetters.length) {
-            audioVictory.volume = 0.03;
+            audioVictory.volume = 0.2;
             audioVictory.play();
             earnedPointsText.textContent = scorePointsBase;
             openPopup(popupEndgameVictory);
