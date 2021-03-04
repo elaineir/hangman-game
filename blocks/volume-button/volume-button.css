@@ -1,0 +1,17 @@
+.volume-button {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  background-image: url(../../images/icon-audio.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+  transition: opacity .3s linear, transform .3s linear;
+}
+
+.volume-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}

@@ -47,10 +47,14 @@ const buttonSettingCrazy = document.getElementsByName("theme-crazy");
 const popupEndgameDefeat = document.querySelector(".endgame_defeat");
 const correctWordText = popupEndgameDefeat.querySelector(".endgame__word");
 const buttonEndgameDefeat = popupEndgameDefeat.querySelector(".endgame__button_defeat");
+const audioDefeat = popupEndgameDefeat.querySelector(".audio_defeat");
+const volumeButtonDefeat = popupEndgameDefeat.querySelector(".volume-button_defeat");
 
 const popupEndgameVictory = document.querySelector(".endgame_victory");
 const earnedPointsText = popupEndgameVictory.querySelector(".endgame__score");
 const buttonEndgameVictory = popupEndgameVictory.querySelector(".endgame__button_victory");
+const audioVictory = popupEndgameVictory.querySelector(".audio_victory");
+const volumeButtonVictory = popupEndgameVictory.querySelector(".volume-button_victory");
 
 //попап подсказки
 const popupHint = document.querySelector(".hint");
@@ -236,9 +240,9 @@ async function fetchFilm() {
     } 
 }
   
-const notAllowedLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890«»'\"|.,?!:;+-/*%$#№@`~";
+const notAllowedLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890«»'\"|.,?!:;+—-/*%$#№@`~";
     function checkFilmValidity(filmData) {
-        if(filmData.data.nameRu.length > 20) {
+        if(filmData.data.nameRu.length > 18) {
             return fetchFilm();
         } else {
             for (let i = 0; i < notAllowedLetters.length; i++) {
@@ -438,6 +442,8 @@ const gameHandler = (currentPlayer, difficulty) => {
     //функция проверки на окончание жизней или таймера
     function isGameOver() {
         if (livesCounter === 0 || timeOut) {
+            audioDefeat.volume = 0.08;
+            audioDefeat.play();
             playDefeatAnimation();
             openPopup(popupEndgameDefeat);
             document.removeEventListener("keydown", showLetterOnKeyboard);
@@ -449,6 +455,8 @@ const gameHandler = (currentPlayer, difficulty) => {
     function isWordDone() {
         let openedLetters = Array.from(document.querySelectorAll(".game-area__letter_opened"));
         if (openedLetters.length === selectedWordLetters.length) {
+            audioVictory.volume = 0.03;
+            audioVictory.play();
             earnedPointsText.textContent = scorePointsBase;
             openPopup(popupEndgameVictory);
             document.removeEventListener("keydown", showLetterOnKeyboard);
@@ -497,10 +505,34 @@ const closeVictoryPage = () => {
     clearLeaderboard();
     leaderboardHandler();
     closePopup(popupEndgameVictory);
+    audioVictory.pause();
+    audioVictory.currentTime = 0;
     disableGameArea();
     openPopup(leaderboardPage);
 }
 
+const toggleVolumeDefeat = () => {
+    if (volumeButtonDefeat.classList.contains("volume-button_inactive")) {
+        volumeButtonDefeat.classList.remove("volume-button_inactive");
+        audioDefeat.play();
+    } else {
+        volumeButtonDefeat.classList.add("volume-button_inactive");
+        audioDefeat.pause();
+    }
+}
+
+const toggleVolumeVictory = () => {
+    if (volumeButtonVictory.classList.contains("volume-button_inactive")) {
+        volumeButtonVictory.classList.remove("volume-button_inactive");
+        audioVictory.play();
+    } else {
+        volumeButtonVictory.classList.add("volume-button_inactive");
+        audioVictory.pause();
+    }
+}
+
+volumeButtonDefeat.addEventListener("click", toggleVolumeDefeat);
+volumeButtonVictory.addEventListener("click", toggleVolumeVictory);
 hintButton.addEventListener("click", showHintPopup);
 hintGotItButton.addEventListener("click", closeHintPopup);
 buttonEndgameDefeat.addEventListener("click", closeDefeatPage);

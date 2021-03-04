@@ -11,3 +11,15 @@
   color: #fff;
   border-bottom: 3px solid #931bf1;
 }
+
+@media screen and (max-width: 600px) {
+  .endgame__word {
+    font-size: calc(20px + 18 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .endgame__word {
+    font-size: 20px;
+  }
+}
