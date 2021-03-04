@@ -1,20 +1,5 @@
 .keyboard {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 8px;
-}
-
-@media screen and (max-width: 600px) {
-  .keyboard {
-    gap: 7px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .keyboard {
-    grid-template-columns: repeat(7, 38px);
-    grid-template-rows: repeat(5, 38px);
-    gap: 6px;
-  }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

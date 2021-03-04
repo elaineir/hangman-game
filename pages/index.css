@@ -26,6 +26,7 @@
 @import url(../blocks/game-area/__letter/game-area__letter.css);
 @import url(../blocks/game-area/__letter/_opened/game-area__letter_opened.css);
 @import url(../blocks/keyboard/keyboard.css);
+@import url(../blocks/keyboard/__wrapper/keyboard__wrapper.css);
 @import url(../blocks/keyboard/__button/keyboard__button.css);
 @import url(../blocks/keyboard/__button/_hidden/keyboard__button_hidden.css);
 

@@ -1,0 +1,20 @@
+.keyboard__wrapper {
+  display: flex;
+  margin: 0 auto 8px;
+}
+
+.keyboard__wrapper:last-of-type {
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .keyboard__wrapper {
+    margin-bottom: calc(6px + 2 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .keyboard__wrapper {
+    margin: 0 auto 6px;
+  }
+}
