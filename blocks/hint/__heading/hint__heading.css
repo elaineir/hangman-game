@@ -1,0 +1,11 @@
+.hint__heading {
+  margin: 0 auto 30px;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffb904;
+}

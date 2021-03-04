@@ -79,6 +79,8 @@
 @import url(../blocks/endgame/__button/_victory/endgame__button_victory.css);
 
 @import url(../blocks/hint/hint.css);
+@import url(../blocks/hint/__heading/hint__heading.css);
+@import url(../blocks/hint/__subheading/hint__subheading.css);
 @import url(../blocks/hint/__text/hint__text.css);
 @import url(../blocks/hint/__button/hint__button.css);
 

@@ -1,45 +1,76 @@
 "use strict";
 
-//общее
+//глобальные переменные
+let currentPlayer = ""; //должна хранить имя игрока в текущей сессии
+
+//игровая страница
 const gameArea = document.querySelector(".game-area");
+const backToMainPageFromGameBtn = gameArea.querySelector(".game-area__arrow-back");
+const gameTimer = gameArea.querySelector(".game-area__timer");
+const hintButton = gameArea.querySelector(".game-area__hint");
+const score = gameArea.querySelector(".game-area__counter_score");
+const lives = gameArea.querySelector(".game-area__counter_lives");
+const wordContainer = gameArea.querySelector(".game-area__word");
+const letterTemplate = gameArea.querySelector(".game-area__template");
+const keyboardButtons = document.querySelectorAll(".keyboard__button");
+
+//главное меню
 const mainPage = document.querySelector(".main-menu");
+const usernameForm = document.forms.usernameForm;
+const usernameInput = document.querySelector(".form__input");
+const submitNameButton = document.querySelector(".form__submit-btn");
+const howToPlayButton = mainPage.querySelector(".main-menu__link_how-to-play");
+const leaderboardButton = mainPage.querySelector(".main-menu__link_leaderboard");
+const settingsButton = mainPage.querySelector('.main-menu__link_settings');
+
+//режим игры
 const levelsPage = document.querySelector(".levels");
+const levelButtons = document.querySelectorAll(".levels__button");
+const defaultLevelButton = levelsPage.querySelector(".levels__button_default");
+const hardLevelButton = levelsPage.querySelector(".levels__button_hard");
+
+//правила
 const rulesPage = document.querySelector(".rules");
+
+//лидерборд
 const leaderboardPage = document.querySelector(".leaderboard");
-const backToMainPageButton = document.querySelectorAll(".arrow-back_absolute");
-const backToMainPageFromGameBtn = document.querySelector(
-    ".game-area__arrow-back"
-);
+const leaderboardSubheading = leaderboardPage.querySelector(".leaderboard__subheading");
+const leaderboardTemplate = leaderboardPage.querySelector(".leaderboard__template");
+
+//настройки
 const settingsPage = document.querySelector('.settings');
-
-//попапы и кнопки завершения игры
-const popupEndgameDefeat = document.querySelector(".endgame_defeat");
-const popupEndgameVictory = document.querySelector(".endgame_victory");
-const buttonEndgameDefeat = document.querySelector(".endgame__button_defeat");
-const buttonEndgameVictory = document.querySelector(".endgame__button_victory");
-
-//кнопки выбора цветовой темы
 const buttonSettingDark = document.getElementsByName('theme-dark');
 const buttonSettingLight = document.getElementsByName('theme-light');
 const buttonSettingCrazy = document.getElementsByName('theme-crazy');
 
+//попапы завершения игры
+const popupEndgameDefeat = document.querySelector(".endgame_defeat");
+const correctWordText = popupEndgameDefeat.querySelector(".endgame__word");
+const buttonEndgameDefeat = popupEndgameDefeat.querySelector(".endgame__button_defeat");
 
-//таймер
-const gameTimerMin = document.querySelector(".game-area__min");
-const gameTimerSec = document.querySelector(".game-area__sec");
+const popupEndgameVictory = document.querySelector(".endgame_victory");
+const earnedPointsText = popupEndgameVictory.querySelector(".endgame__score");
+const buttonEndgameVictory = popupEndgameVictory.querySelector(".endgame__button_victory");
 
+//попап подсказки
+const popupHint = document.querySelector(".hint");
+const hintTextYear = popupHint.querySelector(".hint__text_year");
+const hintHeaderCountry = popupHint.querySelector(".hint__country");
+const hintTextCountry = popupHint.querySelector(".hint__text_country");
+const hintHeaderGenre = popupHint.querySelector(".hint__genre");
+const hintTextGenre = popupHint.querySelector(".hint__text_genre");
+const hintGotItButton = popupHint.querySelector(".hint__button");
 
-const openPopup = (popup) => {
-    popup.classList.add("popup_active");
-};
+//общие кнопки и ссылки
+const backToMainPageButton = document.querySelectorAll(".arrow-back_absolute");
 
-const closePopup = (popup) => {
-    popup.classList.remove("popup_active");
-};
+//функционал
+//общее
+const openPopup = (popup) => popup.classList.add("popup_active");
 
-const enableGameArea = () => {
-    gameArea.classList.remove("game-area_inactive");
-};
+const closePopup = (popup) => popup.classList.remove("popup_active");
+
+const enableGameArea = () => gameArea.classList.remove("game-area_inactive");
 
 const disableGameArea = () => {
     gameArea.classList.add("game-area_inactive");
@@ -55,30 +86,10 @@ const backToMainPage = (evt) => {
     openPopup(mainPage);
 };
 
-const backToMainPageFromGame = (evt) => {
-    evt.preventDefault();
-    evt.target.getAttribute("href").replace("");
-    disableGameArea();
-    openPopup(mainPage);
-};
-
-backToMainPageFromGameBtn.addEventListener("click", backToMainPageFromGame);
-backToMainPageButton.forEach((link) =>
-    link.addEventListener("click", backToMainPage)
-);
+backToMainPageButton.forEach((link) => link.addEventListener("click", backToMainPage));
 
 //main menu
-const usernameForm = document.forms.usernameForm;
-const howToPlayButton = document.querySelector(".main-menu__link_how-to-play");
-const leaderboardButton = document.querySelector(
-    ".main-menu__link_leaderboard"
-);
-const settingsButton = document.querySelector('.main-menu__link_settings');
-
 //валидация
-const usernameInput = document.querySelector(".form__input");
-const submitNameButton = document.querySelector(".form__submit-btn");
-
 const handleValidation = () => {
     if (usernameInput.validity.valid) {
         submitNameButton.classList.add("form__submit-btn_active");
@@ -94,8 +105,6 @@ const handleValidation = () => {
 usernameInput.addEventListener("input", handleValidation);
 
 //main menu сохранение в localStorage
-let currentPlayer = ""; //должна хранить имя игрока в текущей сессии
-
 // две универсальные функции для работы с localStorage, key - это имя игрока, value - это очки
 const setlocalStorageJSONData = (key, value) => {
     return localStorage.setItem(key, JSON.stringify(value));
@@ -133,10 +142,10 @@ const openLeaderboardPage = (evt) => {
 };
 
 const openSettingsPage = (evt) => {
-  evt.preventDefault();
-  settingsButton.getAttribute("href").replace("");
-  closePopup(mainPage);
-  openPopup(settingsPage);
+    evt.preventDefault();
+    settingsButton.getAttribute("href").replace("");
+    closePopup(mainPage);
+    openPopup(settingsPage);
 }
 
 usernameForm.addEventListener("submit", openLevelsPage);
@@ -145,180 +154,217 @@ leaderboardButton.addEventListener("click", openLeaderboardPage);
 settingsButton.addEventListener('click', openSettingsPage);
 
 //levels menu
-const levelButtons = document.querySelectorAll(".levels__button");
-const lowLevelButton = document.querySelector(".levels__button_low");
-const middleLevelButton = document.querySelector(".levels__button_middle");
-const hardLevelButton = document.querySelector(".levels__button_hard");
-
 const getDifficulty = (button) => {
-    if (button === lowLevelButton) return "low";
-    else if (button === middleLevelButton) return "middle";
+    if (button === defaultLevelButton) return "default";
     else return "hard";
 };
 
 const startGame = (evt) => {
+    fetchFilm();
+    hideHangman();
+    makeKeyboardActive();
     const button = evt.target;
     const difficulty = getDifficulty(button);
     closePopup(levelsPage);
     enableGameArea();
-    gameHadler(currentPlayer, difficulty); //основная игровая функция
+    gameHandler(currentPlayer, difficulty); //основная игровая функция
 };
 
 levelButtons.forEach((button) => button.addEventListener("click", startGame));
 
 //leaderboard section
-let leaderboardSubheading = leaderboardPage.querySelector(
-    ".leaderboard__subheading"
-);
-
 const leaderboardHandler = () => {
+    //проверка на наличие записей в localStorage
     if (Object.entries(localStorage).length > 0) {
-        //проверка на наличие записей в localStorage
+        //собираем данные
         leaderboardSubheading.classList.add("leaderboard__subheading_hidden");
 
         let leaderboardArr = [];
 
         function arrangeLeaderboardData() {
-            //хммм...она работает? (≖_≖ )
             const leaderboardData = Array.from(Object.entries(localStorage));
             return (leaderboardArr = leaderboardData.sort((a, b) => {
-                //это полный кошмар, но пока так
-                if (Number(a[1].slice(1, -1)) < Number(b[1].slice(1, -1)))
-                    return 1;
-                if (Number(a[1].slice(1, -1)) > Number(b[1].slice(1, -1)))
-                    return -1;
+                if (Number(a[1]) < Number(b[1])) return 1;
+                if (Number(a[1]) > Number(b[1])) return -1;
                 return 0;
             }));
         }
 
         arrangeLeaderboardData();
-
-        //TODO кусок кода ниже разбить на функции
-
-        const leaderboardTemplate = document.querySelector(
-            ".leaderboard__template"
-        );
-
+        console.log(leaderboardArr)
+        //пишем на страницу
         leaderboardArr.forEach((entry) => {
-            const leaderboardEntry = leaderboardTemplate.content.cloneNode(
-                true
-            );
-            leaderboardEntry.querySelector(
-                ".leaderboard__username"
-            ).textContent = entry[0];
-            if (Number(entry[1].slice(1)) > 0) {
-                leaderboardEntry.querySelector(
-                    ".leaderboard__score"
-                ).textContent = Number(entry[1].slice(1));
-            }
-            leaderboardEntry.querySelector(
-                ".leaderboard__score"
-            ).textContent = Number(entry[1].slice(1, -1)); //иначе NaN!
+            const leaderboardEntry = leaderboardTemplate.content.cloneNode(true);
+            leaderboardEntry.querySelector(".leaderboard__username").textContent = entry[0];
+            leaderboardEntry.querySelector(".leaderboard__score").textContent = Number(entry[1]);
             leaderboardPage.append(leaderboardEntry);
         });
 
         const leader = document.querySelector(".leaderboard__container");
         leader.classList.add("leaderboard__container_leader");
-        leader
-            .querySelector(".leaderboard__username")
-            .classList.add("leaderboard__username_leader");
+        leader.querySelector(".leaderboard__username").classList.add("leaderboard__username_leader");
     }
 };
 
 const clearLeaderboard = () => {
-    const leaderbordEntries = document.querySelectorAll(
-        ".leaderboard__container"
-    );
+    const leaderbordEntries = document.querySelectorAll(".leaderboard__container");
     leaderbordEntries.forEach((entry) => entry.remove());
     leaderboardSubheading.classList.remove("leaderboard__subheading_hidden");
 };
 
 //game
-const letterTemplate = document.querySelector(".game-area__template");
-const wordContainer = document.querySelector(".game-area__word");
-const gameTimer = document.querySelector(".game-area__timer");
-const score = document.querySelector(".game-area__counter_score");
-const lives = document.querySelector(".game-area__counter_lives");
-const keyboardButtons = document.querySelectorAll(".keyboard__button");
-//тестовый массив TODO удалить в релизе
-const testingWords = [
-    "лёгкийй",
-    "лёгйй",
-    "лйй",
-    "среднийй",
-    "среднийййй",
-    "тяжёлыйййййййййй",
-    "тяжёлыййййййййййвввв",
-];
+//идём на кинопоиск и выбираем фильм. какой жанр предпочитаете? впрочем, тут как повезёт :)
+async function fetchFilm() {
+    let randomID = Math.floor(1000 + Math.random() * (999999 + 1 - 1000));
+    let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${randomID}`, 
+      { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'}});
+      
+    if (response.status === 200) {
+      let filmData = await response.json();
+      checkFilmValidity(filmData);
+    } else {
+      console.clear();
+      return fetchFilm();
+    } 
+}
+  
+const notAllowedLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,?!:;+-/*%$#№@`~';
+    function checkFilmValidity(filmData) {
+        if(filmData.data.nameRu.length > 20) {
+            return fetchFilm();
+        } else {
+            for (let i = 0; i < notAllowedLetters.length; i++) {
+                if (filmData.data.nameRu.includes(notAllowedLetters[i])) return fetchFilm();
+            }
+        return renderWord(filmData);
+    }
+}
+  
+let selectedWordLetters = []; //буквы угадываемого слова
+  
+function renderWord(film) {
+    selectedWordLetters = [];
+    const selectedWord = film["data"]["nameRu"];
+    console.log(film)
 
-const gameHadler = (currentPlayer, difficulty) => {
-    let letters = [];
+    for (let i = 0; i < selectedWord.length; i++) {
+        selectedWordLetters.push(selectedWord[i].toUpperCase());
+    }
+
+    selectedWordLetters.forEach(letter => {
+        const letterElement = letterTemplate.content.cloneNode(true);
+        letterElement.querySelector('.game-area__letter').textContent = letter;
+        if (letter === ' ') {
+            letterElement.querySelector('.game-area__letter-container').style.borderBottom = 'none';
+            letterElement.querySelector('.game-area__letter').classList.add('game-area__letter_opened');
+        }
+        wordContainer.append(letterElement);
+    });
+
+    //для попапа поражения
+    correctWordText.textContent = selectedWord;
+
+    //для попапа подсказки
+    hintHeaderCountry.textContent = "Страна";
+    hintHeaderGenre.textContent = "Жанр";
+
+    hintTextYear.textContent = film["data"]["year"];
+
+    const countriesArr = film["data"]["countries"];
+    if (countriesArr.length === 1) {
+        hintTextCountry.textContent = film["data"]["countries"][0]["country"];
+    } else if (countriesArr.length > 1) {
+        hintHeaderCountry.textContent = "Страны";
+        for (let i = 0; i < countriesArr.length; i++) {
+            hintTextCountry.textContent += `${countriesArr[i]["country"]}, `;
+            if (countriesArr[countriesArr.length - 1]) {
+                hintTextCountry.textContent += `${countriesArr[i]["country"]}.`;
+            }
+        }
+    } else {
+        hintTextCountry.textContent = "неизвестна";
+    }
+
+    const genresArr = film["data"]["genres"];
+    if (genresArr.length === 1) {
+        hintTextGenre.textContent = film["data"]["genres"][0]["genre"];
+    } else if (genresArr.length > 1) {
+        hintHeaderGenre.textContent = "Жанры";
+        for (let i = 0; i < genresArr.length; i++) {
+            hintTextGenre.textContent += `${genresArr[i]["genre"]}, `;
+            if (countriesArr[countriesArr.length - 1]) {
+                hintTextGenre.textContent += `${countriesArr[i]["genre"]}.`;
+            }
+        }
+    } else {
+        hintTextGenre.textContent = "неизвестен";
+    }
+}
+
+const makeKeyboardActive = () => {
+    keyboardButtons.forEach(button => button.classList.remove("keyboard__button_hidden"));
+}
+
+const hideHangman = () => {
+    const hangmanParts = document.querySelectorAll(".game-area__path");
+    hangmanParts.forEach(part => part.classList.remove("hangman-animation"));
+}
+
+const gameHandler = (currentPlayer, difficulty) => {
     let scorePointsBase = 0;
     let scorePoints = 0;
     let livesCounter = 10;
-    let minWordLength = 0;
-    let maxWordLength = 0;
-    let currentTimerVolume = 0;
-    let maxTimerVolume = 420;
+    let isHardLevel = false;
+    let timeOut = false;
 
-    if (difficulty === "low") {
-        maxWordLength = 7;
-        scorePoints = 2;
-    } else if (difficulty === "middle") {
-        minWordLength = 8;
-        maxWordLength = 15;
+    if (difficulty === "default") {
         scorePoints = 5;
     } else {
+        isHardLevel = true;
+        gameTimer.textContent = "03 : 00";
         gameTimer.classList.add("game-area__timer_active");
-        minWordLength = 16;
-        maxWordLength = 20;
         scorePoints = 10;
-
+        startHardGameTimer();
     }
 
-    function renderWord() {
-        //заменить на парсер
-        const words = testingWords.filter(
-            (word) =>
-                word.length <= maxWordLength && word.length >= minWordLength
-        );
-        const word = words[Math.floor(Math.random() * 2)];
-        //
-        //letters - это массив букв из выбранного слова, клонируем темплейт и рендерим
-        letters = word.toUpperCase().split("");
-
-        letters.forEach((letter) => {
-            const letterElement = letterTemplate.content.cloneNode(true);
-            letterElement.querySelector(
-                ".game-area__letter"
-            ).textContent = letter;
-            wordContainer.append(letterElement);
-        });
-    }
-
-    renderWord();
-
-    //TODO функция таймера - рекурсия с setTimeout
-    //периодичность 1 сек
-
-    function hardGameTimer(from, to) {
-        let current = from;
-        setTimeout(function go() {
-                       
-            gameTimerMin.textContent = `0${parseInt(current/60)}`.slice(-2);
-            gameTimerSec.textContent = `0${(current - parseInt(current/60)*60)}`.slice(-2);
-            parseInt
-
-            if (current > to) {
-                setTimeout(go, 1000);
+    //функция таймера
+    function startHardGameTimer() {
+        let duration = 180;
+        let minutes = 0;
+        let seconds = 0;
+        let timer = setInterval(function () {
+            if (gameArea.classList.contains("game-area_inactive")) {
+                clearInterval(timer);
+                isHardLevel - false;
             }
-            current--;
-            
-            
+
+            if (popupEndgameDefeat.classList.contains("popup_active")) {
+                clearInterval(timer);
+                isHardLevel - false;
+            }
+
+            if (popupEndgameVictory.classList.contains("popup_active")) {
+                clearInterval(timer);
+                isHardLevel - false;
+            }
+
+            minutes = parseInt(duration / 60, 10);
+            seconds = parseInt(duration % 60, 10);
+      
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+      
+            gameTimer.textContent = `${minutes} : ${seconds}`;
+      
+            if (--duration < 0) {
+                timeOut = true; //для функции проверки GameOver
+                clearInterval(timer);
+                isHardLevel - false;
+                disableGameArea();
+                openPopup(popupEndgameDefeat);
+            }
         }, 1000);
     }
-    
-    hardGameTimer(maxTimerVolume, currentTimerVolume);
 
     function showLetterOnClick(evt) {
         checkLetter(evt.target.textContent);
@@ -332,19 +378,14 @@ const gameHadler = (currentPlayer, difficulty) => {
         //проверка на посторонние клавиши
         if (allowedLetters.includes(pressedLetter)) {
             checkLetter(pressedLetter);
-            const currentButton = Array.from(keyboardButtons).find(
-                (button) => button.textContent === evt.key.toUpperCase()
-            );
+            const currentButton = Array.from(keyboardButtons).find((button) => button.textContent === evt.key.toUpperCase());
             currentButton.classList.add("keyboard__button_hidden");
             allowedLetters = allowedLetters.replace(pressedLetter, "");
         }
     }
 
     function checkLetter(pressedLetter) {
-        //TODO вызвать функцию проверки на окончание жизней или таймера
-        //функцию проверки на отгаданное слово
-
-        let hasLetter = letters.some((letter) => letter == pressedLetter);
+        let hasLetter = selectedWordLetters.some((letter) => letter == pressedLetter);
         if (hasLetter) {
             const currentWord = document.querySelectorAll(".game-area__letter");
             let counterMod = 0; //модификатор для очков, если букв больше 1
@@ -362,57 +403,81 @@ const gameHadler = (currentPlayer, difficulty) => {
             lives.textContent = livesCounter;
             //анимация виселицы
             const path = document.querySelector(`#hangman${livesCounter + 1}`);
-
             path.classList.add("hangman-animation");
         }
-        checkLives();
-        checkWord();
+        isGameOver();
+        isWordDone();
     }
 
-    //TODO функция проверки на окончание жизней или таймера
-    //в ней показать попап (готов)
-    function checkLives() {
-        if (livesCounter === 0) {
+    //функция проверки на окончание жизней или таймера
+    function isGameOver() {
+        if (livesCounter === 0 || timeOut) {
             openPopup(popupEndgameDefeat);
-            buttonEndgameDefeat.addEventListener("click", function (evt) {
-                closePopup(popupEndgameDefeat);
-                openPopup(levelsPage);
-                disableGameArea();
-            });
+            document.removeEventListener("keydown", showLetterOnKeyboard);
+            keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
         }
     }
 
-    //TODO функция проверки на отгаданное слово
-    //показать попап (готов)
-    //добавить очки в localStorage по ключу currentPlayer
-    function checkWord() {
-        if (scorePointsBase === letters.length * scorePoints) {
+    //функция проверки на отгаданное слово
+    function isWordDone() {
+        let openedLetters = Array.from(document.querySelectorAll(".game-area__letter_opened"));
+        if (openedLetters.length === selectedWordLetters.length) {
+            earnedPointsText.textContent = scorePointsBase;
             openPopup(popupEndgameVictory);
-            localStorage[currentPlayer] = scorePointsBase;
-            buttonEndgameVictory.addEventListener("click", function (evt) {
-                closePopup(popupEndgameVictory);
-                openPopup(leaderboardPage);
-                disableGameArea();
-            });
+            document.removeEventListener("keydown", showLetterOnKeyboard);
+            keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
+            setlocalStorageJSONData(currentPlayer, scorePointsBase);
         }
     }
 
-    //TODO функция показать подсказку (готов)
+    const backToMainPageFromGame = (evt) => {
+        evt.preventDefault();
+        evt.target.getAttribute("href").replace("");
+        if (isHardLevel) hideTimerAfterGame();
+        disableGameArea();
+        openPopup(mainPage);
+        backToMainPageFromGameBtn.removeEventListener("click", backToMainPageFromGame);
+        document.removeEventListener("keydown", showLetterOnKeyboard);
+        keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
+    };
 
-    keyboardButtons.forEach((button) =>
-        button.addEventListener("click", showLetterOnClick)
-    );
     document.addEventListener("keydown", showLetterOnKeyboard);
+    keyboardButtons.forEach((button) => button.addEventListener("click", showLetterOnClick));
+    backToMainPageFromGameBtn.addEventListener("click", backToMainPageFromGame);
 };
 
 const clearWord = () => {
-    const letters = wordContainer.querySelectorAll(
-        ".game-area__letter-container"
-    );
+    const letters = wordContainer.querySelectorAll(".game-area__letter-container");
     letters.forEach((letter) => letter.remove());
 };
 
-const hideTimerAfterGame = () => {
-    gameTimer.classList.remove("game-area__timer_active");
-    //остановить таймер
-};
+const hideTimerAfterGame = () => gameTimer.classList.remove("game-area__timer_active");
+
+function showHintPopup() {
+    openPopup(popupHint);
+}
+
+function closeHintPopup() {
+    closePopup(popupHint);
+}
+
+const closeDefeatPage = () => {
+    clearLeaderboard();
+    leaderboardHandler();
+    closePopup(popupEndgameDefeat);
+    disableGameArea();
+    openPopup(leaderboardPage);
+}
+
+const closeVictoryPage = () => {
+    clearLeaderboard();
+    leaderboardHandler();
+    closePopup(popupEndgameVictory);
+    disableGameArea();
+    openPopup(leaderboardPage);
+}
+
+hintButton.addEventListener("click", showHintPopup);
+hintGotItButton.addEventListener("click", closeHintPopup);
+buttonEndgameDefeat.addEventListener("click", closeDefeatPage);
+buttonEndgameVictory.addEventListener("click", closeVictoryPage);

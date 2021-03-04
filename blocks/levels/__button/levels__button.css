@@ -26,12 +26,12 @@
 
 @media screen and (max-width: 600px) {
   .levels__button {
-    font-size: calc(26px + 10 * ((100vw - 320px) / 280));
+    font-size: calc(24px + 12 * ((100vw - 320px) / 280));
   }
 }
 
 @media screen and (max-width: 320px) {
   .levels__button {
-    font-size: 26px;
+    font-size: 24px;
   }
 }

@@ -1,7 +1,7 @@
 .main-heading {
   position: relative;
   z-index: 1;
-  margin: 0 auto 200px;
+  margin: 0 auto 168px;
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -15,16 +15,16 @@
 
 @media screen and (max-width: 600px) {
   .main-heading {
-    font-size: calc(42px + 38 * ((100vw - 320px) / 280));
-    margin-bottom: calc(95px + 105 * ((100vw - 320px) / 280));
+    font-size: calc(46px + 34 * ((100vw - 320px) / 280));
+    margin-bottom: calc(60px + 108 * ((100vw - 320px) / 280));
     padding-top: calc(100px + 38 * ((100vw - 320px) / 280));
   }
 }
 
 @media screen and (max-width: 320px) {
   .main-heading {
-    font-size: 42px;
-    margin-bottom: 95px;
+    font-size: 46px;
+    margin-bottom: 60px;
     padding-top: 100px;
   }
 }
