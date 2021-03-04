@@ -3,4 +3,17 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: -30px -80px;
+  transition: background-position .3s linear;
+}
+
+@media screen and (max-width: 600px) {
+  .levels {
+    background-position: -10px -40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .levels {
+    background-position: -10px -20px;
+  }
 }

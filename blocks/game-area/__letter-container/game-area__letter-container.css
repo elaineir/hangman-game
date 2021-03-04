@@ -1,8 +1,24 @@
 .game-area__letter-container {
+  max-width: 32px;
+  width: 100%;
+  height: 35px;
   margin-right: 3px;
   border-bottom: 3px solid #fff;
 }
 
 .game-area__letter-container:last-of-type {
   margin-right: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .game-area__letter-container {
+    height: calc(16px + 19 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .game-area__letter-container {
+    height: 16px;
+    border-bottom: 2px solid #fff;
+  }
 }

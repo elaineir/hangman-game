@@ -1,8 +1,0 @@
-.keyboard__button-wrapper {
-  grid-column: 1 / 8;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  max-width: 418px;
-  justify-self: center;
-}

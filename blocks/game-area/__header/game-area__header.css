@@ -1,9 +1,9 @@
 .game-area__header {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  min-height: 36px;
-  margin: 0 0 10px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 36px;
+    margin: 0 0 10px;
 }

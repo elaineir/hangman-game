@@ -1,10 +1,10 @@
 .form__submit-btn {
   display: block;
-  margin: 0 auto 73px;
+  margin: 0 auto 65px;
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 72px;
+  font-size: 62px;
   line-height: 1;
   letter-spacing: 2px;
   text-align: center;
@@ -13,4 +13,16 @@
   border: none;
   outline: none;
   padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .form__submit-btn {
+    font-size: calc(40px + 22 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .form__submit-btn {
+    font-size: 40px;
+  }
 }

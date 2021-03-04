@@ -3,6 +3,18 @@
   border-bottom: 2px solid #ffb904;
 }
 
+@media screen and (max-width: 600px) {
+  .rules__container {
+    margin-bottom: calc(10px + 10 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .rules__container {
+    margin-bottom: 10px;
+  }
+}
+
 .rules__container:last-of-type {
   margin: 0 auto;
   border-bottom: none;

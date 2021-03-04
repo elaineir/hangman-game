@@ -3,3 +3,15 @@
   margin: 0 0 55px;
   grid-column: 3 / 4;
 }
+
+@media screen and (max-width: 600px) {
+  .game-area__score {
+    margin-bottom: calc(9px + 46 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .game-area__score {
+    margin-bottom: 9px;
+  }
+}

@@ -1,5 +1,7 @@
 .game-area__timer {
+  display: none;
   position: absolute;
+  z-index: 201;
   top: 0;
   left: 50%;
   transform: translateX(-53px);
@@ -10,4 +12,18 @@
   line-height: 1;
   text-align: center;
   color: #fff;
+  transition: all .3s linear;
+}
+
+@media screen and (max-width: 600px) {
+  .game-area__timer {
+    font-size: calc(20px + 16 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .game-area__timer {
+    font-size: 20px;
+    transform: translate(-35px);
+  }
 }

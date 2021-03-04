@@ -1,4 +1,6 @@
 .game-area__lives {
+  position: relative;
+  z-index: 201;
   width: 61px;
   height: 52px;
   background-image: url(../../../images/lives.svg);
@@ -6,4 +8,16 @@
   background-size: contain;
   background-position: center;
   text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .game-area__lives {
+    width: calc(41px + 20 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .game-area__lives {
+    width: 41px;
+  }
 }

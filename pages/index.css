@@ -9,9 +9,11 @@
 @import url(../blocks/game-area/_inactive/game-area_inactive.css);
 @import url(../blocks/game-area/__header/game-area__header.css);
 @import url(../blocks/game-area/__timer/game-area__timer.css);
+@import url(../blocks/game-area/__timer/_active/game-area__timer_active.css);
 @import url(../blocks/game-area/__hint/game-area__hint.css);
 @import url(../blocks/game-area/__visual/game-area__visual.css);
 @import url(../blocks/game-area/__hangman/game-area__hangman.css);
+@import url(../blocks/game-area/__path/game-area__path.css);
 @import url(../blocks/game-area/__stats/game-area__stats.css);
 @import url(../blocks/game-area/__score/game-area__score.css);
 @import url(../blocks/game-area/__subheading/game-area__subheading.css);
@@ -22,8 +24,9 @@
 @import url(../blocks/game-area/__word/game-area__word.css);
 @import url(../blocks/game-area/__letter-container/game-area__letter-container.css);
 @import url(../blocks/game-area/__letter/game-area__letter.css);
+@import url(../blocks/game-area/__letter/_opened/game-area__letter_opened.css);
 @import url(../blocks/keyboard/keyboard.css);
-@import url(../blocks/keyboard/__button-wrapper/keyboard__button-wrapper.css);
+@import url(../blocks/keyboard/__wrapper/keyboard__wrapper.css);
 @import url(../blocks/keyboard/__button/keyboard__button.css);
 @import url(../blocks/keyboard/__button/_hidden/keyboard__button_hidden.css);
 
@@ -63,3 +66,40 @@
 @import url(../blocks/leaderboard/__username/_leader/leaderboard__username_leader.css);
 @import url(../blocks/leaderboard/__username/leaderboard__username.css);
 @import url(../blocks/leaderboard/__score/leaderboard__score.css);
+
+@import url(../blocks/endgame/endgame.css);
+@import url(../blocks/endgame/_victory/endgame_victory.css);
+@import url(../blocks/endgame/__heading/endgame__heading.css);
+@import url(../blocks/endgame/__heading/_defeat/endgame__heading_defeat.css);
+@import url(../blocks/endgame/__heading/_victory/endgame__heading_victory.css);
+@import url(../blocks/endgame/__text/endgame__text.css);
+@import url(../blocks/endgame/__word/endgame__word.css);
+@import url(../blocks/endgame/__score/endgame__score.css);
+@import url(../blocks/endgame/__button/endgame__button.css);
+@import url(../blocks/endgame/__button/_defeat/endgame__button_defeat.css);
+@import url(../blocks/endgame/__button/_victory/endgame__button_victory.css);
+
+@import url(../blocks/volume-button/volume-button.css);
+@import url(../blocks/volume-button/_inactive/volume-button_inactive.css);
+
+@import url(../blocks/hint/hint.css);
+@import url(../blocks/hint/__heading/hint__heading.css);
+@import url(../blocks/hint/__element/hint__element.css);
+@import url(../blocks/hint/__element/_active/hint__element_active.css);
+@import url(../blocks/hint/__subheading/hint__subheading.css);
+@import url(../blocks/hint/__text/hint__text.css);
+@import url(../blocks/hint/__button/hint__button.css);
+
+@import url(../blocks/noise/noise.css);
+@import url(../blocks/vignette/vignette.css);
+@import url(../blocks/hangman-animation/hangman-animation.css);
+
+@import url(../blocks/settings/settings.css);
+@import url(../blocks/settings/_theme/settings_theme_crazy.css);
+@import url(../blocks/settings/_theme/settings_theme_dark.css);
+@import url(../blocks/settings/_theme/settings_theme_light.css);
+@import url(../blocks/settings/__form/settings__form.css);
+@import url(../blocks/settings/__secondary-heading/settings__secondary-heading.css);
+@import url(../blocks/settings/__container/settings__container.css);
+@import url(../blocks/settings/__item/settings__item.css);
+@import url(../blocks/settings/__save-button/settings__save-button.css);

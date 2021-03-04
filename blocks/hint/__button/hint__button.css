@@ -1,0 +1,26 @@
+.hint__button {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  height: 60px;
+  margin: 0 auto;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 60px;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 1px solid #fff;
+  outline: none;
+  padding: 0;
+  transition: color .3s linear, border-color .3s linear;
+}
+
+.hint__button:hover {
+  color: #ffb904;
+  border-color: #ffb904;
+  cursor: pointer;
+}

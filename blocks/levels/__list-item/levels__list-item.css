@@ -1,5 +1,18 @@
 .levels__list-item {
-  margin: 0 auto 35px;
+  margin: 0 auto;
+  margin-bottom: 35px;
+}
+
+@media screen and (max-width: 600px) {
+  .levels__list-item {
+    margin-bottom: calc(20px + 15 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .levels__list-item {
+    margin-bottom: 20px;
+  }
 }
 
 .levels__list-item:last-of-type {

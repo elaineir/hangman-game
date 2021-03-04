@@ -1,0 +1,23 @@
+.endgame__heading {
+  margin: 0 0 20px;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 46px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
+}
+
+@media screen and (max-width: 600px) {
+  .endgame__heading {
+    font-size: calc(32px + 14 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .endgame__heading {
+    font-size: 32px;
+  }
+}

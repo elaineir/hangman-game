@@ -1,3 +1,18 @@
 .game-area__hangman {
   grid-column: 2 / 3;
 }
+
+@media screen and (max-width: 600px) {
+  .game-area__hangman svg {
+    width: calc(190px + 66 * ((100vw - 320px) / 280));
+    height: calc(190px + 94 * ((100vw - 320px) / 280));
+  }  
+}
+
+@media screen and (max-width: 320px) {
+  .game-area__hangman svg {
+    width: 190px;
+    height: 190px;
+  }  
+}
+

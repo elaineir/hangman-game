@@ -16,6 +16,18 @@
   border-bottom: 2px solid #931fb1;
 }
 
+@media screen and (max-width: 600px) {
+  .leaderboard__container {
+    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .leaderboard__container {
+    font-size: 16px;
+  }
+}
+
 .leaderboard__container:last-of-type {
   margin: 0 auto;
   border-bottom: none;

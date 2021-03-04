@@ -11,4 +11,21 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  transition: all .3s linear;
+}
+
+@media screen and (max-width: 600px) {
+  .leaderboard__username_leader::before {
+    width: 29px;
+    top: -5px;
+    left: -18px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .leaderboard__username_leader::before {
+    width: 23px;
+    top: -9px;
+    left: -12px;
+  }
 }

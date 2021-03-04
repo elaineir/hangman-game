@@ -10,9 +10,22 @@
   text-transform: uppercase;
   text-decoration: none;
   transition: color .3s linear;
+  
 }
 
 .main-menu__link:hover {
   color: #931bf1;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .main-menu__link {
+    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main-menu__link {
+    font-size: 16px;
+  }
 }

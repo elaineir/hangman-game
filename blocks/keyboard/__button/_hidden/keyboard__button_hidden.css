@@ -1,6 +1,6 @@
 .keyboard__button_hidden {
-  visibility: none;
+  opacity: .1;
   user-select: none;
   pointer-events: none;
-  border: none;
+  
 }

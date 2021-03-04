@@ -8,3 +8,17 @@
   text-transform: uppercase;
   color: #fff;
 }
+
+@media screen and (max-width: 600px) {
+  .rules__subheading {
+    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+    margin-bottom: calc(10px + 5 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .rules__subheading {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}

@@ -1,3 +1,16 @@
 .levels__main-heading {
-  margin: 0 auto 157px;
+  margin: 0 auto;
+  margin-bottom: 157px;
+}
+
+@media screen and (max-width: 600px) {
+  .levels__main-heading {
+    margin-bottom: calc(95px + 62 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .levels__main-heading {
+    margin-bottom: 95px;
+  }
 }
