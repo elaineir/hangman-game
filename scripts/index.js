@@ -38,10 +38,10 @@ const leaderboardSubheading = leaderboardPage.querySelector(".leaderboard__subhe
 const leaderboardTemplate = leaderboardPage.querySelector(".leaderboard__template");
 
 //настройки
-const settingsPage = document.querySelector('.settings');
-const buttonSettingDark = document.getElementsByName('theme-dark');
-const buttonSettingLight = document.getElementsByName('theme-light');
-const buttonSettingCrazy = document.getElementsByName('theme-crazy');
+const settingsPage = document.querySelector(".settings");
+const buttonSettingDark = document.getElementsByName("theme-dark");
+const buttonSettingLight = document.getElementsByName("theme-light");
+const buttonSettingCrazy = document.getElementsByName("theme-crazy");
 
 //попапы завершения игры
 const popupEndgameDefeat = document.querySelector(".endgame_defeat");
@@ -54,9 +54,12 @@ const buttonEndgameVictory = popupEndgameVictory.querySelector(".endgame__button
 
 //попап подсказки
 const popupHint = document.querySelector(".hint");
+const hintElementYear = popupHint.querySelector(".hint__element_year");
 const hintTextYear = popupHint.querySelector(".hint__text_year");
+const hintElementCountry = popupHint.querySelector(".hint__element_country");
 const hintHeaderCountry = popupHint.querySelector(".hint__country");
 const hintTextCountry = popupHint.querySelector(".hint__text_country");
+const hintElementGenre = popupHint.querySelector(".hint__element_genre");
 const hintHeaderGenre = popupHint.querySelector(".hint__genre");
 const hintTextGenre = popupHint.querySelector(".hint__text_genre");
 const hintGotItButton = popupHint.querySelector(".hint__button");
@@ -76,6 +79,14 @@ const disableGameArea = () => {
     gameArea.classList.add("game-area_inactive");
     hideTimerAfterGame();
     clearWord();
+    hintTextYear.textContent = "";
+    hintHeaderCountry.textContent = "Страна";
+    hintTextCountry.textContent = "";
+    hintHeaderGenre.textContent = "Жанр";
+    hintTextGenre.textContent = "";
+    hintElementYear.classList.remove("hint__element_active");
+    hintElementCountry.classList.remove("hint__element_active");
+    hintElementGenre.classList.remove("hint__element_active");
 };
 
 const backToMainPage = (evt) => {
@@ -217,7 +228,7 @@ const clearLeaderboard = () => {
 async function fetchFilm() {
     let randomID = Math.floor(1000 + Math.random() * (999999 + 1 - 1000));
     let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${randomID}`, 
-      { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'}});
+      { headers: {"X-API-KEY": "66d13bb0-94cd-485d-aee2-5932b4961127"} });
       
     if (response.status === 200) {
       let filmData = await response.json();
@@ -228,7 +239,7 @@ async function fetchFilm() {
     } 
 }
   
-const notAllowedLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,?!:;+-/*%$#№@`~';
+const notAllowedLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,?!:;+-/*%$#№@`~";
     function checkFilmValidity(filmData) {
         if(filmData.data.nameRu.length > 20) {
             return fetchFilm();
@@ -245,7 +256,6 @@ let selectedWordLetters = []; //буквы угадываемого слова
 function renderWord(film) {
     selectedWordLetters = [];
     const selectedWord = film["data"]["nameRu"];
-    console.log(film)
 
     for (let i = 0; i < selectedWord.length; i++) {
         selectedWordLetters.push(selectedWord[i].toUpperCase());
@@ -253,10 +263,10 @@ function renderWord(film) {
 
     selectedWordLetters.forEach(letter => {
         const letterElement = letterTemplate.content.cloneNode(true);
-        letterElement.querySelector('.game-area__letter').textContent = letter;
-        if (letter === ' ') {
-            letterElement.querySelector('.game-area__letter-container').style.borderBottom = 'none';
-            letterElement.querySelector('.game-area__letter').classList.add('game-area__letter_opened');
+        letterElement.querySelector(".game-area__letter").textContent = letter;
+        if (letter === " ") {
+            letterElement.querySelector(".game-area__letter-container").style.borderBottom = "none";
+            letterElement.querySelector(".game-area__letter").classList.add("game-area__letter_opened");
         }
         wordContainer.append(letterElement);
     });
@@ -265,40 +275,46 @@ function renderWord(film) {
     correctWordText.textContent = selectedWord;
 
     //для попапа подсказки
-    hintHeaderCountry.textContent = "Страна";
-    hintHeaderGenre.textContent = "Жанр";
+    const filmKeys = Object.keys(film["data"]);
+    console.log(film["data"]);
+    filmKeys.forEach(key => {
+        if (key === "year") {
+            hintElementYear.classList.add("hint__element_active");
+            hintTextYear.textContent = film["data"]["year"];
+        }
 
-    hintTextYear.textContent = film["data"]["year"];
-
-    const countriesArr = film["data"]["countries"];
-    if (countriesArr.length === 1) {
-        hintTextCountry.textContent = film["data"]["countries"][0]["country"];
-    } else if (countriesArr.length > 1) {
-        hintHeaderCountry.textContent = "Страны";
-        for (let i = 0; i < countriesArr.length; i++) {
-            hintTextCountry.textContent += `${countriesArr[i]["country"]}, `;
-            if (countriesArr[countriesArr.length - 1]) {
-                hintTextCountry.textContent += `${countriesArr[i]["country"]}.`;
+        if (key === "countries") {
+            hintElementCountry.classList.add("hint__element_active");
+            const countriesArr = film["data"]["countries"];
+            if (countriesArr.length === 1) {
+                hintTextCountry.textContent = film["data"]["countries"][0]["country"];
+            }
+            if ((countriesArr.length > 1)) {
+                hintHeaderCountry.textContent = "Страны";
+                for (let i = 0; i < countriesArr.length; i++) {
+                    if (i === countriesArr.length - 1) {
+                        hintTextCountry.textContent += `${countriesArr[i]["country"]}`;
+                    } else hintTextCountry.textContent += `${countriesArr[i]["country"]}, `;
+                }
             }
         }
-    } else {
-        hintTextCountry.textContent = "неизвестна";
-    }
 
-    const genresArr = film["data"]["genres"];
-    if (genresArr.length === 1) {
-        hintTextGenre.textContent = film["data"]["genres"][0]["genre"];
-    } else if (genresArr.length > 1) {
-        hintHeaderGenre.textContent = "Жанры";
-        for (let i = 0; i < genresArr.length; i++) {
-            hintTextGenre.textContent += `${genresArr[i]["genre"]}, `;
-            if (countriesArr[countriesArr.length - 1]) {
-                hintTextGenre.textContent += `${countriesArr[i]["genre"]}.`;
+        if (key === "genres") {
+            hintElementGenre.classList.add("hint__element_active");
+            const genresArr = film["data"]["genres"];
+            if (genresArr.length === 1) {
+                hintTextGenre.textContent = film["data"]["genres"][0]["genre"];
+            }
+            if ((genresArr.length > 1)) {
+                hintHeaderGenre.textContent = "Жанры";
+                for (let i = 0; i < genresArr.length; i++) {
+                    if (i === genresArr.length - 1) {
+                        hintTextGenre.textContent += `${genresArr[i]["genre"]}`;
+                    } else hintTextGenre.textContent += `${genresArr[i]["genre"]}, `;
+                }
             }
         }
-    } else {
-        hintTextGenre.textContent = "неизвестен";
-    }
+    });
 }
 
 const makeKeyboardActive = () => {
@@ -426,7 +442,7 @@ const gameHandler = (currentPlayer, difficulty) => {
             openPopup(popupEndgameVictory);
             document.removeEventListener("keydown", showLetterOnKeyboard);
             keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
-            setlocalStorageJSONData(currentPlayer, scorePointsBase);
+            setlocalStorageJSONData(currentPlayer, (getlocalStorageData(currentPlayer) + scorePointsBase));
         }
     }
 

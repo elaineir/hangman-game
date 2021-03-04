@@ -20,8 +20,7 @@
         <header></header>
 
         <main class="content">
-            <section class="game-area"> 
-                <!-- game-area_inactive -->
+            <section class="game-area game-area_inactive">
                 <div class="game-area__header">
                     <a class="arrow-back game-area__arrow-back" href="#"></a>
                     <span class="game-area__timer">03 : 00</span>
@@ -189,8 +188,7 @@
                     </div>
                 </div>
             </section>
-            <!--popup_active-->
-            <article class="main-menu popup">
+            <article class="main-menu popup popup_active">
                 <h1 class="main-heading">Виселица</h1>
                 <form class="form" name="usernameForm">
                     <input
@@ -332,12 +330,18 @@
 
             <article class="hint popup">
                 <h2 class="hint__heading">О фильме</h2>
-                <h3 class="hint__subheading">Год выхода</h3>
-                <p class="hint__text hint__text_year">2020</p>
-                <h3 class="hint__subheading hint__country">Страна</h3>
-                <p class="hint__text hint__text_country">Мир</p>
-                <h3 class="hint__subheading hint__genre">Жанр</h3>
-                <p class="hint__text hint__text_genre">триллер, драма, комедия</p>
+                <div class="hint__element hint__element_year">
+                    <h3 class="hint__subheading hint__year">Год выхода</h3>
+                    <p class="hint__text hint__text_year">неизвестен</p>
+                </div>
+                <div class="hint__element hint__element_country">
+                    <h3 class="hint__subheading hint__country">Страна</h3>
+                    <p class="hint__text hint__text_country">неизвестна</p>
+                </div>
+                <div class="hint__element hint__element_genre">
+                    <h3 class="hint__subheading hint__genre">Жанр</h3>
+                    <p class="hint__text hint__text_genre">неизвестен</p>
+                </div>
                 <button class="hint__button" type="button">Ок</button>
             </article>
 
