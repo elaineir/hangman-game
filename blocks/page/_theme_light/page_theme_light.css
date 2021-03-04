@@ -1,3 +1,4 @@
 .page_theme_light {
+    color: var(--colorElemLight);
     background-color: var(--colorMainLight);
 }

@@ -1,4 +1,4 @@
 .settings_theme_light {
-    background-color: grey;
-    color: black;
+    background-color: var(--colorBackLight);
+    color: var(--colorElemLight);
 }

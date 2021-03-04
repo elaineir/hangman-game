@@ -1,3 +1,4 @@
 .page_theme_dark {
+    color: var(--colorElemDarK);
     background-color: var(--colorMainDark);
 }

@@ -1,3 +1,4 @@
-page_theme_crazy {
+.page_theme_crazy {
+    color: var(--colorElemCrazy);
     background-color: var(--colorMainCrazy);
 }

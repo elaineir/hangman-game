@@ -12,12 +12,15 @@ const backToMainPageFromGameBtn = document.querySelector(
 );
 const settingsPage = document.querySelector(".settings");
 const contentArea = document.querySelector(".content");
+const pageArea = document.querySelector('.page');
 
 //попапы и кнопки завершения игры
 const popupEndgameDefeat = document.querySelector(".endgame_defeat");
 const popupEndgameVictory = document.querySelector(".endgame_victory");
 const buttonEndgameDefeat = document.querySelector(".endgame__button_defeat");
 const buttonEndgameVictory = document.querySelector(".endgame__button_victory");
+
+
 
 //кнопки выбора цветовой темы
 
@@ -26,19 +29,20 @@ const settingItems = document.querySelectorAll(".settings__item");
 settingItems.forEach((item) => {
   item.addEventListener("click", (evt) => {
     if (evt.target.id === "theme-dark") {
-      console.log(evt.target.id);
+      
       settingsPage.classList.add("settings_theme_dark");
       settingsPage.classList.remove("settings_theme_light");
       settingsPage.classList.remove("settings_theme_crazy");
+      pageArea.classList.add('page_theme_light');
     }
     if (evt.target.id === "theme-light") {
-      console.log(evt.target.id);
+      
       settingsPage.classList.add("settings_theme_light");
       settingsPage.classList.remove("settings_theme_dark");
       settingsPage.classList.remove("settings_theme_crazy");
     }
     if (evt.target.id === "theme-crazy") {
-      console.log(evt.target.id);
+      
       settingsPage.classList.add("settings_theme_crazy");
       settingsPage.classList.remove("settings_theme_light");
       settingsPage.classList.remove("settings_theme_dark");
