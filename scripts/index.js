@@ -94,7 +94,19 @@ const backToMainPage = (evt) => {
     const popup = evt.target.closest(".popup");
     closePopup(popup);
     openPopup(mainPage);
+    if(evt.target.closest(".levels")) {
+        clearWord();
+    }
 };
+
+const showLastPlayer = () => {
+    if ((Object.entries(localStorage).length > 1)) {
+        usernameInput.value = getlocalStorageData("LastPlayerDONTDELETETHIS");
+        submitNameButton.disabled = false;
+        submitNameButton.classList.add("form__submit-btn_active");
+        submitNameButton.classList.remove("form__submit-btn_inactive");
+    }
+}
 
 backToMainPageButton.forEach((link) => link.addEventListener("click", backToMainPage));
 
@@ -131,6 +143,7 @@ const openLevelsPage = (evt) => {
     currentPlayer = usernameInput.value;
     if (getlocalStorageData(currentPlayer) === null) {
         setlocalStorageJSONData(currentPlayer, 0);
+        setlocalStorageJSONData("LastPlayerDONTDELETETHIS", currentPlayer);
     }
     closePopup(mainPage);
     openPopup(levelsPage);
@@ -192,23 +205,26 @@ const leaderboardHandler = () => {
         let leaderboardArr = [];
 
         function arrangeLeaderboardData() {
-            const leaderboardData = Array.from(Object.entries(localStorage));
+            let leaderboardData = Array.from(Object.entries(localStorage));
+            leaderboardData = leaderboardData.filter(el => el[0] !== "LastPlayerDONTDELETETHIS");
             return (leaderboardArr = leaderboardData.sort((a, b) => {
-                if (Number(a[1]) < Number(b[1])) return 1;
-                if (Number(a[1]) > Number(b[1])) return -1;
-                return 0;
-            }));
+                    if (Number(a[1]) < Number(b[1])) return 1;
+                    if (Number(a[1]) > Number(b[1])) return -1;
+                    return 0;
+                } 
+            ));
         }
 
         arrangeLeaderboardData();
 
         //пишем на страницу
         leaderboardArr.forEach((entry) => {
-            const leaderboardEntry = leaderboardTemplate.content.cloneNode(true);
-            leaderboardEntry.querySelector(".leaderboard__username").textContent = entry[0];
-            leaderboardEntry.querySelector(".leaderboard__score").textContent = Number(entry[1]);
-            leaderboardPage.append(leaderboardEntry);
-        });
+                const leaderboardEntry = leaderboardTemplate.content.cloneNode(true);
+                leaderboardEntry.querySelector(".leaderboard__username").textContent = entry[0];
+                leaderboardEntry.querySelector(".leaderboard__score").textContent = Number(entry[1]);
+                leaderboardPage.append(leaderboardEntry);
+            }
+        );
 
         const leader = document.querySelector(".leaderboard__container");
         if (Number(leader.querySelector(".leaderboard__score").textContent) > 0) {
@@ -346,6 +362,7 @@ const gameHandler = (currentPlayer, difficulty) => {
     let livesCounter = 10;
     let isHardLevel = false;
     let timeOut = false;
+    score.textContent = scorePointsBase;
 
     if (difficulty === "default") {
         scorePoints = 5;
@@ -537,6 +554,7 @@ hintButton.addEventListener("click", showHintPopup);
 hintGotItButton.addEventListener("click", closeHintPopup);
 buttonEndgameDefeat.addEventListener("click", closeDefeatPage);
 buttonEndgameVictory.addEventListener("click", closeVictoryPage);
+showLastPlayer();
 
 //анимация поражения, пусть будет всегда внизу
 const noise = () => {
