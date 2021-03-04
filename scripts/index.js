@@ -47,10 +47,14 @@ const buttonSettingCrazy = document.getElementsByName("theme-crazy");
 const popupEndgameDefeat = document.querySelector(".endgame_defeat");
 const correctWordText = popupEndgameDefeat.querySelector(".endgame__word");
 const buttonEndgameDefeat = popupEndgameDefeat.querySelector(".endgame__button_defeat");
+const audioDefeat = popupEndgameDefeat.querySelector(".audio_defeat");
+const volumeButtonDefeat = popupEndgameDefeat.querySelector(".volume-button_defeat");
 
 const popupEndgameVictory = document.querySelector(".endgame_victory");
 const earnedPointsText = popupEndgameVictory.querySelector(".endgame__score");
 const buttonEndgameVictory = popupEndgameVictory.querySelector(".endgame__button_victory");
+const audioVictory = popupEndgameVictory.querySelector(".audio_victory");
+const volumeButtonVictory = popupEndgameVictory.querySelector(".volume-button_victory");
 
 //попап подсказки
 const popupHint = document.querySelector(".hint");
@@ -79,11 +83,6 @@ const disableGameArea = () => {
     gameArea.classList.add("game-area_inactive");
     hideTimerAfterGame();
     clearWord();
-    hintTextYear.textContent = "";
-    hintHeaderCountry.textContent = "Страна";
-    hintTextCountry.textContent = "";
-    hintHeaderGenre.textContent = "Жанр";
-    hintTextGenre.textContent = "";
     hintElementYear.classList.remove("hint__element_active");
     hintElementCountry.classList.remove("hint__element_active");
     hintElementGenre.classList.remove("hint__element_active");
@@ -128,6 +127,7 @@ const getlocalStorageData = (key) => {
 //переходы по страницам
 const openLevelsPage = (evt) => {
     evt.preventDefault();
+    fetchFilm();
     currentPlayer = usernameInput.value;
     if (getlocalStorageData(currentPlayer) === null) {
         setlocalStorageJSONData(currentPlayer, 0);
@@ -171,7 +171,6 @@ const getDifficulty = (button) => {
 };
 
 const startGame = (evt) => {
-    fetchFilm();
     hideHangman();
     makeKeyboardActive();
     const button = evt.target;
@@ -241,9 +240,9 @@ async function fetchFilm() {
     } 
 }
   
-const notAllowedLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,?!:;+-/*%$#№@`~";
+const notAllowedLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890«»'\"|.,?!:;+—-/*%$#№@`~";
     function checkFilmValidity(filmData) {
-        if(filmData.data.nameRu.length > 20) {
+        if(filmData.data.nameRu.length > 18) {
             return fetchFilm();
         } else {
             for (let i = 0; i < notAllowedLetters.length; i++) {
@@ -277,42 +276,55 @@ function renderWord(film) {
     correctWordText.textContent = selectedWord;
 
     //для попапа подсказки
+    hintTextYear.textContent = "";
+    hintHeaderCountry.textContent = "Страна";
+    hintTextCountry.textContent = "";
+    hintHeaderGenre.textContent = "Жанр";
+    hintTextGenre.textContent = "";
+
     const filmKeys = Object.keys(film["data"]);
     console.log(film["data"]);
+
     filmKeys.forEach(key => {
         if (key === "year") {
-            hintElementYear.classList.add("hint__element_active");
-            hintTextYear.textContent = film["data"]["year"];
+            if (key !== "") {
+                hintElementYear.classList.add("hint__element_active");
+                hintTextYear.textContent = film["data"]["year"];
+            }
         }
 
         if (key === "countries") {
-            hintElementCountry.classList.add("hint__element_active");
-            const countriesArr = film["data"]["countries"];
-            if (countriesArr.length === 1) {
-                hintTextCountry.textContent = film["data"]["countries"][0]["country"];
-            }
-            if ((countriesArr.length > 1)) {
-                hintHeaderCountry.textContent = "Страны";
-                for (let i = 0; i < countriesArr.length; i++) {
-                    if (i === countriesArr.length - 1) {
-                        hintTextCountry.textContent += `${countriesArr[i]["country"]}`;
-                    } else hintTextCountry.textContent += `${countriesArr[i]["country"]}, `;
+            if (key !== "") {
+                hintElementCountry.classList.add("hint__element_active");
+                const countriesArr = film["data"]["countries"];
+                if (countriesArr.length === 1) {
+                    hintTextCountry.textContent = film["data"]["countries"][0]["country"];
+                }
+                if ((countriesArr.length > 1)) {
+                    hintHeaderCountry.textContent = "Страны";
+                    for (let i = 0; i < countriesArr.length; i++) {
+                        if (i === countriesArr.length - 1) {
+                            hintTextCountry.textContent += `${countriesArr[i]["country"]}`;
+                        } else hintTextCountry.textContent += `${countriesArr[i]["country"]}, `;
+                    }
                 }
             }
         }
 
         if (key === "genres") {
-            hintElementGenre.classList.add("hint__element_active");
-            const genresArr = film["data"]["genres"];
-            if (genresArr.length === 1) {
-                hintTextGenre.textContent = film["data"]["genres"][0]["genre"];
-            }
-            if ((genresArr.length > 1)) {
-                hintHeaderGenre.textContent = "Жанры";
-                for (let i = 0; i < genresArr.length; i++) {
-                    if (i === genresArr.length - 1) {
-                        hintTextGenre.textContent += `${genresArr[i]["genre"]}`;
-                    } else hintTextGenre.textContent += `${genresArr[i]["genre"]}, `;
+            if (key !== "") {
+                hintElementGenre.classList.add("hint__element_active");
+                const genresArr = film["data"]["genres"];
+                if (genresArr.length === 1) {
+                    hintTextGenre.textContent = film["data"]["genres"][0]["genre"];
+                }
+                if ((genresArr.length > 1)) {
+                    hintHeaderGenre.textContent = "Жанры";
+                    for (let i = 0; i < genresArr.length; i++) {
+                        if (i === genresArr.length - 1) {
+                            hintTextGenre.textContent += `${genresArr[i]["genre"]}`;
+                        } else hintTextGenre.textContent += `${genresArr[i]["genre"]}, `;
+                    }
                 }
             }
         }
@@ -430,6 +442,9 @@ const gameHandler = (currentPlayer, difficulty) => {
     //функция проверки на окончание жизней или таймера
     function isGameOver() {
         if (livesCounter === 0 || timeOut) {
+            audioDefeat.volume = 0.08;
+            audioDefeat.play();
+            playDefeatAnimation();
             openPopup(popupEndgameDefeat);
             document.removeEventListener("keydown", showLetterOnKeyboard);
             keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
@@ -440,6 +455,8 @@ const gameHandler = (currentPlayer, difficulty) => {
     function isWordDone() {
         let openedLetters = Array.from(document.querySelectorAll(".game-area__letter_opened"));
         if (openedLetters.length === selectedWordLetters.length) {
+            audioVictory.volume = 0.03;
+            audioVictory.play();
             earnedPointsText.textContent = scorePointsBase;
             openPopup(popupEndgameVictory);
             document.removeEventListener("keydown", showLetterOnKeyboard);
@@ -480,22 +497,117 @@ function closeHintPopup() {
 }
 
 const closeDefeatPage = () => {
-    clearLeaderboard();
-    leaderboardHandler();
-    closePopup(popupEndgameDefeat);
     disableGameArea();
-    openPopup(leaderboardPage);
+    location.reload(); //не лучший вариант, но на другой времени нет
 }
 
 const closeVictoryPage = () => {
     clearLeaderboard();
     leaderboardHandler();
     closePopup(popupEndgameVictory);
+    audioVictory.pause();
+    audioVictory.currentTime = 0;
     disableGameArea();
     openPopup(leaderboardPage);
 }
 
+const toggleVolumeDefeat = () => {
+    if (volumeButtonDefeat.classList.contains("volume-button_inactive")) {
+        volumeButtonDefeat.classList.remove("volume-button_inactive");
+        audioDefeat.play();
+    } else {
+        volumeButtonDefeat.classList.add("volume-button_inactive");
+        audioDefeat.pause();
+    }
+}
+
+const toggleVolumeVictory = () => {
+    if (volumeButtonVictory.classList.contains("volume-button_inactive")) {
+        volumeButtonVictory.classList.remove("volume-button_inactive");
+        audioVictory.play();
+    } else {
+        volumeButtonVictory.classList.add("volume-button_inactive");
+        audioVictory.pause();
+    }
+}
+
+volumeButtonDefeat.addEventListener("click", toggleVolumeDefeat);
+volumeButtonVictory.addEventListener("click", toggleVolumeVictory);
 hintButton.addEventListener("click", showHintPopup);
 hintGotItButton.addEventListener("click", closeHintPopup);
 buttonEndgameDefeat.addEventListener("click", closeDefeatPage);
 buttonEndgameVictory.addEventListener("click", closeVictoryPage);
+
+//анимация поражения, пусть будет всегда внизу
+const noise = () => {
+    let canvas, ctx;
+    let wWidth, wHeight;
+    let noiseData = [];
+    let frame = 0;
+    let loopTimeout;
+  
+    const createNoise = () => {
+        const idata = ctx.createImageData(wWidth, wHeight);
+        const buffer32 = new Uint32Array(idata.data.buffer);
+        const len = buffer32.length;
+  
+        for (let i = 0; i < len; i++) {
+            if (Math.random() < 0.5) {
+                buffer32[i] = 0xff000000;
+            }
+        }
+        noiseData.push(idata);
+    };
+  
+    const paintNoise = () => {
+        if (frame === 9) {
+            frame = 0;
+        } else {
+            frame++;
+        }
+        ctx.putImageData(noiseData[frame], 0, 0);
+    };
+  
+    const loop = () => {
+        paintNoise(frame);
+  
+        loopTimeout = window.setTimeout(() => {
+            window.requestAnimationFrame(loop);
+        }, (1000 / 25));
+    };
+  
+    const setup = () => {
+        wWidth = window.innerWidth;
+        wHeight = window.innerHeight;
+  
+        canvas.width = wWidth;
+        canvas.height = wHeight;
+  
+        for (let i = 0; i < 10; i++) {
+            createNoise();
+        }
+  
+        loop();
+    };
+  
+    const init = (() => {
+        canvas = document.querySelector('.noise');
+        ctx = canvas.getContext('2d');
+  
+        setup();
+    })();
+  };
+  
+  const tl = new TimelineMax( {repeat: -1} );
+  
+  const playDefeatAnimation = () => {
+    noise();
+    for (let i=50; i--;) {
+        tl.to(gameArea, R(0.03,0.17), { opacity:R(0,1), y:R(-1.5,1.5) });
+    }
+  }
+  
+  function R(max, min) {
+    return Math.random() * (max-min) + min;
+  };
+  

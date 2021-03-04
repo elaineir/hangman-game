@@ -10,3 +10,15 @@
   text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
   color: #fff;
 }
+
+@media screen and (max-width: 600px) {
+  .endgame__text {
+    font-size: calc(18px + 4 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .endgame__text {
+    font-size: 18px;
+  }
+}

@@ -11,6 +11,7 @@
   color: #ffb904;
   background-color: transparent;
   border: none;
+  outline: none;
   padding: 0;
   transition: all .3s linear;
 }

@@ -11,12 +11,12 @@
 
 @media screen and (max-width: 600px) {
   .game-area__letter {
-    font-size: calc(20px + 12 * ((100vw - 320px) / 280));
+    font-size: calc(14px + 18 * ((100vw - 320px) / 280));
   }
 }
 
 @media screen and (max-width: 320px) {
   .game-area__letter {
-    font-size: 20px;
+    font-size: 14px;
   }
 }
