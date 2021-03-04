@@ -1,8 +1,16 @@
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: #080a0c;
+    --colorMainDark: #080a0c;
+    --colorMainLight: #fcfff0;
+    --colorMainCrazy: #910099;
+    --colorBackDark: #212932;
+    --colorElemDarK: #fff;
+    --colorBackLight: #d1c0c0;
+    --colorElemLight: #1e1b1f;
+    --colorBackCrazy: #b0d413;
+    --colorElemCrazy: #6b74cf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
 }
