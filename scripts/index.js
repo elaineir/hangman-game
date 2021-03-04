@@ -202,7 +202,7 @@ const leaderboardHandler = () => {
         }
 
         arrangeLeaderboardData();
-        console.log(leaderboardArr)
+
         //пишем на страницу
         leaderboardArr.forEach((entry) => {
             const leaderboardEntry = leaderboardTemplate.content.cloneNode(true);
@@ -212,8 +212,10 @@ const leaderboardHandler = () => {
         });
 
         const leader = document.querySelector(".leaderboard__container");
-        leader.classList.add("leaderboard__container_leader");
-        leader.querySelector(".leaderboard__username").classList.add("leaderboard__username_leader");
+        if (Number(leader.querySelector(".leaderboard__score").textContent) > 0) {
+            leader.classList.add("leaderboard__container_leader");
+            leader.querySelector(".leaderboard__username").classList.add("leaderboard__username_leader");
+        }
     }
 };
 
