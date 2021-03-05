@@ -83,6 +83,7 @@ const disableGameArea = () => {
     gameArea.classList.add("game-area_inactive");
     hideTimerAfterGame();
     clearWord();
+    //возвращаем меню подсказки к дефолтному состоянию
     hintElementYear.classList.remove("hint__element_active");
     hintElementCountry.classList.remove("hint__element_active");
     hintElementGenre.classList.remove("hint__element_active");
@@ -99,6 +100,9 @@ const backToMainPage = (evt) => {
     }
 };
 
+//функция запоминает последнего игрока даже после закрытия вкладки,
+//есть уязвимость - игрок назовёт себя "LastPlayerDONTDELETETHIS"
+//пофиксить в будущем
 const showLastPlayer = () => {
     if ((Object.entries(localStorage).length > 1)) {
         usernameInput.value = getlocalStorageData("LastPlayerDONTDELETETHIS");
@@ -111,7 +115,7 @@ const showLastPlayer = () => {
 backToMainPageButton.forEach((link) => link.addEventListener("click", backToMainPage));
 
 //main menu
-//валидация
+//валидация инпута ввода имени игрока
 const handleValidation = () => {
     if (usernameInput.validity.valid) {
         submitNameButton.classList.add("form__submit-btn_active");
@@ -139,6 +143,7 @@ const getlocalStorageData = (key) => {
 //переходы по страницам
 const openLevelsPage = (evt) => {
     evt.preventDefault();
+    //загрузка фильма обычно не больше 5 сек, зависит от соединения
     fetchFilm();
     currentPlayer = usernameInput.value;
     if (getlocalStorageData(currentPlayer) === null) {
@@ -206,7 +211,9 @@ const leaderboardHandler = () => {
 
         function arrangeLeaderboardData() {
             let leaderboardData = Array.from(Object.entries(localStorage));
+            //исключаем запоминальщик последнего игрока
             leaderboardData = leaderboardData.filter(el => el[0] !== "LastPlayerDONTDELETETHIS");
+            //сортировка в порядке убывания очков
             return (leaderboardArr = leaderboardData.sort((a, b) => {
                     if (Number(a[1]) < Number(b[1])) return 1;
                     if (Number(a[1]) > Number(b[1])) return -1;
@@ -217,7 +224,7 @@ const leaderboardHandler = () => {
 
         arrangeLeaderboardData();
 
-        //пишем на страницу
+        //пишем игроков на страницу
         leaderboardArr.forEach((entry) => {
                 const leaderboardEntry = leaderboardTemplate.content.cloneNode(true);
                 leaderboardEntry.querySelector(".leaderboard__username").textContent = entry[0];
@@ -225,7 +232,8 @@ const leaderboardHandler = () => {
                 leaderboardPage.append(leaderboardEntry);
             }
         );
-
+        
+        //у нас есть лидер? проверяем, очков у него должно быть больше 0
         const leader = document.querySelector(".leaderboard__container");
         if (Number(leader.querySelector(".leaderboard__score").textContent) > 0) {
             leader.classList.add("leaderboard__container_leader");
@@ -255,7 +263,8 @@ async function fetchFilm() {
       return fetchFilm();
     } 
 }
-  
+
+//мы не поддерживаем фильмы с такими символами в имени, сорри
 const notAllowedLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890«»'\"|.,?!:;+—-/*%$#№@`~";
     function checkFilmValidity(filmData) {
         if(filmData.data.nameRu.length > 18) {
@@ -292,6 +301,7 @@ function renderWord(film) {
     correctWordText.textContent = selectedWord;
 
     //для попапа подсказки
+    //тут всё очень запутанно, куча проверок :)
     hintTextYear.textContent = "";
     hintHeaderCountry.textContent = "Страна";
     hintTextCountry.textContent = "";
@@ -356,9 +366,10 @@ const hideHangman = () => {
     hangmanParts.forEach(part => part.classList.remove("hangman-animation"));
 }
 
+//основная игровая функция
 const gameHandler = (currentPlayer, difficulty) => {
     let scorePointsBase = 0;
-    let scorePoints = 0;
+    let scorePoints = 0; //определяет очки за каждую букву ниже
     let livesCounter = 10;
     let isHardLevel = false;
     let timeOut = false;
@@ -382,17 +393,14 @@ const gameHandler = (currentPlayer, difficulty) => {
         let timer = setInterval(function () {
             if (gameArea.classList.contains("game-area_inactive")) {
                 clearInterval(timer);
-                isHardLevel - false;
             }
 
             if (popupEndgameDefeat.classList.contains("popup_active")) {
                 clearInterval(timer);
-                isHardLevel - false;
             }
 
             if (popupEndgameVictory.classList.contains("popup_active")) {
                 clearInterval(timer);
-                isHardLevel - false;
             }
 
             minutes = parseInt(duration / 60, 10);
@@ -404,11 +412,9 @@ const gameHandler = (currentPlayer, difficulty) => {
             gameTimer.textContent = `${minutes} : ${seconds}`;
       
             if (--duration < 0) {
-                timeOut = true; //для функции проверки GameOver
+                timeOut = true; //для функции проверки isGameOver
                 clearInterval(timer);
-                isHardLevel - false;
-                disableGameArea();
-                openPopup(popupEndgameDefeat);
+                isGameOver();
             }
         }, 1000);
     }
@@ -515,7 +521,7 @@ function closeHintPopup() {
 
 const closeDefeatPage = () => {
     disableGameArea();
-    location.reload(); //не лучший вариант, но на другой времени нет
+    location.reload(); //не лучший вариант, но пока так
 }
 
 const closeVictoryPage = () => {
@@ -556,76 +562,78 @@ buttonEndgameDefeat.addEventListener("click", closeDefeatPage);
 buttonEndgameVictory.addEventListener("click", closeVictoryPage);
 showLastPlayer();
 
-//анимация поражения, пусть будет всегда внизу
-const noise = () => {
-    let canvas, ctx;
-    let wWidth, wHeight;
-    let noiseData = [];
-    let frame = 0;
-    let loopTimeout;
+//анимация поражения, пусть будет всегда внизу  
+const tl = new TimelineMax( {repeat: -1} );
   
-    const createNoise = () => {
-        const idata = ctx.createImageData(wWidth, wHeight);
-        const buffer32 = new Uint32Array(idata.data.buffer);
-        const len = buffer32.length;
-  
-        for (let i = 0; i < len; i++) {
-            if (Math.random() < 0.5) {
-                buffer32[i] = 0xff000000;
-            }
-        }
-        noiseData.push(idata);
-    };
-  
-    const paintNoise = () => {
-        if (frame === 9) {
-            frame = 0;
-        } else {
-            frame++;
-        }
-        ctx.putImageData(noiseData[frame], 0, 0);
-    };
-  
-    const loop = () => {
-        paintNoise(frame);
-  
-        loopTimeout = window.setTimeout(() => {
-            window.requestAnimationFrame(loop);
-        }, (1000 / 25));
-    };
-  
-    const setup = () => {
-        wWidth = window.innerWidth;
-        wHeight = window.innerHeight;
-  
-        canvas.width = wWidth;
-        canvas.height = wHeight;
-  
-        for (let i = 0; i < 10; i++) {
-            createNoise();
-        }
-  
-        loop();
-    };
-  
-    const init = (() => {
-        canvas = document.querySelector('.noise');
-        ctx = canvas.getContext('2d');
-  
-        setup();
-    })();
-  };
-  
-  const tl = new TimelineMax( {repeat: -1} );
-  
-  const playDefeatAnimation = () => {
+const playDefeatAnimation = () => {
+
     noise();
+
     for (let i = 50; i--;) {
         tl.to(gameArea, R(0.03, 0.17), { opacity:R(0, 1), y:R(-1.5, 1.5) });
     }
-  }
-  
-  function R(max, min) {
-    return Math.random() * (max - min) + min;
-  };
+
+    function R(max, min) {
+        return Math.random() * (max - min) + min;
+    };
+
+    function noise () {
+        let canvas, ctx;
+        let wWidth, wHeight;
+        let noiseData = [];
+        let frame = 0;
+        let loopTimeout;
+      
+        const createNoise = () => {
+            const idata = ctx.createImageData(wWidth, wHeight);
+            const buffer32 = new Uint32Array(idata.data.buffer);
+            const len = buffer32.length;
+      
+            for (let i = 0; i < len; i++) {
+                if (Math.random() < 0.5) {
+                    buffer32[i] = 0xff000000;
+                }
+            }
+            noiseData.push(idata);
+        };
+      
+        const paintNoise = () => {
+            if (frame === 9) {
+                frame = 0;
+            } else {
+                frame++;
+            }
+            ctx.putImageData(noiseData[frame], 0, 0);
+        };
+      
+        const loop = () => {
+            paintNoise(frame);
+      
+            loopTimeout = window.setTimeout(() => {
+                window.requestAnimationFrame(loop);
+            }, (1000 / 25));
+        };
+      
+        const setup = () => {
+            wWidth = window.innerWidth;
+            wHeight = window.innerHeight;
+      
+            canvas.width = wWidth;
+            canvas.height = wHeight;
+      
+            for (let i = 0; i < 10; i++) {
+                createNoise();
+            }
+      
+            loop();
+        };
+      
+        const init = (() => {
+            canvas = document.querySelector('.noise');
+            ctx = canvas.getContext('2d');
+      
+            setup();
+        })();
+    };
+}
   
