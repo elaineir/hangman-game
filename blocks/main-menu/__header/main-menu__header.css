@@ -1,11 +1,11 @@
 .main-menu__header {
-  margin: 0 auto 158px;
+  margin: 0 auto 134px;
   padding-top: 138px;
 }
 
 @media screen and (max-width: 600px) {
   .main-menu__header {
-    margin-bottom: calc(86px + 72 * ((100vw - 400px) / 200));
+    margin-bottom: calc(86px + 48 * ((100vw - 400px) / 200));
     padding-top: calc(116px + 22 * ((100vw - 400px) / 200));
   }
 }
