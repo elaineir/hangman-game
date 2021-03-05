@@ -75,6 +75,8 @@
 @import url(../blocks/endgame/__heading/_victory/endgame__heading_victory.css);
 @import url(../blocks/endgame/__text/endgame__text.css);
 @import url(../blocks/endgame/__word/endgame__word.css);
+@import url(../blocks/endgame/__wrapper/endgame__wrapper.css);
+@import url(../blocks/endgame/__cool-doge/endgame__cool-doge.css);
 @import url(../blocks/endgame/__score/endgame__score.css);
 @import url(../blocks/endgame/__button/endgame__button.css);
 @import url(../blocks/endgame/__button/_defeat/endgame__button_defeat.css);

@@ -1,0 +1,16 @@
+@keyframes cool-doge {
+  0% { transform: translate(-2px, -2px); }
+  50% { transform: translate(2px, 2px); }
+  100% { transform: translate(-2px, -2px); }
+}
+
+.endgame__cool-doge {
+  width: 26px;
+  height: 26px;
+  margin: 0 15px;
+  background-image: url(../../../images/cool-doge-2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation: cool-doge .5s infinite;
+}
