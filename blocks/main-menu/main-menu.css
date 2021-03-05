@@ -1,4 +1,18 @@
 .main-menu {
-  
-  
+  background-image: url(../../images/menu-decor.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 282px;
+  background-position: 0 60px;
+}
+
+@media screen and (max-width: 600px) {
+  .main-menu {
+    background-position: 0 calc(22px + 38 * ((100vw - 400px) / 200));
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main-menu {
+    background-position: 0 22px;
+  }
 }

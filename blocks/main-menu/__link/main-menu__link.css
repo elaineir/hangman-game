@@ -2,7 +2,7 @@
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   text-align: center;
   letter-spacing: 1px;
@@ -20,7 +20,7 @@
 
 @media screen and (max-width: 600px) {
   .main-menu__link {
-    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+    font-size: calc(16px + 6 * ((100vw - 320px) / 280));
   }
 }
 

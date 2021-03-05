@@ -1,13 +1,13 @@
 .keyboard__button {
   display: block;
   box-sizing: border-box;
-  width: 62px;
-  height: 62px;
+  width: 56px;
+  height: 56px;
   margin: 0 8px 0 0;
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 36px;
+  font-size: 34px;
   line-height: 1;
   text-align: center;
   color: #fff;
@@ -33,9 +33,9 @@
 @media screen and (max-width: 600px) {
   .keyboard__button {
     margin-right: calc(6px + 2 * ((100vw - 320px) / 280));
-    width: calc(34px + 28 * ((100vw - 320px) / 280));
-    height: calc(34px + 28 * ((100vw - 320px) / 280));
-    font-size: calc(20px + 16 * ((100vw - 320px) / 280));
+    width: calc(34px + 22 * ((100vw - 320px) / 280));
+    height: calc(34px + 22 * ((100vw - 320px) / 280));
+    font-size: calc(20px + 14 * ((100vw - 320px) / 280));
     padding: calc(7px + 5 * ((100vw - 320px) / 280));
   }
 }
