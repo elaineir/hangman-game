@@ -174,7 +174,10 @@
             <p class="endgame__word">Виселица</p>
             <button class="endgame__button endgame__button_defeat" type="button">Что ж...</button>
             <button class="volume-button volume-button_defeat"></button>
-            <audio style="opacity: 0; user-select: none;" class="audio audio_defeat" src="./sounds/defeat-theme.mp3" type="audio/mpeg" controls></audio>
+            <audio class="audio audio_defeat">
+                <source src="./sounds/defeat-theme.ogg" type="audio/ogg" >
+                <source src="./sounds/defeat-theme.mp3" type="audio/mp3" >
+            </audio>
         </article>
 
         <article class="endgame endgame_victory popup">
@@ -184,11 +187,13 @@
                 <p class="endgame__text">Поздравляем!</p>
                 <div class="endgame__cool-doge"></div>
             </div>
-            
             <p class="endgame__text">Очки: <span class="endgame__score">320</span></p>
             <button class="endgame__button endgame__button_victory" type="button">Я молодец!</button>
             <button class="volume-button volume-button_victory"></button>
-            <audio style="opacity: 0; user-select: none;" class="audio audio_victory" src="./sounds/victory-theme.mp3" type="audio/mpeg" controls></audio>
+            <audio class="audio audio_victory">
+                <source src="./sounds/victory-theme.ogg" type="audio/ogg" >
+                <source src="./sounds/victory-theme.mp3" type="audio/mp3" >
+            </audio>
         </article>
 
         <article class="hint popup">
