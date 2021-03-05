@@ -368,7 +368,7 @@ const gameHandler = (currentPlayer, difficulty) => {
         scorePoints = 5;
     } else {
         isHardLevel = true;
-        gameTimer.textContent = "03 : 00";
+        gameTimer.textContent = "02 : 00";
         gameTimer.classList.add("game-area__timer_active");
         scorePoints = 10;
         startHardGameTimer();
@@ -376,7 +376,7 @@ const gameHandler = (currentPlayer, difficulty) => {
 
     //функция таймера
     function startHardGameTimer() {
-        let duration = 180;
+        let duration = 120;
         let minutes = 0;
         let seconds = 0;
         let timer = setInterval(function () {
@@ -620,12 +620,12 @@ const noise = () => {
   
   const playDefeatAnimation = () => {
     noise();
-    for (let i=50; i--;) {
-        tl.to(gameArea, R(0.03,0.17), { opacity:R(0,1), y:R(-1.5,1.5) });
+    for (let i = 50; i--;) {
+        tl.to(gameArea, R(0.03, 0.17), { opacity:R(0, 1), y:R(-1.5, 1.5) });
     }
   }
   
   function R(max, min) {
-    return Math.random() * (max-min) + min;
+    return Math.random() * (max - min) + min;
   };
   

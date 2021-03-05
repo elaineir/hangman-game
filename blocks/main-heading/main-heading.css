@@ -1,11 +1,11 @@
 .main-heading {
   position: relative;
   z-index: 1;
-  margin: 0 auto 168px;
+  margin: 0 auto 158px;
   font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 80px;
+  font-size: 74px;
   line-height: 1.2;
   text-align: center;
   color: #fff;
@@ -15,8 +15,8 @@
 
 @media screen and (max-width: 600px) {
   .main-heading {
-    font-size: calc(46px + 34 * ((100vw - 320px) / 280));
-    margin-bottom: calc(60px + 108 * ((100vw - 320px) / 280));
+    font-size: calc(46px + 28 * ((100vw - 320px) / 280));
+    margin-bottom: calc(60px + 98 * ((100vw - 320px) / 280));
     padding-top: calc(100px + 38 * ((100vw - 320px) / 280));
   }
 }
