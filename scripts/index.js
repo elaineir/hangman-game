@@ -93,11 +93,13 @@ const backToMainPage = (evt) => {
     evt.preventDefault(); //отмена стандартного события для ссылки
     evt.target.getAttribute("href").replace(""); //ссылки оставляют # в адресе, поэтому это исправляем
     const popup = evt.target.closest(".popup");
-    closePopup(popup);
-    openPopup(mainPage);
-    if(evt.target.closest(".levels")) {
-        clearWord();
-    }
+    popup.classList.add("hide-window-animation");
+    setTimeout(() => {
+        closePopup(popup);
+        openPopup(mainPage);
+        clearWord(); //для меню уровня
+        popup.classList.remove("hide-window-animation");
+    }, 300);
 };
 
 //функция запоминает последнего игрока даже после закрытия вкладки,
@@ -491,12 +493,16 @@ const gameHandler = (currentPlayer, difficulty) => {
     const backToMainPageFromGame = (evt) => {
         evt.preventDefault();
         evt.target.getAttribute("href").replace("");
-        if (isHardLevel) hideTimerAfterGame();
-        disableGameArea();
-        openPopup(mainPage);
-        backToMainPageFromGameBtn.removeEventListener("click", backToMainPageFromGame);
-        document.removeEventListener("keydown", showLetterOnKeyboard);
-        keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
+        gameArea.classList.add("hide-window-animation");
+        setTimeout(() => {
+            if (isHardLevel) hideTimerAfterGame();
+            disableGameArea();
+            openPopup(mainPage);
+            backToMainPageFromGameBtn.removeEventListener("click", backToMainPageFromGame);
+            document.removeEventListener("keydown", showLetterOnKeyboard);
+            keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
+            gameArea.classList.remove("hide-window-animation");
+        }, 300);
     };
 
     document.addEventListener("keydown", showLetterOnKeyboard);
