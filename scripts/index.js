@@ -93,11 +93,13 @@ const backToMainPage = (evt) => {
     evt.preventDefault(); //отмена стандартного события для ссылки
     evt.target.getAttribute("href").replace(""); //ссылки оставляют # в адресе, поэтому это исправляем
     const popup = evt.target.closest(".popup");
-    closePopup(popup);
-    openPopup(mainPage);
-    if(evt.target.closest(".levels")) {
-        clearWord();
-    }
+    popup.classList.add("window-animation_hide");
+    setTimeout(() => {
+        closePopup(popup);
+        openPopup(mainPage);
+        clearWord(); //для меню уровня
+        popup.classList.remove("window-animation_hide");
+    }, 300);
 };
 
 //функция запоминает последнего игрока даже после закрытия вкладки,
@@ -491,12 +493,16 @@ const gameHandler = (currentPlayer, difficulty) => {
     const backToMainPageFromGame = (evt) => {
         evt.preventDefault();
         evt.target.getAttribute("href").replace("");
-        if (isHardLevel) hideTimerAfterGame();
-        disableGameArea();
-        openPopup(mainPage);
-        backToMainPageFromGameBtn.removeEventListener("click", backToMainPageFromGame);
-        document.removeEventListener("keydown", showLetterOnKeyboard);
-        keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
+        gameArea.classList.add("window-animation_hide");
+        setTimeout(() => {
+            if (isHardLevel) hideTimerAfterGame();
+            disableGameArea();
+            openPopup(mainPage);
+            backToMainPageFromGameBtn.removeEventListener("click", backToMainPageFromGame);
+            document.removeEventListener("keydown", showLetterOnKeyboard);
+            keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
+            gameArea.classList.remove("window-animation_hide");
+        }, 300);
     };
 
     document.addEventListener("keydown", showLetterOnKeyboard);
@@ -512,11 +518,17 @@ const clearWord = () => {
 const hideTimerAfterGame = () => gameTimer.classList.remove("game-area__timer_active");
 
 function showHintPopup() {
+    popupHint.classList.add("window-animation_show");
     openPopup(popupHint);
 }
 
 function closeHintPopup() {
-    closePopup(popupHint);
+    popupHint.classList.remove("window-animation_show");
+    popupHint.classList.add("window-animation_hide-round");
+    setTimeout(() => {
+        closePopup(popupHint);
+        popupHint.classList.remove("window-animation_hide-round");
+    }, 500);
 }
 
 const closeDefeatPage = () => {
