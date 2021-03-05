@@ -1,0 +1,21 @@
+@keyframes show-window {
+  0% { 
+    transform: scale(0); 
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  50% {
+    border-radius: 50%;
+  }
+  
+  100% { 
+    transform: scale(1);
+    border-radius: 0;
+    opacity: 1;
+  }
+}
+
+.window-animation_show {
+  animation: show-window .5s forwards;
+}

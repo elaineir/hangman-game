@@ -1,0 +1,21 @@
+@keyframes hide-window-round {
+  0% { 
+    transform: scale(1);
+    border-radius: 0;
+    opacity: 1;
+  }
+
+  50% {
+    border-radius: 50%;
+  }
+  
+  100% { 
+    transform: scale(0); 
+    border-radius: 50%;
+    opacity: 0;
+  }
+}
+
+.window-animation_hide-round {
+  animation: hide-window-round .5s forwards;
+}

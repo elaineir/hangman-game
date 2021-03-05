@@ -3,6 +3,6 @@
   100% { transform: translateX(-1000px); }
 }
 
-.hide-window-animation {
+.window-animation_hide {
   animation: hide-window .3s forwards;
 }

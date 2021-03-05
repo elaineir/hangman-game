@@ -93,12 +93,12 @@ const backToMainPage = (evt) => {
     evt.preventDefault(); //отмена стандартного события для ссылки
     evt.target.getAttribute("href").replace(""); //ссылки оставляют # в адресе, поэтому это исправляем
     const popup = evt.target.closest(".popup");
-    popup.classList.add("hide-window-animation");
+    popup.classList.add("window-animation_hide");
     setTimeout(() => {
         closePopup(popup);
         openPopup(mainPage);
         clearWord(); //для меню уровня
-        popup.classList.remove("hide-window-animation");
+        popup.classList.remove("window-animation_hide");
     }, 300);
 };
 
@@ -493,7 +493,7 @@ const gameHandler = (currentPlayer, difficulty) => {
     const backToMainPageFromGame = (evt) => {
         evt.preventDefault();
         evt.target.getAttribute("href").replace("");
-        gameArea.classList.add("hide-window-animation");
+        gameArea.classList.add("window-animation_hide");
         setTimeout(() => {
             if (isHardLevel) hideTimerAfterGame();
             disableGameArea();
@@ -501,7 +501,7 @@ const gameHandler = (currentPlayer, difficulty) => {
             backToMainPageFromGameBtn.removeEventListener("click", backToMainPageFromGame);
             document.removeEventListener("keydown", showLetterOnKeyboard);
             keyboardButtons.forEach((button) => button.removeEventListener("click", showLetterOnClick));
-            gameArea.classList.remove("hide-window-animation");
+            gameArea.classList.remove("window-animation_hide");
         }, 300);
     };
 
@@ -518,11 +518,17 @@ const clearWord = () => {
 const hideTimerAfterGame = () => gameTimer.classList.remove("game-area__timer_active");
 
 function showHintPopup() {
+    popupHint.classList.add("window-animation_show");
     openPopup(popupHint);
 }
 
 function closeHintPopup() {
-    closePopup(popupHint);
+    popupHint.classList.remove("window-animation_show");
+    popupHint.classList.add("window-animation_hide-round");
+    setTimeout(() => {
+        closePopup(popupHint);
+        popupHint.classList.remove("window-animation_hide-round");
+    }, 500);
 }
 
 const closeDefeatPage = () => {

@@ -32,7 +32,10 @@
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_active/popup_active.css);
-@import url(../blocks/hide-window-animation/hide-window-animation.css);
+
+@import url(../blocks/window-animation/_hide/window-animation_hide.css);
+@import url(../blocks/window-animation/_hide-round/window-animation_hide-round.css);
+@import url(../blocks/window-animation/_show/window-animation_show.css);
 
 @import url(../blocks/main-menu/main-menu.css);
 @import url(../blocks/main-menu/__header/main-menu__header.css);
