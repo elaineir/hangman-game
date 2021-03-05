@@ -315,14 +315,14 @@ function renderWord(film) {
 
     filmKeys.forEach(key => {
         if (key === "year") {
-            if (key !== "") {
+            if (film["data"]["year"] !== "") {
                 hintElementYear.classList.add("hint__element_active");
                 hintTextYear.textContent = film["data"]["year"];
             }
         }
 
         if (key === "countries") {
-            if (key !== "") {
+            if (film["data"]["countries"][0]["country"] !== "") {
                 hintElementCountry.classList.add("hint__element_active");
                 const countriesArr = film["data"]["countries"];
                 if (countriesArr.length === 1) {
@@ -340,7 +340,7 @@ function renderWord(film) {
         }
 
         if (key === "genres") {
-            if (key !== "") {
+            if (film["data"]["genres"][0]["genre"] !== "") {
                 hintElementGenre.classList.add("hint__element_active");
                 const genresArr = film["data"]["genres"];
                 if (genresArr.length === 1) {
