@@ -376,6 +376,7 @@ const gameHandler = (currentPlayer, difficulty) => {
     let isHardLevel = false;
     let timeOut = false;
     score.textContent = scorePointsBase;
+    lives.textContent = livesCounter;
 
     if (difficulty === "default") {
         scorePoints = 5;
@@ -467,6 +468,7 @@ const gameHandler = (currentPlayer, difficulty) => {
     //функция проверки на окончание жизней или таймера
     function isGameOver() {
         if (livesCounter === 0 || timeOut) {
+            popupHint.classList.add("window-animation_show");
             audioDefeat.volume = 0.3;
             audioDefeat.play();
             playDefeatAnimation();
