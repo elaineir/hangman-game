@@ -1,0 +1,18 @@
+.main-menu__header {
+  margin: 0 auto 158px;
+  padding-top: 138px;
+}
+
+@media screen and (max-width: 600px) {
+  .main-menu__header {
+    margin-bottom: calc(60px + 98 * ((100vw - 320px) / 280));
+    padding-top: calc(100px + 38 * ((100vw - 320px) / 280));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main-menu__header {
+    margin-bottom: 60px;
+    padding-top: 100px;
+  }
+}
