@@ -37,12 +37,6 @@ const leaderboardPage = document.querySelector(".leaderboard");
 const leaderboardSubheading = leaderboardPage.querySelector(".leaderboard__subheading");
 const leaderboardTemplate = leaderboardPage.querySelector(".leaderboard__template");
 
-//настройки
-const settingsPage = document.querySelector(".settings");
-const buttonSettingDark = document.getElementsByName("theme-dark");
-const buttonSettingLight = document.getElementsByName("theme-light");
-const buttonSettingCrazy = document.getElementsByName("theme-crazy");
-
 //попапы завершения игры
 const popupEndgameDefeat = document.querySelector(".endgame_defeat");
 const correctWordText = popupEndgameDefeat.querySelector(".endgame__word");
@@ -145,7 +139,6 @@ const getlocalStorageData = (key) => {
 //переходы по страницам
 const openLevelsPage = (evt) => {
     evt.preventDefault();
-    //загрузка фильма обычно не больше 5 сек, зависит от соединения
     fetchFilm();
     currentPlayer = usernameInput.value;
     if (getlocalStorageData(currentPlayer) === null) {
@@ -172,17 +165,9 @@ const openLeaderboardPage = (evt) => {
     openPopup(leaderboardPage);
 };
 
-const openSettingsPage = (evt) => {
-    evt.preventDefault();
-    settingsButton.getAttribute("href").replace("");
-    closePopup(mainPage);
-    openPopup(settingsPage);
-}
-
 usernameForm.addEventListener("submit", openLevelsPage);
 howToPlayButton.addEventListener("click", openHowToPlayPage);
 leaderboardButton.addEventListener("click", openLeaderboardPage);
-settingsButton.addEventListener('click', openSettingsPage);
 
 //levels menu
 const getDifficulty = (button) => {
@@ -191,13 +176,15 @@ const getDifficulty = (button) => {
 };
 
 const startGame = (evt) => {
-    hideHangman();
-    makeKeyboardActive();
-    const button = evt.target;
-    const difficulty = getDifficulty(button);
-    closePopup(levelsPage);
-    enableGameArea();
-    gameHandler(currentPlayer, difficulty); //основная игровая функция
+    setTimeout(() => {
+        hideHangman();
+        makeKeyboardActive();
+        const button = evt.target;
+        const difficulty = getDifficulty(button);
+        closePopup(levelsPage);
+        enableGameArea();
+        gameHandler(currentPlayer, difficulty); //основная игровая функция
+    }, 2000); //загрузка фильма обычно не больше 5 сек, зависит от соединения TODO добавить анимацию загрузки
 };
 
 levelButtons.forEach((button) => button.addEventListener("click", startGame));
@@ -311,7 +298,6 @@ function renderWord(film) {
     hintTextGenre.textContent = "";
 
     const filmKeys = Object.keys(film["data"]);
-    console.log(film["data"]);
 
     filmKeys.forEach(key => {
         if (key === "year") {

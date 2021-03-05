@@ -1,24 +1,24 @@
 .rules__subheading {
   margin: 0 0 15px;
-  font-family: 'Russo One', Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 1.2;
   text-transform: uppercase;
+  letter-spacing: 1px;
   color: #fff;
 }
 
 @media screen and (max-width: 600px) {
   .rules__subheading {
-    font-size: calc(18px + 6 * ((100vw - 400px) / 200));
+    font-size: calc(20px + 4 * ((100vw - 400px) / 200));
     margin-bottom: calc(10px + 5 * ((100vw - 400px) / 200));
   }
 }
 
 @media screen and (max-width: 400px) {
   .rules__subheading {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 10px;
   }
 }

@@ -5,19 +5,19 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 1.2;
+  text-align: justify;
+  letter-spacing: 1px;
   color: #fff;
 }
 
 @media screen and (max-width: 600px) {
   .rules__text {
-    font-size: calc(14px + 4 * ((100vw - 400px) / 200));
-    margin-bottom: calc(10px + 5 * ((100vw - 400px) / 200));
+    font-size: calc(16px + 2 * ((100vw - 400px) / 200));
   }
 }
 
 @media screen and (max-width: 400px) {
   .rules__text {
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 16px;
   }
 }

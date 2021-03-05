@@ -117,9 +117,6 @@
                 <li class="main-menu__list-item">
                     <a class="main-menu__link main-menu__link_leaderboard" href="#">Лучшие результаты</a>
                 </li>
-                <li class="main-menu__list-item">
-                    <a class="main-menu__link main-menu__link_settings" href="#">Настройки</a>
-                </li>
             </ul>
         </article>
 
@@ -141,8 +138,27 @@
             <a class="arrow-back arrow-back_absolute" href="#"></a>
             <h2 class="secondary-heading">Правила</h2>
             <div class="rules__container">
-                <h3 class="rules__subheading">Правило</h3>
-                <p class="rules__text">Описание правила</p>
+                <h3 class="rules__subheading">Суть игры</h3>
+                <p class="rules__text">Игрок угадывает слова по буквам. За каждую правильную букву 
+                    начисляются очки, за неправильную – отнимается попытка и рисуется виселица. Игрок 
+                    считается повешенным, если он потратил все 10 попыток.</p>
+            </div>
+            <div class="rules__container">
+                <h3 class="rules__subheading">Слова</h3>
+                <p class="rules__text">Словами являются названия кинофильмов на русском языке.
+                    Самое большое количество букв - 18, самое маленькое - 1.</p>
+            </div>
+            <div class="rules__container">
+                <h3 class="rules__subheading">Подсказка</h3>
+                <p class="rules__text">Игрок может воспользоваться подсказкой, будут предоставлены 
+                    год выхода фильма, страна и жанр, если они есть в базе.</p>
+            </div>
+            <div class="rules__container">
+                <h3 class="rules__subheading">Режим игры</h3>
+                <p class="rules__text">Обычный и на время. В обычном режиме за каждую угаданную букву 
+                    начисляется 5 очков, в режиме "На время" - 10 очков, но нужно угадать слово на 2 минуты. 
+                    По истечении 2 минут, если слово не было отгадано, игрока ждёт поражение, даже если у него
+                    остались попытки.</p>
             </div>
         </article>
 
@@ -158,16 +174,6 @@
             </template>
         </article>
 
-        <article class="settings popup settings_theme_light">
-            <a class="arrow-back arrow-back_absolute" href="#"></a>
-            <h2 class="secondary-heading settings__secondary-heading">Выберите цветовую тему:</h2>
-            <div class="settings__container">
-                <button type="button" class="settings__item" name="theme-dark">Тёмная</button>
-                <button type="button" class="settings__item" name="theme-light">Светлая</button>
-                <button type="button" class="settings__item" name="theme-crazy">Сумасшедшая</button>
-            </div>
-        </article>
-
         <article class="endgame endgame_defeat popup">
             <h2 class="endgame__heading endgame__heading_defeat">Вы проиграли</h2>
             <p class="endgame__text">Загаданное слово...</p>
@@ -175,8 +181,8 @@
             <button class="endgame__button endgame__button_defeat" type="button">Что ж...</button>
             <button class="volume-button volume-button_defeat"></button>
             <audio class="audio audio_defeat">
-                <source src="./sounds/defeat-theme.ogg" type="audio/ogg" >
-                <source src="./sounds/defeat-theme.mp3" type="audio/mp3" >
+                <source src="./sounds/defeat-theme.ogg" type="audio/ogg">
+                <source src="./sounds/defeat-theme.mp3" type="audio/mp3">
             </audio>
         </article>
 
@@ -191,8 +197,8 @@
             <button class="endgame__button endgame__button_victory" type="button">Я молодец!</button>
             <button class="volume-button volume-button_victory"></button>
             <audio class="audio audio_victory">
-                <source src="./sounds/victory-theme.ogg" type="audio/ogg" >
-                <source src="./sounds/victory-theme.mp3" type="audio/mp3" >
+                <source src="./sounds/victory-theme.ogg" type="audio/ogg">
+                <source src="./sounds/victory-theme.mp3" type="audio/mp3">
             </audio>
         </article>
 
