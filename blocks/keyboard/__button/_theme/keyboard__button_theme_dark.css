@@ -1,0 +1,10 @@
+.keyboard__button_theme_dark {
+  color: var(--colorElemDark);
+  border: 1px solid var(--colorElemDark);
+}
+
+.keyboard__button_theme_dark:hover {
+  cursor: pointer;
+  color: var(--colorGoldenDark);
+  border: 1px solid var(--colorGoldenDark);
+}

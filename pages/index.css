@@ -33,6 +33,9 @@
 @import url(../blocks/game-area/__letter/_opened/game-area__letter_opened.css);
 @import url(../blocks/keyboard/keyboard.css);
 @import url(../blocks/keyboard/__button/keyboard__button.css);
+@import url(../blocks/keyboard/__button/_theme/keyboard__button_theme_light.css);
+@import url(../blocks/keyboard/__button/_theme/keyboard__button_theme_dark.css);
+@import url(../blocks/keyboard/__button/_theme/keyboard__button_theme_crazy.css);
 @import url(../blocks/keyboard/__button/_hidden/keyboard__button_hidden.css);
 
 @import url(../blocks/popup/popup.css);
@@ -100,4 +103,8 @@
 @import url(../blocks/settings/__secondary-heading/settings__secondary-heading.css);
 @import url(../blocks/settings/__container/settings__container.css);
 @import url(../blocks/settings/__item/settings__item.css);
+@import url(../blocks/settings/__container/_theme/settings__container_theme_crazy.css); 
+@import url(../blocks/settings/__container/_theme/settings__container_theme_dark.css);
+@import url(../blocks/settings/__container/_theme/settings__container_theme_light.css);
+@import url(../blocks/settings/_theme/settings_theme_light.css);
 @import url(../blocks/settings/__save-button/settings__save-button.css);

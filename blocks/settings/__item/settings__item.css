@@ -1,9 +1,5 @@
 .settings__item {
-    width: 200px;
-    height: 50px;
-    background: transparent;
-    border: none;
-    outline-style: none;
+    padding: 0;
     margin: 100px 0 0 0;
     font-family: 'Russo One', Arial, sans-serif;
     font-style: normal;
@@ -17,6 +13,6 @@
     transition: color .3s linear;
 }
 .settings__item:hover {
-    color: rgb(1, 170, 170);
+    color: #931bf1;
     cursor: pointer;
 }

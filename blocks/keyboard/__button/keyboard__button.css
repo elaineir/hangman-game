@@ -7,20 +7,14 @@
   font-size: 36px;
   line-height: 1;
   text-align: center;
-  color: #fff;
   background-color: transparent;
-  border: 1px solid #fff;
+  border: 1px solid;
   border-radius: 2px;
   padding: 12px;
   opacity: 1;
   transition: color .3s linear, border .3s linear, opacity .3s linear;
 }
 
-.keyboard__button:hover {
-  cursor: pointer;
-  color: #ffb904;
-  border: 1px solid #ffb904;
-}
 
 @media screen and (max-width: 600px) {
   .keyboard__button {

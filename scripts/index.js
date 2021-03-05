@@ -12,7 +12,7 @@ const backToMainPageFromGameBtn = document.querySelector(
 );
 const settingsPage = document.querySelector(".settings");
 const contentArea = document.querySelector(".content");
-const pageArea = document.querySelector('.page');
+const pageArea = document.querySelector(".page");
 
 //попапы и кнопки завершения игры
 const popupEndgameDefeat = document.querySelector(".endgame_defeat");
@@ -20,37 +20,79 @@ const popupEndgameVictory = document.querySelector(".endgame_victory");
 const buttonEndgameDefeat = document.querySelector(".endgame__button_defeat");
 const buttonEndgameVictory = document.querySelector(".endgame__button_victory");
 
-
-
-//кнопки выбора цветовой темы
-
+const keyboardButtons = document.querySelectorAll(".keyboard__button");
+const settingsContainer = document.querySelector(".settings__container");
 const settingItems = document.querySelectorAll(".settings__item");
+
+
 
 settingItems.forEach((item) => {
   item.addEventListener("click", (evt) => {
     if (evt.target.id === "theme-dark") {
-      
       settingsPage.classList.add("settings_theme_dark");
+      settingsContainer.classList.add("settings__container_theme_dark");
+      pageArea.classList.add("page_theme_dark");
+      contentArea.classList.add("content_theme_dark");
       settingsPage.classList.remove("settings_theme_light");
       settingsPage.classList.remove("settings_theme_crazy");
-      pageArea.classList.add('page_theme_light');
+      settingsContainer.classList.remove("settings__container_theme_light");
+      settingsContainer.classList.remove("settings__container_theme_crazy");
+      pageArea.classList.remove("page_theme_light");
+      pageArea.classList.remove("page_theme_crazy");
+      contentArea.classList.remove("content_theme_crazy");
+      contentArea.classList.remove("content_theme_light");
+      keyboardButtons.forEach((item) => {
+        item.classList.add("keyboard__button_theme_dark");
+        item.classList.remove("keyboard__button_theme_light");
+        item.classList.remove("keyboard__button_theme_crazy");
+      })
+
+
     }
     if (evt.target.id === "theme-light") {
-      
       settingsPage.classList.add("settings_theme_light");
+      settingsContainer.classList.add("settings__container_theme_ligh");
+      pageArea.classList.add("page_theme_light");
+      contentArea.classList.add("content_theme_light");
       settingsPage.classList.remove("settings_theme_dark");
       settingsPage.classList.remove("settings_theme_crazy");
+      settingsContainer.classList.remove("settings__container_theme_dark");
+      settingsContainer.classList.remove("settings__container_theme_crazy");
+      pageArea.classList.remove("page_theme_dark");
+      pageArea.classList.remove("page_theme_crazy");
+      contentArea.classList.remove("content_theme_dark");
+      contentArea.classList.remove("content_theme_crazy");
+      keyboardButtons.forEach((item) => {
+        item.classList.add("keyboard__button_theme_light");
+        item.classList.remove("keyboard__button_theme_dark");
+        item.classList.remove("keyboard__button_theme_crazy");
+      })
+
     }
     if (evt.target.id === "theme-crazy") {
-      
       settingsPage.classList.add("settings_theme_crazy");
+      settingsContainer.classList.add("settings__container_theme_crazy");
+      pageArea.classList.add("page_theme_crazy");
+      contentArea.classList.add("content_theme_crazy");
       settingsPage.classList.remove("settings_theme_light");
       settingsPage.classList.remove("settings_theme_dark");
+      settingsContainer.classList.remove("settings__container_theme_dark");
+      settingsContainer.classList.remove("settings__container_theme_light");
+      pageArea.classList.remove("page_theme_light");
+      pageArea.classList.remove("page_theme_dark");
+      contentArea.classList.remove("content_theme_dark");
+      contentArea.classList.remove("content_theme_light");
+      keyboardButtons.forEach((item) => {
+        item.classList.add("keyboard__button_theme_crazy");
+        item.classList.remove("keyboard__button_theme_dark");
+        item.classList.remove("settings__container_theme_ligh");
+      })
+
     }
   });
-});
+}); 
 
-const changeTheme = (theme) => {};
+
 
 //таймер
 const gameTimerMin = document.querySelector(".game-area__min");
@@ -261,7 +303,9 @@ const wordContainer = document.querySelector(".game-area__word");
 const gameTimer = document.querySelector(".game-area__timer");
 const score = document.querySelector(".game-area__counter_score");
 const lives = document.querySelector(".game-area__counter_lives");
-const keyboardButtons = document.querySelectorAll(".keyboard__button");
+/* const keyboardButtons = document.querySelectorAll(".keyboard__button"); */
+
+
 //тестовый массив TODO удалить в релизе
 const testingWords = [
   "лёгкийй",
@@ -433,3 +477,4 @@ const hideTimerAfterGame = () => {
   gameTimer.classList.remove("game-area__timer_active");
   //остановить таймер
 };
+

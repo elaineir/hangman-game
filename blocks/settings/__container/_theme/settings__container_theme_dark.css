@@ -1,0 +1,4 @@
+.settings__container_theme_dark {
+  background-color: var(--colorBackDark);
+  color: var(--colorElemDark);
+}

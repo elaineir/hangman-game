@@ -1,0 +1,11 @@
+.keyboard__button_theme_light {
+    color: var(--colorElemLight);
+    border: 1px solid var(--colorElemLight);
+ }
+
+ .keyboard__button_theme_light:hover {
+    cursor: pointer;
+    color: var(--colorGoldenLight);
+    border: 1px solid var(--colorGoldenLight);
+    
+ }

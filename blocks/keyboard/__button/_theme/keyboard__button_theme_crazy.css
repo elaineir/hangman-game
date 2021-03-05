@@ -1,0 +1,8 @@
+.keyboard__button_theme_crazy {
+  color: var(--colorElemCrazy);
+  border-color: var(--colorElemCrazy);
+}
+.keyboard__button_theme_crazy:hover {
+  color: var(--colorGoldenCrazy);
+  border-color: var(--colorGoldenCrazy);
+}
