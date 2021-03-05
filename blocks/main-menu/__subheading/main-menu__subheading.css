@@ -1,0 +1,25 @@
+.main-menu__subheading {
+  margin: 0 70px 0 0;
+  font-family: 'Russo One', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1;
+  text-align: right;
+  text-transform: uppercase;
+  color: #17212B;
+}
+
+@media screen and (max-width: 600px) {
+  .main-menu__subheading {
+    font-size: calc(14px + 4 * ((100vw - 400px) / 200));
+    margin-right: calc(26px + 44 * ((100vw - 400px) / 200));
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main-menu__subheading {
+    font-size: 14px;
+    margin-right: 26px;
+  }
+}

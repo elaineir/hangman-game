@@ -1,16 +1,19 @@
 .levels__main-heading {
   margin: 0 auto;
   margin-bottom: 157px;
+  padding-top: 138px;
 }
 
 @media screen and (max-width: 600px) {
   .levels__main-heading {
     margin-bottom: calc(95px + 62 * ((100vw - 320px) / 280));
+    padding-top: calc(100px + 38 * ((100vw - 320px) / 280));
   }
 }
 
 @media screen and (max-width: 320px) {
   .levels__main-heading {
     margin-bottom: 95px;
+    padding-top: 100px;
   }
 }
