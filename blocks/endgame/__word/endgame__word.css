@@ -4,9 +4,10 @@
   font-style: normal;
   font-weight: normal;
   font-size: 38px;
-  line-height: 1.2;
+  line-height: 1;
   text-transform: uppercase;
   text-align: center;
+  letter-spacing: 1px;
   text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
   color: #fff;
   border-bottom: 3px solid #931bf1;
@@ -14,12 +15,12 @@
 
 @media screen and (max-width: 600px) {
   .endgame__word {
-    font-size: calc(20px + 18 * ((100vw - 320px) / 280));
+    font-size: calc(24px + 14 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .endgame__word {
-    font-size: 20px;
+    font-size: 24px;
   }
 }

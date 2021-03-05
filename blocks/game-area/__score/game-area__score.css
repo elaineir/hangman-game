@@ -6,12 +6,12 @@
 
 @media screen and (max-width: 600px) {
   .game-area__score {
-    margin-bottom: calc(9px + 46 * ((100vw - 320px) / 280));
+    margin-bottom: calc(26px + 29 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .game-area__score {
-    margin-bottom: 9px;
+    margin-bottom: 26px;
   }
 }

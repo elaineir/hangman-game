@@ -5,13 +5,13 @@
 
 @media screen and (max-width: 600px) {
   .levels__list-item {
-    margin-bottom: calc(20px + 15 * ((100vw - 320px) / 280));
+    margin-bottom: calc(30px + 5 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .levels__list-item {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 }
 

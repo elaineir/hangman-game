@@ -10,14 +10,14 @@
 
 @media screen and (max-width: 600px) {
   .rules__text {
-    font-size: calc(12px + 6 * ((100vw - 320px) / 280));
-    margin-bottom: calc(10px + 5 * ((100vw - 320px) / 280));
+    font-size: calc(14px + 4 * ((100vw - 400px) / 200));
+    margin-bottom: calc(10px + 5 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .rules__text {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 10px;
   }
 }

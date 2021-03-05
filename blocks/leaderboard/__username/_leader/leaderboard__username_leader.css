@@ -25,7 +25,7 @@
 @media screen and (max-width: 520px) {
   .leaderboard__username_leader::before {
     width: 23px;
-    top: -9px;
+    top: -6px;
     left: -12px;
   }
 }

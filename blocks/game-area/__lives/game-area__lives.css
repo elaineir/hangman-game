@@ -12,12 +12,12 @@
 
 @media screen and (max-width: 600px) {
   .game-area__lives {
-    width: calc(41px + 20 * ((100vw - 320px) / 280));
+    width: calc(46px + 15 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 400px) {
   .game-area__lives {
-    width: 41px;
+    width: 46px;
   }
 }
