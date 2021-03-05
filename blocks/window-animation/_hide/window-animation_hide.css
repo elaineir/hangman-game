@@ -1,0 +1,8 @@
+@keyframes hide-window {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-1000px); }
+}
+
+.window-animation_hide {
+  animation: hide-window .3s forwards;
+}

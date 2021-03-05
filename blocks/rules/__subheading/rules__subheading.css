@@ -11,14 +11,14 @@
 
 @media screen and (max-width: 600px) {
   .rules__subheading {
-    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
-    margin-bottom: calc(10px + 5 * ((100vw - 320px) / 280));
+    font-size: calc(18px + 6 * ((100vw - 400px) / 200));
+    margin-bottom: calc(10px + 5 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .rules__subheading {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 10px;
   }
 }

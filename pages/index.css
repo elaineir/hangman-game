@@ -33,6 +33,10 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_active/popup_active.css);
 
+@import url(../blocks/window-animation/_hide/window-animation_hide.css);
+@import url(../blocks/window-animation/_hide-round/window-animation_hide-round.css);
+@import url(../blocks/window-animation/_show/window-animation_show.css);
+
 @import url(../blocks/main-menu/main-menu.css);
 @import url(../blocks/main-menu/__header/main-menu__header.css);
 @import url(../blocks/main-heading/main-heading.css);
@@ -75,6 +79,8 @@
 @import url(../blocks/endgame/__heading/_victory/endgame__heading_victory.css);
 @import url(../blocks/endgame/__text/endgame__text.css);
 @import url(../blocks/endgame/__word/endgame__word.css);
+@import url(../blocks/endgame/__wrapper/endgame__wrapper.css);
+@import url(../blocks/endgame/__cool-doge/endgame__cool-doge.css);
 @import url(../blocks/endgame/__score/endgame__score.css);
 @import url(../blocks/endgame/__button/endgame__button.css);
 @import url(../blocks/endgame/__button/_defeat/endgame__button_defeat.css);

@@ -13,12 +13,12 @@
 
 @media screen and (max-width: 600px) {
   .endgame__text {
-    font-size: calc(18px + 4 * ((100vw - 320px) / 280));
+    font-size: calc(20px + 2 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .endgame__text {
-    font-size: 18px;
+    font-size: 20px;
   }
 }

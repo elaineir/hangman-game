@@ -1,18 +1,18 @@
 .main-menu__header {
-  margin: 0 auto 158px;
+  margin: 0 auto 134px;
   padding-top: 138px;
 }
 
 @media screen and (max-width: 600px) {
   .main-menu__header {
-    margin-bottom: calc(60px + 98 * ((100vw - 320px) / 280));
-    padding-top: calc(100px + 38 * ((100vw - 320px) / 280));
+    margin-bottom: calc(86px + 48 * ((100vw - 400px) / 200));
+    padding-top: calc(116px + 22 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .main-menu__header {
-    margin-bottom: 60px;
-    padding-top: 100px;
+    margin-bottom: 86px;
+    padding-top: 116px;
   }
 }

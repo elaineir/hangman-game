@@ -12,13 +12,14 @@
 
 @media screen and (max-width: 600px) {
   .game-area__letter-container {
-    height: calc(16px + 19 * ((100vw - 320px) / 280));
+    height: calc(20px + 15 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .game-area__letter-container {
-    height: 16px;
+    max-width: 26px;
+    height: 20px;
     border-bottom: 2px solid #fff;
   }
 }

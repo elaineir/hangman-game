@@ -23,13 +23,12 @@
 
 @media screen and (max-width: 600px) {
   .game-area__hint {
-    font-size: calc(16px + 8 * ((100vw - 320px) / 280));
+    font-size: calc(18px + 6 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .game-area__hint {
-    font-size: 16px;
-    top: -9px;
+    font-size: 18px;
   }
 }
