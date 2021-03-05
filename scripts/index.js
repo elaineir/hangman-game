@@ -184,7 +184,7 @@ const startGame = (evt) => {
         closePopup(levelsPage);
         enableGameArea();
         gameHandler(currentPlayer, difficulty); //основная игровая функция
-    }, 2000); //загрузка фильма обычно не больше 5 сек, зависит от соединения TODO добавить анимацию загрузки
+    }, 1000); //загрузка фильма обычно не больше 5 сек, зависит от соединения TODO добавить анимацию загрузки
 };
 
 levelButtons.forEach((button) => button.addEventListener("click", startGame));
