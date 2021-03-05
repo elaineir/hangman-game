@@ -340,7 +340,7 @@ function renderWord(film) {
         }
 
         if (key === "genres") {
-            if (["data"]["genres"][0]["genre"] !== "") {
+            if (film["data"]["genres"][0]["genre"] !== "") {
                 hintElementGenre.classList.add("hint__element_active");
                 const genresArr = film["data"]["genres"];
                 if (genresArr.length === 1) {
