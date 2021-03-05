@@ -521,7 +521,7 @@ function closeHintPopup() {
 
 const closeDefeatPage = () => {
     disableGameArea();
-    location.reload(); //не лучший вариант, но пока так
+    location.reload();
 }
 
 const closeVictoryPage = () => {
