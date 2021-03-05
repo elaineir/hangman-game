@@ -13,13 +13,13 @@
 @media screen and (max-width: 600px) {
   .main-menu__subheading {
     font-size: calc(14px + 4 * ((100vw - 400px) / 200));
-    margin-right: calc(26px + 44 * ((100vw - 400px) / 200));
+    margin-right: calc(40px + 30 * ((100vw - 400px) / 200));
   }
 }
 
 @media screen and (max-width: 400px) {
   .main-menu__subheading {
     font-size: 14px;
-    margin-right: 26px;
+    margin-right: 40px;
   }
 }

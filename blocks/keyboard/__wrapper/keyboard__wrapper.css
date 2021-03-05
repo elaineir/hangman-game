@@ -9,11 +9,11 @@
 
 @media screen and (max-width: 600px) {
   .keyboard__wrapper {
-    margin-bottom: calc(6px + 2 * ((100vw - 320px) / 280));
+    margin-bottom: calc(6px + 2 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .keyboard__wrapper {
     margin: 0 auto 6px;
   }

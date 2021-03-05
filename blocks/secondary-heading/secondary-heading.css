@@ -15,14 +15,14 @@
 
 @media screen and (max-width: 600px) {
   .secondary-heading {
-    font-size: calc(30px + 18 * ((100vw - 320px) / 280));
-    margin-bottom: calc(30px + 10 * ((100vw - 320px) / 280));
+    font-size: calc(32px + 16 * ((100vw - 400px) / 200));
+    margin-bottom: calc(30px + 10 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .secondary-heading {
-    font-size: 30px;
+    font-size: 32px;
     margin-bottom: 30px;
   }
 }

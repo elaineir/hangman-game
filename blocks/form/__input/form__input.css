@@ -24,12 +24,12 @@
 
 @media screen and (max-width: 600px) {
   .form__input {
-    font-size: calc(20px + 16 * ((100vw - 320px) / 280));
+    font-size: calc(30px + 6 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .form__input {
-    font-size: 20px;
+    font-size: 30px;
   }
 }

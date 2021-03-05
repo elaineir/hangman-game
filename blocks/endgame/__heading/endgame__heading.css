@@ -12,12 +12,12 @@
 
 @media screen and (max-width: 600px) {
   .endgame__heading {
-    font-size: calc(32px + 14 * ((100vw - 320px) / 280));
+    font-size: calc(36px + 10 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .endgame__heading {
-    font-size: 32px;
+    font-size: 36px;
   }
 }

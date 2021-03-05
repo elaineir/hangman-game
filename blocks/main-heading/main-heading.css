@@ -8,16 +8,17 @@
   text-align: center;
   color: #fff;
   text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 @media screen and (max-width: 600px) {
   .main-heading {
-    font-size: calc(46px + 28 * ((100vw - 320px) / 280));
+    font-size: calc(48px + 26 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .main-heading {
-    font-size: 46px;
+    font-size: 48px;
   }
 }

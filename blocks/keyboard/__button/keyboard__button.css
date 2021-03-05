@@ -15,7 +15,7 @@
   border: 1px solid #fff;
   border-radius: 2px;
   outline: none;
-  padding: 12px;
+  padding: 10px;
   opacity: 1;
   transition: color .3s linear, border .3s linear, opacity .3s linear;
 }
@@ -32,20 +32,20 @@
 
 @media screen and (max-width: 600px) {
   .keyboard__button {
-    margin-right: calc(6px + 2 * ((100vw - 320px) / 280));
-    width: calc(34px + 22 * ((100vw - 320px) / 280));
-    height: calc(34px + 22 * ((100vw - 320px) / 280));
-    font-size: calc(20px + 14 * ((100vw - 320px) / 280));
-    padding: calc(7px + 5 * ((100vw - 320px) / 280));
+    margin-right: calc(6px + 2 * ((100vw - 400px) / 200));
+    width: calc(44px + 12 * ((100vw - 400px) / 200));
+    height: calc(44px + 12 * ((100vw - 400px) / 200));
+    font-size: calc(26px + 8 * ((100vw - 400px) / 200));
+    padding: calc(5px + 5 * ((100vw - 400px) / 200));
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .keyboard__button {
     margin: 0 6px 0 0;
-    width: 34px;
-    height: 34px;
-    font-size: 20px;
-    padding: 7px;
+    width: 44px;
+    height: 44px;
+    font-size: 26px;
+    padding: 5px;
   }
 }
