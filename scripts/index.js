@@ -482,7 +482,8 @@ const gameHandler = (currentPlayer, difficulty) => {
   //функция проверки на окончание жизней или таймера
   function isGameOver() {
     if (livesCounter === 0 || timeOut) {
-      if (popupHint.classList.contains('window-animation_show')) {
+      if (popupHint.classList.contains('popup_active')) {
+        popupHint.classList.remove('popup_active');
         popupHint.classList.remove('window-animation_show');
       }
       audioDefeat.volume = 0.3;
