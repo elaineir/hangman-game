@@ -56,6 +56,9 @@
 @import url(../blocks/levels/__list/levels__list.css);
 @import url(../blocks/levels/__list-item/levels__list-item.css);
 @import url(../blocks/levels/__button/levels__button.css);
+@import url(../blocks/levels/__loading/levels__loading.css);
+@import url(../blocks/levels/__loading/_active/levels__loading_active.css);
+@import url(../blocks/levels/__loading-icon/levels__loading-icon.css);
 
 @import url(../blocks/secondary-heading/secondary-heading.css);
 @import url(../blocks/rules/__container/rules__container.css);

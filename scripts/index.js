@@ -25,8 +25,10 @@ const leaderboardButton = mainPage.querySelector('.main-menu__link_leaderboard')
 //режим игры
 const levelsPage = document.querySelector('.levels');
 const levelButtons = document.querySelectorAll('.levels__button');
-const defaultLevelButton = levelsPage.querySelector('.levels__button_default');
-const hardLevelButton = levelsPage.querySelector('.levels__button_hard');
+const easyLevelButton = document.querySelector('.levels__button_easy');
+const defaultLevelButton = document.querySelector('.levels__button_default');
+const hardLevelButton = document.querySelector('.levels__button_hard');
+const loadingPopup = document.querySelector('.levels__loading');
 
 //правила
 const rulesPage = document.querySelector('.rules');
@@ -90,7 +92,6 @@ const backToMainPage = (evt) => {
   setTimeout(() => {
     closePopup(popup);
     openPopup(mainPage);
-    clearWord(); //для меню уровня
     popup.classList.remove('window-animation_hide');
   }, 300);
 };
@@ -136,7 +137,6 @@ const getlocalStorageData = (key) => {
 //переходы по страницам
 const openLevelsPage = (evt) => {
   evt.preventDefault();
-  fetchFilm();
   currentPlayer = usernameInput.value;
   if (getlocalStorageData(currentPlayer) === null) {
     setlocalStorageJSONData(currentPlayer, 0);
@@ -168,20 +168,28 @@ leaderboardButton.addEventListener('click', openLeaderboardPage);
 
 //levels menu
 const getDifficulty = (button) => {
+  if (button === easyLevelButton) return 'easy';
   if (button === defaultLevelButton) return 'default';
   else return 'hard';
 };
 
 const startGame = (evt) => {
+  const difficulty = getDifficulty(evt.target);
+  easyLevelButton.disabled = true;
+  defaultLevelButton.disabled = true;
+  hardLevelButton.disabled = true;
+  fetchFilm(difficulty);
+  loadingPopup.classList.add('window-animation_show');
+  loadingPopup.classList.add('levels__loading_active');
   setTimeout(() => {
     hideHangman();
     makeKeyboardActive();
-    const button = evt.target;
-    const difficulty = getDifficulty(button);
+    loadingPopup.classList.remove('window-animation_show');
+    loadingPopup.classList.remove('levels__loading_active');
     closePopup(levelsPage);
     enableGameArea();
     gameHandler(currentPlayer, difficulty); //основная игровая функция
-  }, 1000); //загрузка фильма обычно не больше 5 сек, зависит от соединения TODO добавить анимацию загрузки
+  }, 4000); //загрузка фильма зависит от соединения
 };
 
 levelButtons.forEach((button) => button.addEventListener('click', startGame));
@@ -234,29 +242,48 @@ const clearLeaderboard = () => {
 
 //game
 //идём на кинопоиск и выбираем фильм. какой жанр предпочитаете? впрочем, тут как повезёт :)
-async function fetchFilm() {
-  let randomID = Math.floor(1000 + Math.random() * (999999 + 1 - 1000));
-  let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${randomID}`, 
-                 { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'} });
+async function fetchFilm(difficulty) {
+  if (difficulty === 'easy') {
+    //easy-peasy
+    //с этой апишки приходит массив, в котором 20 фильмов из категории топ-100, поэтому страниц 5
+    let randomPage = Math.floor(1 + Math.random() * 5);
+    let randomfilm = Math.floor(1 + Math.random() * 20);
+    let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${randomPage}`, 
+                   { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'} });
       
-  if (response.status === 200) {
-    let filmData = await response.json();
-    checkFilmValidity(filmData);
+    if (response.status === 200) {
+      let filmDataPage = await response.json();
+      checkFilmValidity(filmDataPage['films'][randomfilm], difficulty);
+    } else {
+      console.clear();
+      return fetchFilm(difficulty);
+    } 
+    
   } else {
-    console.clear();
-    return fetchFilm();
-  } 
+    //default and hard
+    let randomID = Math.floor(1000 + Math.random() * (1000998));
+    let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${randomID}`, 
+                   { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'} });
+      
+    if (response.status === 200) {
+      let filmData = await response.json();
+      checkFilmValidity(filmData['data'], difficulty);
+    } else {
+      console.clear();
+      return fetchFilm(difficulty);
+    } 
+  }
 }
 
 //мы не поддерживаем фильмы с такими символами в имени, сорри
-const notAllowedLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890«»\'"|.,?!:;+—-/*%$#№@`~';
+const notAllowedLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890()[]{}«»\'"|.,?!:;+—-/*%$#№@`~';
 
-const checkFilmValidity = (filmData) => {
-  if(filmData.data.nameRu.length > 18) {
-    return fetchFilm();
+const checkFilmValidity = (filmData, difficulty) => {
+  if(filmData.nameRu.length > 18) {
+    return fetchFilm(difficulty);
   } else {
     for (let i = 0; i < notAllowedLetters.length; i++) {
-        if (filmData.data.nameRu.includes(notAllowedLetters[i])) return fetchFilm();
+        if (filmData.nameRu.includes(notAllowedLetters[i])) return fetchFilm(difficulty);
     }
     return renderWord(filmData);
   }
@@ -265,8 +292,9 @@ const checkFilmValidity = (filmData) => {
 let selectedWordLetters = []; //буквы угадываемого слова
   
 const renderWord = (film) => {
+  console.log(film)
   selectedWordLetters = [];
-  const selectedWord = film['data']['nameRu'];
+  const selectedWord = film['nameRu'];
 
   for (let i = 0; i < selectedWord.length; i++) {
     selectedWordLetters.push(selectedWord[i].toUpperCase());
@@ -293,22 +321,22 @@ const renderWord = (film) => {
   hintHeaderGenre.textContent = 'Жанр';
   hintTextGenre.textContent = '';
 
-  const filmKeys = Object.keys(film['data']);
+  const filmKeys = Object.keys(film);
 
   filmKeys.forEach(key => {
     if (key === 'year') {
-      if (film['data']['year'] !== '') {
+      if (film['year'] !== '') {
         hintElementYear.classList.add('hint__element_active');
-        hintTextYear.textContent = film['data']['year'];
+        hintTextYear.textContent = film['year'];
       }
     }
 
     if (key === 'countries') {
-      if (film['data']['countries'][0]['country'] !== '') {
+      if (film['countries'][0]['country'] !== '') {
         hintElementCountry.classList.add('hint__element_active');
-        const countriesArr = film['data']['countries'];
+        const countriesArr = film['countries'];
         if (countriesArr.length === 1) {
-          hintTextCountry.textContent = film['data']['countries'][0]['country'];
+          hintTextCountry.textContent = film['countries'][0]['country'];
         }
         if ((countriesArr.length > 1)) {
           hintHeaderCountry.textContent = 'Страны';
@@ -322,11 +350,11 @@ const renderWord = (film) => {
     }
 
     if (key === 'genres') {
-      if (film['data']['genres'][0]['genre'] !== '') {
+      if (film['genres'][0]['genre'] !== '') {
         hintElementGenre.classList.add('hint__element_active');
-        const genresArr = film['data']['genres'];
+        const genresArr = film['genres'];
         if (genresArr.length === 1) {
-          hintTextGenre.textContent = film['data']['genres'][0]['genre'];
+          hintTextGenre.textContent = film['genres'][0]['genre'];
         }
         if ((genresArr.length > 1)) {
           hintHeaderGenre.textContent = 'Жанры';
@@ -360,13 +388,17 @@ const gameHandler = (currentPlayer, difficulty) => {
   score.textContent = scorePointsBase;
   lives.textContent = livesCounter;
 
-  if (difficulty === 'default') {
+  if (difficulty === 'easy') { 
     scorePoints = 5;
-  } else {
+  }
+  if (difficulty === 'default') { 
+    scorePoints = 8;
+  } 
+  if (difficulty === 'hard') {
     isHardLevel = true;
     gameTimer.textContent = '02 : 00';
     gameTimer.classList.add('game-area__timer_active');
-    scorePoints = 10;
+    scorePoints = 14;
     startHardGameTimer();
   }
 
@@ -450,6 +482,9 @@ const gameHandler = (currentPlayer, difficulty) => {
   //функция проверки на окончание жизней или таймера
   function isGameOver() {
     if (livesCounter === 0 || timeOut) {
+      if (popupHint.classList.contains('window-animation_show')) {
+        popupHint.classList.remove('window-animation_show');
+      }
       audioDefeat.volume = 0.3;
       audioDefeat.play();
       playDefeatAnimation();
@@ -480,17 +515,20 @@ const gameHandler = (currentPlayer, difficulty) => {
     setTimeout(() => {
       if (isHardLevel) hideTimerAfterGame();
       disableGameArea();
-    openPopup(mainPage);
-    backToMainPageFromGameBtn.removeEventListener('click', backToMainPageFromGame);
-    document.removeEventListener('keydown', showLetterOnKeyboard);
-    keyboardButtons.forEach((button) => button.removeEventListener('click', showLetterOnClick));
-    gameArea.classList.remove('window-animation_hide');
+      openPopup(mainPage);
+      backToMainPageFromGameBtn.removeEventListener('click', backToMainPageFromGame);
+      document.removeEventListener('keydown', showLetterOnKeyboard);
+      keyboardButtons.forEach((button) => button.removeEventListener('click', showLetterOnClick));
+      gameArea.classList.remove('window-animation_hide');
     }, 300);
   };
 
   document.addEventListener('keydown', showLetterOnKeyboard);
   keyboardButtons.forEach((button) => button.addEventListener('click', showLetterOnClick));
   backToMainPageFromGameBtn.addEventListener('click', backToMainPageFromGame);
+  easyLevelButton.disabled = false;
+  defaultLevelButton.disabled = false;
+  hardLevelButton.disabled = false;
 };
 
 const clearWord = () => {

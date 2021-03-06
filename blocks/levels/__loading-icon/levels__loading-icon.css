@@ -1,0 +1,10 @@
+@keyframes rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.levels__loading-icon {
+  width: 60px;
+  height: 60px;
+  animation: rotation 2s linear infinite;
+}
