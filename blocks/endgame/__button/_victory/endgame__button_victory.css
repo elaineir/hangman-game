@@ -3,6 +3,6 @@
 }
 
 .endgame__button_victory:hover {
-  color: #ffb904;
-  border-color: #ffb904;
+  color: var(--colorTextTertiary);
+  border-color: var(--colorTextTertiary);
 }

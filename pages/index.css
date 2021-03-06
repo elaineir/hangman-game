@@ -1,5 +1,6 @@
 @import url(../vendor/normalize.css);
 @import url(../blocks/page/page.css);
+@import url(../blocks/page/_theme/page_theme_dark.css);
 @import url(../blocks/content/content.css);
 
 @import url(../blocks/arrow-back/arrow-back.css);
@@ -56,7 +57,6 @@
 @import url(../blocks/levels/__list-item/levels__list-item.css);
 @import url(../blocks/levels/__button/levels__button.css);
 
-@import url(../blocks/rules/rules.css);
 @import url(../blocks/secondary-heading/secondary-heading.css);
 @import url(../blocks/rules/__container/rules__container.css);
 @import url(../blocks/rules/__subheading/rules__subheading.css);
