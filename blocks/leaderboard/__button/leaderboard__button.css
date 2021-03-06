@@ -1,0 +1,17 @@
+.leaderboard__button {
+  display: block;
+  margin: 0 auto 35px;
+  color: var(--colorTextSecondary);
+  font-size: 20px;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  transition: color .3s linear;
+}
+
+.leaderboard__button:hover {
+  cursor: pointer;
+  color: var(--colorTextTertiary);
+}

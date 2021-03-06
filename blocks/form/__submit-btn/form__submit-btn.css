@@ -16,12 +16,14 @@
 
 @media screen and (max-width: 600px) {
   .form__submit-btn {
-    font-size: calc(56px + 6 * ((100vw - 320px) / 280));
+    font-size: calc(56px + 6 * ((100vw - 400px) / 200));
+    margin-bottom: calc(95px + 25 * ((100vw - 400px) / 200));
   }
 }
 
 @media screen and (max-width: 400px) {
   .form__submit-btn {
     font-size: 56px;
+    margin: 0 auto 95px;
   }
 }

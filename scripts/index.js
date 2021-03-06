@@ -25,10 +25,10 @@ const leaderboardButton = mainPage.querySelector('.main-menu__link_leaderboard')
 //режим игры
 const levelsPage = document.querySelector('.levels');
 const levelButtons = document.querySelectorAll('.levels__button');
-const easyLevelButton = document.querySelector('.levels__button_easy');
-const defaultLevelButton = document.querySelector('.levels__button_default');
-const hardLevelButton = document.querySelector('.levels__button_hard');
-const loadingPopup = document.querySelector('.levels__loading');
+const easyLevelButton = levelsPage.querySelector('.levels__button_easy');
+const defaultLevelButton = levelsPage.querySelector('.levels__button_default');
+const hardLevelButton = levelsPage.querySelector('.levels__button_hard');
+const loadingPopup = levelsPage.querySelector('.levels__loading');
 
 //правила
 const rulesPage = document.querySelector('.rules');
@@ -36,6 +36,7 @@ const rulesPage = document.querySelector('.rules');
 //лидерборд
 const leaderboardPage = document.querySelector('.leaderboard');
 const leaderboardSubheading = leaderboardPage.querySelector('.leaderboard__subheading');
+const leaderboardBtnPlayAgain = leaderboardPage.querySelector('.leaderboard__button');
 const leaderboardTemplate = leaderboardPage.querySelector('.leaderboard__template');
 
 //попапы завершения игры
@@ -178,9 +179,9 @@ const startGame = (evt) => {
   easyLevelButton.disabled = true;
   defaultLevelButton.disabled = true;
   hardLevelButton.disabled = true;
-  fetchFilm(difficulty);
   loadingPopup.classList.add('window-animation_show');
   loadingPopup.classList.add('levels__loading_active');
+  fetchFilm(difficulty);
   setTimeout(() => {
     hideHangman();
     makeKeyboardActive();
@@ -189,7 +190,7 @@ const startGame = (evt) => {
     closePopup(levelsPage);
     enableGameArea();
     gameHandler(currentPlayer, difficulty); //основная игровая функция
-  }, 4000); //загрузка фильма зависит от соединения
+  }, 6000); //загрузка фильма зависит от соединения
 };
 
 levelButtons.forEach((button) => button.addEventListener('click', startGame));
@@ -240,6 +241,18 @@ const clearLeaderboard = () => {
   leaderboardSubheading.classList.remove('leaderboard__subheading_hidden');
 };
 
+const PlayAgainFromLeaderboard = () => {
+  leaderboardPage.classList.add('window-animation_hide');
+  setTimeout(() => {
+    closePopup(leaderboardPage);
+    openPopup(levelsPage);
+    leaderboardPage.classList.remove('window-animation_hide');
+  }, 300);
+  leaderboardBtnPlayAgain.classList.add('leaderboard__button_hidden');
+};
+
+leaderboardBtnPlayAgain.addEventListener('click', PlayAgainFromLeaderboard);
+
 //game
 //идём на кинопоиск и выбираем фильм. какой жанр предпочитаете? впрочем, тут как повезёт :)
 async function fetchFilm(difficulty) {
@@ -247,6 +260,7 @@ async function fetchFilm(difficulty) {
     //easy-peasy
     //с этой апишки приходит массив, в котором 20 фильмов из категории топ-100, поэтому страниц 5
     let randomPage = Math.floor(1 + Math.random() * 5);
+    console.log(randomPage)
     let randomfilm = Math.floor(1 + Math.random() * 20);
     let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${randomPage}`, 
                    { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'} });
@@ -292,7 +306,6 @@ const checkFilmValidity = (filmData, difficulty) => {
 let selectedWordLetters = []; //буквы угадываемого слова
   
 const renderWord = (film) => {
-  console.log(film)
   selectedWordLetters = [];
   const selectedWord = film['nameRu'];
 
@@ -554,16 +567,16 @@ const closeHintPopup = () => {
 };
 
 const closeDefeatPage = () => {
-  disableGameArea();
   location.reload();
 };
 
 const closeVictoryPage = () => {
   clearLeaderboard();
   leaderboardHandler();
-  closePopup(popupEndgameVictory);
   audioVictory.pause();
   audioVictory.currentTime = 0;
+  leaderboardBtnPlayAgain.classList.remove('leaderboard__button_hidden');
+  closePopup(popupEndgameVictory);
   disableGameArea();
   openPopup(leaderboardPage);
 };
