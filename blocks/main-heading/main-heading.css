@@ -5,7 +5,7 @@
   font-size: 74px;
   line-height: 1;
   text-align: center;
-  color: #fff;
+  color: var(--colorTextPrimary);
   text-transform: uppercase;
   letter-spacing: 2px;
 }

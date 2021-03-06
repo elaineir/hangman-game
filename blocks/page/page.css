@@ -5,4 +5,10 @@
   width: 100%;
   height: 100vh;
   background-color: #080a0c;
+  --colorTextPrimary: #fff;
+  --colorTextSecondary: #931bf1;
+  --colorTextTertiary: #ffb904;
+  --colorBackgroundContent: #212932;
+  --colorInactive: #989898;
+  --colorVignette: #000;
 }

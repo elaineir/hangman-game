@@ -8,7 +8,7 @@
   text-align: center;
   letter-spacing: 1px;
   text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
-  color: #fff;
+  color: var(--colorTextPrimary);
   border-bottom: 3px solid #931bf1;
 }
 

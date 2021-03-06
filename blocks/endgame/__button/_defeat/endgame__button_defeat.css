@@ -1,4 +1,4 @@
 .endgame__button_defeat:hover {
-  color: #931bf1;
-  border-color: #931bf1;
+  color: var(--colorTextSecondary);
+  border-color: var(--colorTextSecondary);
 }

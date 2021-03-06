@@ -1,5 +1,5 @@
 .form__submit-btn_active {
-  color: #931bf1;
+  color: var(--colorTextSecondary);
   transition: transform .3s linear;
 }
 

@@ -6,5 +6,5 @@
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
-  color: #ffb904;
+  color: var(--colorTextTertiary);
 }

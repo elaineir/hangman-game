@@ -9,9 +9,9 @@
   font-size: 34px;
   line-height: 1;
   text-align: center;
-  color: #fff;
+  color: var(--colorTextPrimary);
   background-color: transparent;
-  border: 1px solid #fff;
+  border: 1px solid var(--colorTextPrimary);
   border-radius: 2px;
   outline: none;
   padding: 10px;
@@ -25,8 +25,8 @@
 
 .keyboard__button:hover {
   cursor: pointer;
-  color: #ffb904;
-  border: 1px solid #ffb904;
+  color: var(--colorTextTertiary);
+  border: 1px solid var(--colorTextTertiary);
 }
 
 @media screen and (max-width: 600px) {

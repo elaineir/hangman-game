@@ -5,7 +5,7 @@
   line-height: 1;
   text-align: center;
   letter-spacing: 1px;
-  color: #fff;
+  color: var(--colorTextPrimary);
   text-transform: uppercase;
   text-decoration: none;
   transition: color .3s linear;
@@ -13,7 +13,7 @@
 }
 
 .main-menu__link:hover {
-  color: #931bf1;
+  color: var(--colorTextSecondary);
   cursor: pointer;
 }
 

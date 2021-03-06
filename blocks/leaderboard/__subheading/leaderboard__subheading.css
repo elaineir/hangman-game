@@ -1,7 +1,7 @@
 .leaderboard__subheading {
   display: block;
   margin: 0 auto 20px;
-  color: #fff;
+  color: var(--colorTextPrimary);
   font-style: normal;
   font-weight: normal;
   font-size: 24px;

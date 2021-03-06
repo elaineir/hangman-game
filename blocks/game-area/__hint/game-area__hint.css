@@ -7,7 +7,7 @@
   font-size: 24px;
   line-height: 1.2;
   text-align: center;
-  color: #ffb904;
+  color: var(--colorTextTertiary);
   background-color: transparent;
   border: none;
   outline: none;
@@ -17,7 +17,7 @@
 
 .game-area__hint:hover {
   cursor: pointer;
-  color: #931bf1;
+  color: var(--colorTextSecondary);
 }
 
 @media screen and (max-width: 600px) {

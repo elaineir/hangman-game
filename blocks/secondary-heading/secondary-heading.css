@@ -8,7 +8,7 @@
   font-size: 48px;
   line-height: 1.2;
   text-align: center;
-  color: #ffb904;
+  color: var(--colorTextTertiary);
   text-transform: uppercase;
 }
 

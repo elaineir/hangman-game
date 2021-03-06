@@ -9,18 +9,18 @@
   font-size: 36px;
   line-height: 60px;
   text-align: center;
-  color: #fff;
+  color: var(--colorTextPrimary);
   text-transform: uppercase;
-  background-color: #212932;
-  border: 1px solid #fff;
+  background-color: var(--colorBackgroundContent);
+  border: 1px solid var(--colorTextPrimary);
   outline: none;
   padding: 0;
   transition: color .3s linear, border-color .3s linear;
 }
 
 .levels__button:hover {
-  color: #ffb904;
-  border-color: #ffb904;
+  color: var(--colorTextTertiary);
+  border-color: var(--colorTextTertiary);
   cursor: pointer;
 }
 

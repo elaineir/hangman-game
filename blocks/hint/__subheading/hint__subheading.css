@@ -7,5 +7,5 @@
   text-align: center;
   text-transform: uppercase;
   text-decoration: underline;
-  color: #fff;
+  color: var(--colorTextPrimary);
 }

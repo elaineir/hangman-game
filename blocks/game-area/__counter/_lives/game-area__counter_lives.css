@@ -1,7 +1,7 @@
 .game-area__counter_lives {
   position: relative;
   top: 11px;
-  color: #ffb904;
+  color: var(--colorTextTertiary);
 }
 
 @media screen and (max-width: 500px) {

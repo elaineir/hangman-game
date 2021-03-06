@@ -8,9 +8,9 @@
   font-family: 'PT Sans', Arial, sans-serif;
   font-size: 36px;
   line-height: 60px;
-  color: #fff;
-  background-color: #212932;
-  border: 1px solid #fff;
+  color: var(--colorTextPrimary);
+  background-color: var(--colorBackgroundContent);
+  border: 1px solid var(--colorTextPrimary);
   padding: 10px;
 }
 
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: normal;
   text-align: center;
-  color: #989898;
+  color: var(--colorInactive);
 }
 
 @media screen and (max-width: 600px) {
