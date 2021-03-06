@@ -260,7 +260,6 @@ async function fetchFilm(difficulty) {
     //easy-peasy
     //с этой апишки приходит массив, в котором 20 фильмов из категории топ-100, поэтому страниц 5
     let randomPage = Math.floor(1 + Math.random() * 5);
-    console.log(randomPage)
     let randomfilm = Math.floor(1 + Math.random() * 20);
     let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${randomPage}`, 
                    { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'} });
