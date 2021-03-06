@@ -105,7 +105,7 @@ const showLastPlayer = () => {
     submitNameButton.classList.add('form__submit-btn_active');
     submitNameButton.classList.remove('form__submit-btn_inactive');
   }
-}
+};
 
 backToMainPageButton.forEach((link) => link.addEventListener('click', backToMainPage));
 
@@ -241,7 +241,7 @@ const clearLeaderboard = () => {
   leaderboardSubheading.classList.remove('leaderboard__subheading_hidden');
 };
 
-const PlayAgainFromLeaderboard = () => {
+const playAgainFromLeaderboard = () => {
   leaderboardPage.classList.add('window-animation_hide');
   setTimeout(() => {
     closePopup(leaderboardPage);
@@ -251,7 +251,7 @@ const PlayAgainFromLeaderboard = () => {
   leaderboardBtnPlayAgain.classList.add('leaderboard__button_hidden');
 };
 
-leaderboardBtnPlayAgain.addEventListener('click', PlayAgainFromLeaderboard);
+leaderboardBtnPlayAgain.addEventListener('click', playAgainFromLeaderboard);
 
 //game
 //идём на кинопоиск и выбираем фильм. какой жанр предпочитаете? впрочем, тут как повезёт :)
