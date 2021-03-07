@@ -190,7 +190,7 @@ const startGame = (evt) => {
     closePopup(levelsPage);
     enableGameArea();
     gameHandler(currentPlayer, difficulty); //основная игровая функция
-  }, 6000); //загрузка фильма зависит от соединения
+  }, 7000); //загрузка фильма зависит от соединения
 };
 
 levelButtons.forEach((button) => button.addEventListener('click', startGame));
@@ -274,7 +274,7 @@ async function fetchFilm(difficulty) {
     
   } else {
     //default and hard
-    let randomID = Math.floor(1000 + Math.random() * (1000998));
+    let randomID = Math.floor(1000 + Math.random() * 1000998);
     let response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${randomID}`, 
                    { headers: {'X-API-KEY': '66d13bb0-94cd-485d-aee2-5932b4961127'} });
       
@@ -498,9 +498,9 @@ const gameHandler = (currentPlayer, difficulty) => {
         popupHint.classList.remove('popup_active');
         popupHint.classList.remove('window-animation_show');
       }
+      playDefeatAnimation();
       audioDefeat.volume = 0.3;
       audioDefeat.play();
-      playDefeatAnimation();
       openPopup(popupEndgameDefeat);
       document.removeEventListener('keydown', showLetterOnKeyboard);
       keyboardButtons.forEach((button) => button.removeEventListener('click', showLetterOnClick));
@@ -511,9 +511,9 @@ const gameHandler = (currentPlayer, difficulty) => {
   function isWordDone() {
     let openedLetters = Array.from(document.querySelectorAll('.game-area__letter_opened'));
     if (openedLetters.length === selectedWordLetters.length) {
+      earnedPointsText.textContent = scorePointsBase;
       audioVictory.volume = 0.2;
       audioVictory.play();
-      earnedPointsText.textContent = scorePointsBase;
       openPopup(popupEndgameVictory);
       document.removeEventListener('keydown', showLetterOnKeyboard);
       keyboardButtons.forEach((button) => button.removeEventListener('click', showLetterOnClick));

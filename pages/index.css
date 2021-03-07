@@ -60,6 +60,7 @@
 @import url(../blocks/levels/__loading/_active/levels__loading_active.css);
 @import url(../blocks/levels/__loading-icon/levels__loading-icon.css);
 
+@import url(../blocks/rules/rules.css);
 @import url(../blocks/secondary-heading/secondary-heading.css);
 @import url(../blocks/rules/__container/rules__container.css);
 @import url(../blocks/rules/__subheading/rules__subheading.css);
