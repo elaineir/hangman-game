@@ -1,4 +1,4 @@
-.main-menu__link {
+.main-menu__button {
   font-style: normal;
   font-weight: normal;
   font-size: 22px;
@@ -8,11 +8,13 @@
   color: var(--colorTextPrimary);
   text-transform: uppercase;
   text-decoration: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
   transition: color .3s linear;
-  
 }
 
-.main-menu__link:hover {
+.main-menu__button:hover {
   color: var(--colorTextSecondary);
   cursor: pointer;
 }

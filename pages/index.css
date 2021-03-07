@@ -49,7 +49,7 @@
 @import url(../blocks/form/__submit-btn/_inactive/form__submit-btn_inactive.css);
 @import url(../blocks/main-menu/__list/main-menu__list.css);
 @import url(../blocks/main-menu/__list-item/main-menu__list-item.css);
-@import url(../blocks/main-menu/__link/main-menu__link.css);
+@import url(../blocks/main-menu/__button/main-menu__button.css);
 
 @import url(../blocks/levels/levels.css);
 @import url(../blocks/levels/__main-heading/levels__main-heading.css);

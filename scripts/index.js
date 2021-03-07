@@ -19,8 +19,8 @@ const mainPage = document.querySelector('.main-menu');
 const usernameForm = document.forms.usernameForm;
 const usernameInput = document.querySelector('.form__input');
 const submitNameButton = document.querySelector('.form__submit-btn');
-const howToPlayButton = mainPage.querySelector('.main-menu__link_how-to-play');
-const leaderboardButton = mainPage.querySelector('.main-menu__link_leaderboard');
+const howToPlayButton = mainPage.querySelector('.main-menu__button_how-to-play');
+const leaderboardButton = mainPage.querySelector('.main-menu__button_leaderboard');
 
 //режим игры
 const levelsPage = document.querySelector('.levels');
@@ -86,8 +86,6 @@ const disableGameArea = () => {
 };
 
 const backToMainPage = (evt) => {
-  evt.preventDefault(); //отмена стандартного события для ссылки
-  evt.target.getAttribute('href').replace(''); //ссылки оставляют # в адресе, поэтому это исправляем
   const popup = evt.target.closest('.popup');
   popup.classList.add('window-animation_hide');
   setTimeout(() => {
@@ -147,16 +145,12 @@ const openLevelsPage = (evt) => {
   openPopup(levelsPage);
 };
 
-const openHowToPlayPage = (evt) => {
-  evt.preventDefault();
-  howToPlayButton.getAttribute('href').replace('');
+const openHowToPlayPage = () => {
   closePopup(mainPage);
   openPopup(rulesPage);
 };
 
-const openLeaderboardPage = (evt) => {
-  evt.preventDefault();
-  leaderboardButton.getAttribute('href').replace('');
+const openLeaderboardPage = () => {
   clearLeaderboard();
   leaderboardHandler();
   closePopup(mainPage);
@@ -521,9 +515,7 @@ const gameHandler = (currentPlayer, difficulty) => {
     }
   }
 
-  const backToMainPageFromGame = (evt) => {
-    evt.preventDefault();
-    evt.target.getAttribute('href').replace('');
+  const backToMainPageFromGame = () => {
     gameArea.classList.add('window-animation_hide');
     setTimeout(() => {
       if (isHardLevel) hideTimerAfterGame();

@@ -4,12 +4,16 @@
   display: block;
   width: 19px;
   height: 27px;
+  background-color: transparent;
   background-image: url(../../images/arrow-icon.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  border: none;
+  outline: none;
   transition: background-image .3s linear;
 }
 
 .arrow-back:hover {
+  cursor: pointer;
   background-image: url(../../images/arrow-icon-hover.svg);
 }
