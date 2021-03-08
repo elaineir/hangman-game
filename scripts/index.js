@@ -92,6 +92,9 @@ const backToMainPage = (evt) => {
     closePopup(popup);
     openPopup(mainPage);
     popup.classList.remove('window-animation_hide');
+    if (popup === leaderboardPage && !leaderboardBtnPlayAgain.classList.contains('leaderboard__button_hidden')) {
+      leaderboardBtnPlayAgain.classList.add('leaderboard__button_hidden');
+    }
   }, 300);
 };
 
@@ -184,7 +187,7 @@ const startGame = (evt) => {
     closePopup(levelsPage);
     enableGameArea();
     gameHandler(currentPlayer, difficulty); //основная игровая функция
-  }, 7000); //загрузка фильма зависит от соединения
+  }, 5000); //загрузка фильма зависит от соединения
 };
 
 levelButtons.forEach((button) => button.addEventListener('click', startGame));
